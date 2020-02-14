@@ -89,13 +89,13 @@ development:
   encoding: unicode
   database: ridesharing_development
   pool: 5
-  # username: myapp
-  # password: password1
+  username: ridesharing
+  password: password1
 
 test:
   adapter: postgresql
   encoding: unicode
   database: ridesharing_test
   pool: 5
-  # username: myapp
-  # password: password1
+  username: ridesharing
+  password: password1
