@@ -17,7 +17,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user" do
     assert_difference('User.count') do
-      post users_url, params: { user: { address: @user.address, age: @user.age, gender: @user.gender, username: @user.username } }
+      post users_url, params: { user: { age: @user.age, email: @user.email, firstname: @user.firstname, gender: @user.gender, is_driver: @user.is_driver, lastname: @user.lastname, major: @user.major, number_of_rating_given: @user.number_of_rating_given, number_of_rating_received: @user.number_of_rating_received, phone_number: @user.phone_number, sum_of_rating_given: @user.sum_of_rating_given, sum_of_rating_received: @user.sum_of_rating_received, username: @user.username, year: @user.year } }
     end
 
     assert_redirected_to user_url(User.last)
@@ -34,7 +34,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user" do
-    patch user_url(@user), params: { user: { address: @user.address, age: @user.age, gender: @user.gender, username: @user.username } }
+    patch user_url(@user), params: { user: { age: @user.age, email: @user.email, firstname: @user.firstname, gender: @user.gender, is_driver: @user.is_driver, lastname: @user.lastname, major: @user.major, number_of_rating_given: @user.number_of_rating_given, number_of_rating_received: @user.number_of_rating_received, phone_number: @user.phone_number, sum_of_rating_given: @user.sum_of_rating_given, sum_of_rating_received: @user.sum_of_rating_received, username: @user.username, year: @user.year } }
     assert_redirected_to user_url(@user)
   end
 

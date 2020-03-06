@@ -14,10 +14,20 @@ class UsersTest < ApplicationSystemTestCase
     visit users_url
     click_on "New User"
 
-    fill_in "Address", with: @user.address
     fill_in "Age", with: @user.age
+    fill_in "Email", with: @user.email
+    fill_in "Firstname", with: @user.firstname
     fill_in "Gender", with: @user.gender
+    check "Is driver" if @user.is_driver
+    fill_in "Lastname", with: @user.lastname
+    fill_in "Major", with: @user.major
+    fill_in "Number of rating given", with: @user.number_of_rating_given
+    fill_in "Number of rating received", with: @user.number_of_rating_received
+    fill_in "Phone number", with: @user.phone_number
+    fill_in "Sum of rating given", with: @user.sum_of_rating_given
+    fill_in "Sum of rating received", with: @user.sum_of_rating_received
     fill_in "Username", with: @user.username
+    fill_in "Year", with: @user.year
     click_on "Create User"
 
     assert_text "User was successfully created"
@@ -28,10 +38,20 @@ class UsersTest < ApplicationSystemTestCase
     visit users_url
     click_on "Edit", match: :first
 
-    fill_in "Address", with: @user.address
     fill_in "Age", with: @user.age
+    fill_in "Email", with: @user.email
+    fill_in "Firstname", with: @user.firstname
     fill_in "Gender", with: @user.gender
+    check "Is driver" if @user.is_driver
+    fill_in "Lastname", with: @user.lastname
+    fill_in "Major", with: @user.major
+    fill_in "Number of rating given", with: @user.number_of_rating_given
+    fill_in "Number of rating received", with: @user.number_of_rating_received
+    fill_in "Phone number", with: @user.phone_number
+    fill_in "Sum of rating given", with: @user.sum_of_rating_given
+    fill_in "Sum of rating received", with: @user.sum_of_rating_received
     fill_in "Username", with: @user.username
+    fill_in "Year", with: @user.year
     click_on "Update User"
 
     assert_text "User was successfully updated"

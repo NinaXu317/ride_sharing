@@ -2,12 +2,32 @@
 
 one:
   username: MyString
-  address: MyString
-  age: 
+  email: MyString
+  age: 1
   gender: MyString
+  firstname: MyString
+  lastname: MyString
+  phone_number: MyString
+  major: MyString
+  year: MyString
+  is_driver: false
+  number_of_rating_given: 1
+  number_of_rating_received: 1
+  sum_of_rating_given: 1
+  sum_of_rating_received: 1
 
 two:
   username: MyString
-  address: MyString
-  age: 
+  email: MyString
+  age: 1
   gender: MyString
+  firstname: MyString
+  lastname: MyString
+  phone_number: MyString
+  major: MyString
+  year: MyString
+  is_driver: false
+  number_of_rating_given: 1
+  number_of_rating_received: 1
+  sum_of_rating_given: 1
+  sum_of_rating_received: 1

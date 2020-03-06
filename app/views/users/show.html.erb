@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Address:</strong>
-  <%= @user.address %>
+  <strong>Email:</strong>
+  <%= @user.email %>
 </p>
 
 <p>
@@ -18,6 +18,56 @@
 <p>
   <strong>Gender:</strong>
   <%= @user.gender %>
+</p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @user.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @user.lastname %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @user.phone_number %>
+</p>
+
+<p>
+  <strong>Major:</strong>
+  <%= @user.major %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @user.year %>
+</p>
+
+<p>
+  <strong>Is driver:</strong>
+  <%= @user.is_driver %>
+</p>
+
+<p>
+  <strong>Number of rating given:</strong>
+  <%= @user.number_of_rating_given %>
+</p>
+
+<p>
+  <strong>Number of rating received:</strong>
+  <%= @user.number_of_rating_received %>
+</p>
+
+<p>
+  <strong>Sum of rating given:</strong>
+  <%= @user.sum_of_rating_given %>
+</p>
+
+<p>
+  <strong>Sum of rating received:</strong>
+  <%= @user.sum_of_rating_received %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

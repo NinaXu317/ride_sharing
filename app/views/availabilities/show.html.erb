@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @availability.user_id %>
+</p>
+
+<p>
+  <strong>Start city:</strong>
+  <%= @availability.start_city %>
+</p>
+
+<p>
+  <strong>Start street address:</strong>
+  <%= @availability.start_street_address %>
+</p>
+
+<p>
+  <strong>Start zip:</strong>
+  <%= @availability.start_zip %>
+</p>
+
+<p>
+  <strong>End city:</strong>
+  <%= @availability.end_city %>
+</p>
+
+<p>
+  <strong>End street address:</strong>
+  <%= @availability.end_street_address %>
+</p>
+
+<p>
+  <strong>End zip:</strong>
+  <%= @availability.end_zip %>
+</p>
+
+<p>
+  <strong>Trip date:</strong>
+  <%= @availability.trip_date %>
+</p>
+
+<p>
+  <strong>Trip time:</strong>
+  <%= @availability.trip_time %>
+</p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @availability.distance %>
+</p>
+
+<p>
+  <strong>Lowest acceptable price:</strong>
+  <%= @availability.lowest_acceptable_price %>
+</p>
+
+<p>
+  <strong>Matched request:</strong>
+  <%= @availability.matched_request_id %>
+</p>
+
+<p>
+  <strong>Availability status:</strong>
+  <%= @availability.availability_status %>
+</p>
+
+<%= link_to 'Edit', edit_availability_path(@availability) %> |
+<%= link_to 'Back', availabilities_path %>
