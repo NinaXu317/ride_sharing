@@ -10,50 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_184306) do
+ActiveRecord::Schema.define(version: 2020_03_06_194102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "posts", force: :cascade do |t|
-    t.integer "post_id"
+  create_table "availabilities", force: :cascade do |t|
     t.integer "user_id"
-    t.string "start"
-    t.string "destination"
-    t.string "trip_date"
-    t.string "trip_time"
+    t.string "start_city"
+    t.string "start_street_address"
+    t.string "start_zip"
+    t.string "end_city"
+    t.string "end_street_address"
+    t.string "end_zip"
+    t.date "trip_date"
+    t.datetime "trip_time"
     t.float "distance"
+    t.float "lowest_acceptable_price"
+    t.integer "matched_request_id"
+    t.string "availability_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ratings", force: :cascade do |t|
+  create_table "requests", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "rating"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.integer "rider_id"
-    t.integer "driver_id"
-    t.integer "post_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_types", force: :cascade do |t|
-    t.integer "user_id"
-    t.boolean "is_driver"
+    t.string "start_city"
+    t.string "start_street_address"
+    t.string "start_zip"
+    t.string "end_city"
+    t.string "end_street_address"
+    t.string "end_zip"
+    t.date "trip_date"
+    t.datetime "trip_time"
+    t.float "distance"
+    t.float "highest_price_to_pay"
+    t.integer "matched_availability_id"
+    t.string "request_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "address"
+    t.string "email"
     t.integer "age"
     t.string "gender"
+    t.string "firstname"
+    t.string "lastname"
+    t.string "phone_number"
+    t.string "major"
+    t.string "year"
+    t.boolean "is_driver"
+    t.integer "number_of_rating_given"
+    t.integer "number_of_rating_received"
+    t.integer "sum_of_rating_given"
+    t.integer "sum_of_rating_received"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
