@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorized, only: [:show]
+  # before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -10,6 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -25,16 +27,22 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.valid?
+      @user.save
+      redirect_to @user
+    else
+      redirect root_path
     end
+
+    # respond_to do |format|
+    #   if @user.save
+    #     format.html { redirect_to @user, notice: 'User was successfully created.' }
+    #     format.json { render :show, status: :created, location: @user }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /users/1
@@ -69,6 +77,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :email, :age, :gender, :firstname, :lastname, :phone_number, :major, :year, :is_driver, :number_of_rating_given, :number_of_rating_received, :sum_of_rating_given, :sum_of_rating_received)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation)
+      # params.require(:user).permit(:username, :email, :age, :gender, :firstname, :lastname, :phone_number, :major, :year, :is_driver, :number_of_rating_given, :number_of_rating_received, :sum_of_rating_given, :sum_of_rating_received)
     end
 end
