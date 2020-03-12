@@ -1,0 +1,42 @@
+<%= form_with(model: vechile, local: true) do |form| %>
+  <% if vechile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vechile.errors.count, "error") %> prohibited this vechile from being saved:</h2>
+
+      <ul>
+        <% vechile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :license_number %>
+    <%= form.text_field :license_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vehicle_make %>
+    <%= form.text_field :vehicle_make %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vehicle_model %>
+    <%= form.text_field :vehicle_model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vehicle_plate %>
+    <%= form.text_field :vehicle_plate %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

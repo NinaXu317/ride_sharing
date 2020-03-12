@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @vechile.user_id %>
+</p>
+
+<p>
+  <strong>License number:</strong>
+  <%= @vechile.license_number %>
+</p>
+
+<p>
+  <strong>Vehicle make:</strong>
+  <%= @vechile.vehicle_make %>
+</p>
+
+<p>
+  <strong>Vehicle model:</strong>
+  <%= @vechile.vehicle_model %>
+</p>
+
+<p>
+  <strong>Vehicle plate:</strong>
+  <%= @vechile.vehicle_plate %>
+</p>
+
+<%= link_to 'Edit', edit_vechile_path(@vechile) %> |
+<%= link_to 'Back', vechiles_path %>

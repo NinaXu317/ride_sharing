@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :vechiles
   resources :requests
   resources :availabilities
   resources :users
