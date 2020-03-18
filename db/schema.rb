@@ -10,20 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_142518) do
+ActiveRecord::Schema.define(version: 2020_03_14_143233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "availabilities", force: :cascade do |t|
-    t.integer "user_id"
     t.string "start_city"
     t.string "start_street_address"
     t.string "start_zip"
     t.string "end_city"
     t.string "end_street_address"
     t.string "end_zip"
-    t.date "trip_date"
     t.datetime "trip_time"
     t.float "distance"
     t.float "lowest_acceptable_price"
@@ -34,14 +32,12 @@ ActiveRecord::Schema.define(version: 2020_03_12_142518) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.integer "user_id"
     t.string "start_city"
     t.string "start_street_address"
     t.string "start_zip"
     t.string "end_city"
     t.string "end_street_address"
     t.string "end_zip"
-    t.date "trip_date"
     t.datetime "trip_time"
     t.float "distance"
     t.float "highest_price_to_pay"
@@ -69,6 +65,16 @@ ActiveRecord::Schema.define(version: 2020_03_12_142518) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string "license_number"
+    t.string "vehicle_make"
+    t.string "vehicle_model"
+    t.string "vehicle_color"
+    t.string "vehicle_plate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
