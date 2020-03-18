@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       @user.save
       redirect_to @user
     else
-      redirect root_path
+      redirect_to root_path
     end
 
     # respond_to do |format|
