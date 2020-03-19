@@ -17,13 +17,13 @@ def create_user
         @lastname = random_name[1]
         @year = get_year(@age)
         @is_driver = is_driver(rand(100))
-        User.create(username: Faker::Superhero.name, email: Faker::Internet.email, password: Faker::Alphanumeric.alpha(number: 6), age: @age, gender: Faker::Gender.binary_type, firstname: @firstname, lastname: @lastname,
+        @user = User.create(username: Faker::Superhero.name, email: Faker::Internet.email, password: Faker::Alphanumeric.alpha(number: 6), age: @age, gender: Faker::Gender.binary_type, firstname: @firstname, lastname: @lastname,
         phone_number: Faker::PhoneNumber.cell_phone, major: random_major, year: @year, is_driver: @is_driver, number_of_rating_given: 0, number_of_rating_received: 0,
         sum_of_rating_given: 0, sum_of_rating_received: 0)
         if @is_driver
             @vehicle_make = Faker::Vehicle.make
             @vehicle_model = Faker::Vehicle.model(make_of_model: @vehicle_make)
-            Vehicle.create(license_number: Faker::Alphanumeric.alpha(number: 9), vehicle_make: @vehicle_make, vehicle_model: @vehicle_model, vehicle_plate: Faker::Vehicle.license_plate, vehicle_color: Faker::Color.color_name)
+            @user.vehicle = Vehicle.create(license_number: Faker::Alphanumeric.alpha(number: 9), vehicle_make: @vehicle_make, vehicle_model: @vehicle_model, vehicle_plate: Faker::Vehicle.license_plate, vehicle_color: Faker::Color.color_name)
         end
     end
     puts "generated user and vehicle data"
