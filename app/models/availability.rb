@@ -1,2 +1,4 @@
 class Availability < ApplicationRecord
+    has_many :users, :through => :posts
+    has_one :requests, :through => :matches
 end

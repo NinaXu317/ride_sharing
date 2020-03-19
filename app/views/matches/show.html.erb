@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= @match.availability_id %>
+</p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @match.request_id %>
+</p>
+
+<%= link_to 'Edit', edit_match_path(@match) %> |
+<%= link_to 'Back', matches_path %>
