@@ -17,7 +17,7 @@ def create_user
         @lastname = random_name[1]
         @year = get_year(@age)
         @is_driver = is_driver(rand(100))
-        @user = User.create(username: Faker::Superhero.name, email: Faker::Internet.email, password: Faker::Alphanumeric.alpha(number: 6), age: @age, gender: Faker::Gender.binary_type, firstname: @firstname, lastname: @lastname,
+        @user = User.create(username: Faker::Superhero.name, email: Faker::Internet.email, password: "111111", age: @age, gender: Faker::Gender.binary_type, firstname: @firstname, lastname: @lastname,
         phone_number: Faker::PhoneNumber.cell_phone, major: random_major, year: @year, is_driver: @is_driver, number_of_rating_given: 0, number_of_rating_received: 0,
         sum_of_rating_given: 0, sum_of_rating_received: 0)
         if @is_driver
