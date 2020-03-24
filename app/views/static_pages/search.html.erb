@@ -3,10 +3,10 @@
 
 <form>
     <div id="aDiv">
-        <%= simple_form_for @availability do |f| %>
+        <%= simple_form_for :search, url: root_path, method: "GET" do |f| %>
         <div class="form-row">
             <div class="form-group col-md-2">
-                <%= f.input :start_city, label: 'Start City', class: "form-control", error: 'Start address is mandatory, please specify one' %>
+                <%= f.input :start_city, label: 'Start City', as: :select, class: "form-control", error: 'Start address is mandatory, please specify one' %>
             </div>
             <div class="form-group col-md-4">
                 <%= f.input :start_street_address, label: 'Start Street Address', class: "form-control" %>
@@ -14,7 +14,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-2">
-                <%= f.input :end_city, label: 'Destination City', class: "form-control" %>
+                <%= f.input :end_city, label: 'Destination City', as: :select, class: "form-control" %>
             </div>
             <div class="form-group col-md-4">
                 <%= f.input :end_street_address, label: 'Destionation Street Address', class: "form-control" %>
@@ -22,14 +22,14 @@
             </div>
             <div class="form-row">
             <div class="form-group col-md-4">
-                <%= f.input :trip_time, inline_label: 'Yes, remember me', class: "form-control" %>
+                <%= f.input :trip_time, as: :datetime, inline_label: 'Yes, remember me', class: "form-control" %>
             </div>
             <div class="form-group col-md-2">
                 <%= f.input :lowest_acceptable_price, label: 'Expected Price', class: "form-control" %>
             </div>
             </div>
             <div class="form-row">
-                <%= f.button :submit, class: "btn btn-primary" %>
+                <%= f.submit "Search", class: "btn btn-primary" %>
             </div>
         <% end %>
     </div>
