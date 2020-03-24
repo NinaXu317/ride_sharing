@@ -1,18 +1,21 @@
-<nav class="navbar navbar-dark navbar-static-top navbar-expand-md">
-  <div class="container">
-    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>
+<div class="container-fluid" id="title">
+<nav class="navbar navbar-expand-lg navbar-dark">
+   <%# <a class="navbar-brand" href="">tindog</a> %>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     </button> <%= link_to "RideSharing", root_path, class: 'navbar-brand' %>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav mr-auto">
-        <li class='nav-item'><%= link_to 'Home', root_path, class: 'nav-link' %></li>
+        <li class='nav-item nav-link'><%= link_to 'Home', root_path, class: 'nav-link' %></li>
         <% if logged_in? %>
-          <li class='nav-item'><%= link_to 'Log out', sessions_path, method: :delete, class: 'nav-link' %></li>
+          <li class='nav-item nav-link'><%= link_to 'Log out', sessions_path, method: :delete, class: 'nav-link' %></li>
         <% else %>
-          <li class='nav-item'><%= link_to 'Log in', login_path, method: :get, class: 'nav-link' %></li>
-          <li class='nav-item'><%= link_to 'Sign up', signup_path, class: 'nav-link' %></li>
+          <li class='nav-item nav-link'><%= link_to 'Log in', login_path, method: :get, class: 'nav-link' %></li>
+          <li class='nav-item nav-link'><%= link_to 'Sign up', signup_path, class: 'nav-link' %></li>
         <% end %>
-        <li class='nav-item'><%= link_to 'About', root_path, class: 'nav-link' %></li>
-        <li class='nav-item'><%= link_to 'Help', root_path, class: 'nav-link' %></li>
+        <li class='nav-item nav-link'><%= link_to 'About', root_path, class: 'nav-link' %></li>
+        <li class='nav-item nav-link'><%= link_to 'Help', root_path, class: 'nav-link' %></li>
       </ul>
       <% if logged_in? %>
         <form class="form-inline">
@@ -20,8 +23,6 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       <% end %>
-
-
     </div>
-  </div>
 </nav>
+ </div>
