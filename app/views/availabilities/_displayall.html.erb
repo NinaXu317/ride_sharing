@@ -1,0 +1,16 @@
+<% @availabilities.each do |availability| %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Ride</h5>
+      <strong>Start city: </strong> <%= availability.start_city %><br>
+      <strong>Start street address: </strong><%= availability.start_street_address %><br>
+      <strong>End city: </strong><%= availability.end_city %><br>
+      <strong>End street address: </strong><%= availability.end_street_address %><br>
+      <strong>Trip Time: </strong><%= availability.trip_time %><br>
+      <strong>Price Requested: </strong><%= availability.lowest_acceptable_price %><br>
+      <br>
+      <a href="#" class="btn btn-primary">View Details</a>
+      <a href="#" class="btn btn-primary">Request Ride</a>
+    </div>
+  </div>
+<% end %>

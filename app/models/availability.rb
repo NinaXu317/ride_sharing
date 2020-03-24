@@ -4,6 +4,7 @@ class Availability < ApplicationRecord
     scope :unmatched, ->{ where(matched_request_id: -1) }
 
     def self.search (params)
+        puts "start searching"
         results = city_matches(start_city, end_city, params[:start_city], params[:end_city]) 
         reutrn nil unless results
         results
