@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'static_pages/about'
   get 'static_pages/help'
-  get 'search', to: 'static_pages#search'
-  get 'search_result', to: 'static_pages#search'
+  get 'search_rides', to: 'availabilities#index'
+  get 'search_requests', to: 'requests#index'
+  get 'rides_result', to: 'availabilities#search'
   get '/signup', to: "users#new"
   get "/login", to: "sessions#new"
   post "/sessions", to: "sessions#create"

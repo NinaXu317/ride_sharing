@@ -4,9 +4,22 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities
   # GET /availabilities.json
   def index
-    @availabilities = Availability.all
+    @availabilities = Availability.unmatched
   end
 
+  def search
+    @availabilities = Availability.search(params[:search])
+    if @availabilities
+      respond_to do |format|
+        format.js { render partial: 'availabilities/availability_result'}
+      end
+    else
+      respond_to do |format|
+        flash.now[:alert] = "Could not find an availability"
+        format.js { render partial: 'availabilities/availability_result'}
+      end
+    end
+  end
   # GET /availabilities/1
   # GET /availabilities/1.json
   def show

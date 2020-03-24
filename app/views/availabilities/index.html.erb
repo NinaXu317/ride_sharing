@@ -1,51 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Availabilities</h1>
+<%= render 'searchform' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Start city</th>
-      <th>Start street address</th>
-      <th>Start zip</th>
-      <th>End city</th>
-      <th>End street address</th>
-      <th>End zip</th>
-      <th>Trip date</th>
-      <th>Trip time</th>
-      <th>Distance</th>
-      <th>Lowest acceptable price</th>
-      <th>Matched request</th>
-      <th>Availability status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @availabilities.each do |availability| %>
-      <tr>
-        <td><%= availability.user_id %></td>
-        <td><%= availability.start_city %></td>
-        <td><%= availability.start_street_address %></td>
-        <td><%= availability.start_zip %></td>
-        <td><%= availability.end_city %></td>
-        <td><%= availability.end_street_address %></td>
-        <td><%= availability.end_zip %></td>
-        <td><%= availability.trip_date %></td>
-        <td><%= availability.trip_time %></td>
-        <td><%= availability.distance %></td>
-        <td><%= availability.lowest_acceptable_price %></td>
-        <td><%= availability.matched_request_id %></td>
-        <td><%= availability.availability_status %></td>
-        <td><%= link_to 'Show', availability %></td>
-        <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
-        <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Availability', new_availability_path %>
+<% @availabilities.each do |availability| %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Ride</h5>
+      <strong>Start city: </strong> <%= availability.start_city %><br>
+      <strong>Start street address: </strong><%= availability.start_street_address %><br>
+      <strong>End city: </strong><%= availability.end_city %><br>
+      <strong>End street address: </strong><%= availability.end_street_address %><br>
+      <strong>Trip Time: </strong><%= availability.trip_time %><br>
+      <strong>Price Requested: </strong><%= availability.lowest_acceptable_price %><br>
+      <br>
+      <a href="#" class="btn btn-primary">View Details</a>
+      <a href="#" class="btn btn-primary">Request Ride</a>
+    </div>
+  </div>
+<% end %>
