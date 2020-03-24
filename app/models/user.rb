@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :availabilities, :through => :posts
   has_many :requests, :through => :makes
   has_one :vehicle
+  scope :is_driver, ->{ where(is_driver: true) }
+  scope :is_rider, ->{ where(is_driver: false) }
 end

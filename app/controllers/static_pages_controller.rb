@@ -9,5 +9,6 @@ class StaticPagesController < ApplicationController
   end
 
   def search
+    @availability = Availability.new
   end
 end
