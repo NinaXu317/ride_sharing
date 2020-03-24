@@ -1,4 +1,4 @@
 class Request < ApplicationRecord
-    has_many :users, through: :makes
-    has_one :availability, through: :matches
+    has_many :users, :through => :makes
+    has_one :availability
 end
