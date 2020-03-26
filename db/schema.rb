@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_03_19_135211) do
-=======
 ActiveRecord::Schema.define(version: 2020_03_24_004115) do
->>>>>>> 338f24c8cad0a4a3642a8964992ed0f237cd907e
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +38,6 @@ ActiveRecord::Schema.define(version: 2020_03_24_004115) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-<<<<<<< HEAD
   create_table "matches", force: :cascade do |t|
     t.integer "availability_id"
     t.integer "request_id"
@@ -50,8 +45,6 @@ ActiveRecord::Schema.define(version: 2020_03_24_004115) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-=======
->>>>>>> 338f24c8cad0a4a3642a8964992ed0f237cd907e
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "availability_id"
