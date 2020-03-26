@@ -1,7 +1,14 @@
 <div class="jumbotron">
-  <h1 class="display-4">Welcome to Ride Sharing</h1>
-  <hr class="my-4">
-  <p>Please log in or sign up to view rides</p>
-  <a class="btn btn-primary btn-lg" href="/signup" role="button">Sign Up</a>
-  <a class="btn btn-primary btn-lg" href="/login" role="button">Log In</a>
+  <% if !logged_in? %>
+    <h1 class="display-4">Welcome to Ride Sharing</h1>
+    <p>Please log in or sign up to view rides</p>
+    <hr class="my-4">
+    <a class="btn btn-primary btn-lg" href="/signup" role="button">Sign Up</a>
+    <a class="btn btn-primary btn-lg" href="/login" role="button">Log In</a>
+  <% else %>
+    <h1 class="display-4">Welcome to Ride Sharing</h1>
+    <hr class="my-4">
+    <a class="btn btn-primary btn-lg" href="/search_rides" role="button">Search for rides</a>
+    <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
+  <% end %>
 </div>

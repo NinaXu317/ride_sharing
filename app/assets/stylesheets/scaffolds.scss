@@ -1,14 +1,15 @@
 body {
   background-color: #fff;
   color: #333;
-  margin: 33px; }
+}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
 
   color: #333;
-  line-height: 18px; }
+  line-height: 18px; 
+}
 
 pre {
   background-color:  #333;
@@ -65,9 +66,3 @@ div.actions {
 
 label {
   display: block; }
-
-#aDiv{
-    width: 300px; 
-    height: 300px; 
-    margin: 0 auto;
-}
