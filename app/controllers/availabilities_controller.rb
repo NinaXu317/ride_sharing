@@ -8,9 +8,10 @@ class AvailabilitiesController < ApplicationController
   end
 
   def search
-    puts params[:start_city]
+    # puts params[:start_city]
+    puts "I'm searching"
     @availabilities = Availability.unmatched.search(params[:start_city])
-    puts @availabilities
+    # puts @availabilities
     # puts @availabilities
     # if @availabilities
     #   respond_to do |format|

@@ -6,7 +6,7 @@ class Availability < ApplicationRecord
     def self.search (params)
         puts "start searching"
         results = city_matches(start_city, end_city, params[:start_city], params[:end_city]) 
-        reutrn nil unless results
+        return nil unless results
         results
     end
 

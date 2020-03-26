@@ -3,7 +3,7 @@
 
 <form>
     <div id="aDiv">
-        <%= simple_form_for :search, :url => search_rides_result_path, :method => :get do |f| %>
+        <%= simple_form_for :search, :url => search_rides_result_path, :method => :post do |f| %>
         <div class="form-row">
             <div class="form-group col-md-2">
                 <%= f.input :start_city, label: 'Start City', class: "form-control", error: 'Start address is mandatory, please specify one' %>
