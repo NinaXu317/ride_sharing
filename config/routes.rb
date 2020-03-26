@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   resources :availabilities
   resources :users
   root 'static_pages#home'
-  get 'static_pages/about'
-  get 'static_pages/help'
-  get 'search', to: 'static_pages#search'
-  get 'search_result', to: 'static_pages#search'
+  get 'about', to: "static_pages#about"
+  get 'help', to: "static_pages#help"
+  get 'search_rides', to: "availabilities#index"
+  get 'search_requests', to: "requests#index"
+  get 'search_rides_result', to: "availabilities#search"
   get '/signup', to: "users#new"
   get "/login", to: "sessions#new"
   post "/sessions", to: "sessions#create"

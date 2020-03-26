@@ -4,9 +4,25 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities
   # GET /availabilities.json
   def index
-    @availabilities = Availability.all
+    @availabilities = Availability.unmatched
   end
 
+  def search
+    puts params[:start_city]
+    @availabilities = Availability.unmatched.search(params[:start_city])
+    puts @availabilities
+    # puts @availabilities
+    # if @availabilities
+    #   respond_to do |format|
+    #     format.js { render partial: 'availabilities/availability_result'}
+    #   end
+    # else
+    #   respond_to do |format|
+    #     flash.now[:alert] = "Could not find an availability"
+    #     format.js { render partial: 'availabilities/availability_result'}
+    #   end
+    # end
+  end
   # GET /availabilities/1
   # GET /availabilities/1.json
   def show
@@ -68,7 +84,12 @@ class AvailabilitiesController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def availability_params
-      params.require(:availability).permit(:user_id, :start_city, :start_street_address, :start_zip, :end_city, :end_street_address, :end_zip, :trip_date, :trip_time, :distance, :lowest_acceptable_price, :matched_request_id, :availability_status)
+    # def availability_params
+    #   params.require(:availability).permit(:start_city, :start_street_address, :end_city, :end_street_address, :trip_time, :lowest_acceptable_price)
+    # end
+
+    def search_params
+      params.require(:search).permit(:start_city, :start_street_address, :end_city, :end_street_address, :trip_time, :lowest_acceptable_price)
     end
 end
+

@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 // // Place all the styles related to the StaticPages controller here.
 // // They will automatically be included in application.scss.
 // // You can use Sass (SCSS) here: https://sass-lang.com/
+=======
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.scss.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+>>>>>>> 1d3009f1ff192778dae3ba39cfb40d7d90db4452
 
 
 // body{
@@ -150,6 +158,7 @@
 //    .icon{
 //        margin:20px 10px;
 //    }
+<<<<<<< HEAD
 // =======
 
 // #aDiv{
@@ -158,3 +167,8 @@
 //     margin: 0 auto;
 // }
 // >>>>>>> 338f24c8cad0a4a3642a8964992ed0f237cd907e
+=======
+   .icon{
+       margin:20px 10px;
+   }
+>>>>>>> 1d3009f1ff192778dae3ba39cfb40d7d90db4452
