@@ -1,5 +1,6 @@
 class AvailabilitiesController < ApplicationController
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
+  # respond_to :js
 
   # GET /availabilities
   # GET /availabilities.json
@@ -8,22 +9,28 @@ class AvailabilitiesController < ApplicationController
   end
 
   def search
-    # puts params[:start_city]
-    puts "I'm searching"
-    @availabilities = Availability.unmatched.search(params[:start_city])
-    # puts @availabilities
-    # puts @availabilities
-    # if @availabilities
-    #   respond_to do |format|
-    #     format.js { render partial: 'availabilities/availability_result'}
-    #   end
-    # else
-    #   respond_to do |format|
-    #     flash.now[:alert] = "Could not find an availability"
-    #     format.js { render partial: 'availabilities/availability_result'}
-    #   end
-    # end
+    if params[:search]
+      @availabilities = Availability.unmatched.search(params[:search])
+      if @availabilities
+        render json: @availabilities
+      else
+        flash.now[:alert] = "Could not find an availability"
+        render json: @availabilities
+      end
+      #   respond_to do |format|
+      #     format.js { render partial: 'availabilities/availability_result.html'}
+      #   end
+      # else
+      #   respond_to do |format|
+      #     flash.now[:alert] = "Could not find an availability"
+      #     format.js { render partial: 'availabilities/availability_result.html'}
+      #   end
+      # end
+    else
+      @availabilities = Availability.unmatched
+    end
   end
+
   # GET /availabilities/1
   # GET /availabilities/1.json
   def show
@@ -85,12 +92,12 @@ class AvailabilitiesController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    # def availability_params
-    #   params.require(:availability).permit(:start_city, :start_street_address, :end_city, :end_street_address, :trip_time, :lowest_acceptable_price)
-    # end
+    def availability_params
+      params.require(:availability).permit(:start_city, :start_street_address, :end_city, :end_street_address, :trip_time, :lowest_acceptable_price)
+    end
 
     def search_params
-      params.require(:search).permit(:start_city, :start_street_address, :end_city, :end_street_address, :trip_time, :lowest_acceptable_price)
+      params.require(:search).permit(:start_city, :start_street_address, :trip_date, :end_city, :end_street_address, :trip_time, :lowest_acceptable_price)
     end
 end
 

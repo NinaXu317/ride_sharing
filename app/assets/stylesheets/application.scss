@@ -12,7 +12,12 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-datetimepicker
+ *= require font-awesome
  */
 @import "bootstrap";
 @import "bootstrap-sprockets";
-  
+@import 'bootstrap-datetimepicker';
+@import 'time_wrapper';
+@import "font-awesome";
+@import "tempusdominus-bootstrap-4.css"

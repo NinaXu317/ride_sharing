@@ -3,7 +3,7 @@
 
 <form>
     <div id="aDiv">
-        <%= simple_form_for :search, :url => search_rides_result_path, :method => :post do |f| %>
+        <%= simple_form_for :search, :url => search_rides_path, :method => :get do |f| %>
         <div class="form-row">
             <div class="form-group col-md-2">
                 <%= f.input :start_city, label: 'Start City', class: "form-control", error: 'Start address is mandatory, please specify one' %>
@@ -21,8 +21,11 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-4">
-                <%= f.input :trip_time, as: :datetime, inline_label: 'Yes, remember me', class: "form-control" %>
+            <div class="form-group col-md-2">
+                <%= f.input :trip_date, as: :date, html5: true, inline_label: 'Yes, remember me', class: "form-control" %>
+            </div>
+            <div class="form-group col-md-2">
+                <%= f.input :trip_time, as: :time, html5: true, inline_label: 'Yes, remember me', class: "form-control" %>
             </div>
             <div class="form-group col-md-2">
                 <%= f.input :lowest_acceptable_price, label: 'Expected Price', class: "form-control" %>
