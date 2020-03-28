@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  respond_to :html, :json, :js
   helper_method :logged_in?, :current_user
+  # respond_to :html, :json, :js
   
   def current_user
     if session[:user_id]

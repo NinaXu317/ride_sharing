@@ -1,5 +1,6 @@
 class AvailabilitiesController < ApplicationController
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :json, :js
   # GET /availabilities
   # GET /availabilities.json
   def index
