@@ -22,7 +22,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'jquery-rails'
 gem "font-awesome-rails"
-
+gem 'rails-ujs'
 # Use bootstrap
 gem 'bootstrap-sass', '3.4.1'
 # gem 'bootstrap', '~>4.3.1'

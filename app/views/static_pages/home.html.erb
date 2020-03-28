@@ -8,7 +8,7 @@
   <% else %>
     <h1 class="display-4">Welcome to Ride Sharing</h1>
     <hr class="my-4">
-    <a class="btn btn-primary btn-lg" href="/search_rides" role="button">Search for rides</a>
+    <%= link_to "Search for a ride", search_rides_path, class: "btn btn-primary btn-lg"%>
     <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
   <% end %>
 </div>
