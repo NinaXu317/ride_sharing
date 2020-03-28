@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_one :vehicle
   scope :is_driver, ->{ where(is_driver: true) }
   scope :is_rider, ->{ where(is_driver: false) }
+  has_one_attached :avatar
 end
