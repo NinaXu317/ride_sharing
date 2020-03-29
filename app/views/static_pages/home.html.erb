@@ -1,0 +1,155 @@
+<div class="row">
+  <% if !logged_in? %>
+  <div class="col-lg-6">
+    <h1 class="display-4">Welcome to Ride Sharing</h1>
+    <p>A new way to change your trip</p>
+    <a class="btn btn-dark btn-lg download-button" href="/signup" role="button">Sign Up</a>
+    <a class="btn btn-outline-light btn-lg download-button" href="/login" role="button">Log In</a>
+    </div>
+
+    <div class="col-lg-6">
+      <%=image_tag("ride1.png", alt: "Rails logo")%>
+    </div>
+    
+  <% else %>
+    <h1 class="display-4">Welcome to Ride Sharing</h1>
+    <hr class="my-4">
+    <%= link_to "Search for a ride", search_rides_path, class: "btn btn-primary btn-lg"%>
+    <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
+  <% end %>
+</div>
+</section>
+<%# features %>
+<section id="features">
+      <div class="row">
+      <div class="feature-box col-lg-4">
+          <i class="icon fas fa-check-circle fa-4x"></i>
+          <h3>Easy to use.</h3>
+          <p>So easy to use, even your dog could do it.</p>
+      </div>
+
+      <div class="feature-box col-lg-4">
+          <i class="icon fas fa-bullseye fa-4x"></i>
+          <h3>Elite Clientele</h3>
+          <p>We have all the drivers, the greatest student driver.</p>
+      </div>
+
+      <div class="feature-box col-lg-4">
+          <i class="icon fas fa-heart fa-4x"></i>
+          <h3>Guaranteed to work.</h3>
+          <p>Find the driver on the way to school or go home.</p>
+      </div>
+      </div>
+
+  </section>
+
+  <%# testimonials %>
+  <section id="testimonials">
+      <div id="testmonial-carousel" class="carousel slide" data-ride="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <h2>I no longer have to wait for shutter bus to come. I've found my best driver on Ride_Sharing!</h2>
+                <img class="testimonials-image" <%=image_tag("testimonials-2.jpg", alt: "women-profile")%>
+                <em>Nina, Waltham</em>
+            </div>
+        <div class="carousel-item" >
+            <h2 class="testimonial-text">I used to spend tons of money when I drive, but with Ride_Sharing, I have meet regularly rider to splite my gas fee. Great!</h2>
+            <img class="testimonials-image" <%=image_tag("testimonials-5.jpg", alt: "man-profile")%>
+            <em>Beverly, Boston</em>
+        </div>
+    </div>
+          <a class="carousel-control-prev" href="#testmonial-carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+    <a class="carousel-control-next" href="#testmonial-carousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+    </a>
+</div>
+</section>
+
+<!-- press -->
+<section id="press">
+    <img class="press-log" <%=image_tag("tnw.png", alt: "twn-logo")%> 
+    <img class="press-log" <%=image_tag("c1.png", alt: "twn-logo")%> 
+    <img class="press-log" <%=image_tag("c2.png", alt: "twn-logo")%> 
+    <img class="press-log" <%=image_tag("c3.png", alt: "twn-logo")%> 
+
+</section>
+
+<!-- Pricing -->
+
+  <section id="pricing">
+
+    <h2>A Plan for Every User's Needs</h2>
+    <p>All Free.</p>
+  <div class="row">
+
+      <div class="pricing-col col-lg-6 col-md-8">
+              <div class="card">
+        <div class="card-header">
+            <h3>Driver</h3>
+        </div>
+        <div class="card-body">
+            <h2>Free</h2>
+            <p>Unlimited Matches</p>
+            <p>Unlimited Messages</p>
+            <p>Unlimited App Usage</p>
+            <a class="btn btn-lg btn-block btn-outline-dark" href="/signup" role="button">Sign Up</a>
+        </div>
+    </div>
+
+      </div>
+
+      <div class="pricing-col col-lg-6 col-md-8">
+              <div class="card">
+        <div class="card-header">
+          <h3>Rider</h3>
+        </div>
+        <div class="card-body">
+          <h2>Free</h2>
+          <p>Unlimited Matches</p>
+          <p>Unlimited Messages</p>
+          <p>Unlimited App Usage</p>
+          <a class="btn btn-lg btn-block btn-dark" href="/signup" role="button">Sign Up</a>
+          
+        </div>
+    </div>
+
+      </div>
+
+      
+    </div>
+      </div>
+  </div>
+  </section>
+
+  <!-- Call to Action -->
+
+  <section id="cta">
+
+    <h3 class="cta-size">Find the Your Rider/Driver Today.</h3>
+      <button type="button" class="btn btn-dark btn-lg download-button"><i class="fab fa-apple"></i> Download</button>
+      <button type="button"class="btn btn-outline-light btn-lg download-button"><i class="fab fa-google-play"></i> Download</button>
+
+  </section>
+
+  <script>
+    function onSignIn(googleUser){
+      console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
+      // current_user = User.find_by(email: googleUser.getBasicProfile().getEmail())
+      console.log(googleUser.getBasicProfile().getEmail().class)
+      var emailAdd = googleUser.getBasicProfile().getEmail()
+      user = User.find_by(email, emailAdd)
+      console.log(user)
+    }
+
+    function signOut(){
+      gapi.auth2.getAuthInstance().signOut().then(function(){
+        console.log("User signed out")
+      })
+    }
+  </script>
+
+
+  
