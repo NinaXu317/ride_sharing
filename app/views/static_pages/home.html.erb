@@ -1,14 +1,23 @@
-<div class="jumbotron">
-  <% if !logged_in? %>
-    <h1 class="display-4">Welcome to Ride Sharing</h1>
-    <p>Please log in or sign up to view rides</p>
-    <hr class="my-4">
-    <a class="btn btn-primary btn-lg" href="/signup" role="button">Sign Up</a>
-    <a class="btn btn-primary btn-lg" href="/login" role="button">Log In</a>
-  <% else %>
-    <h1 class="display-4">Welcome to Ride Sharing</h1>
-    <hr class="my-4">
-    <%= link_to "Search for a ride", search_rides_path, class: "btn btn-primary btn-lg"%>
-    <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
-  <% end %>
-</div>
+<body>
+  <div class="jumbotron">
+    <% if !logged_in? %>
+      <h1 class="display-4">Welcome to Ride Sharing</h1>
+      <p>Please log in or sign up to view rides</p>
+      <hr class="my-4">
+      <a class="btn btn-primary btn-lg" href="/signup" role="button">Sign Up</a>
+      <a class="btn btn-primary btn-lg" href="/login" role="button">Log In</a>
+    <% else %>
+      <h1 class="display-4">Welcome to Ride Sharing</h1>
+      <hr class="my-4">
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <%= link_to "Search for a ride", search_rides_path, class: "btn btn-primary btn-lg"%>
+      <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
+    <% end %>
+  </div>  
+</body>
+
+<script>
+  function onSignIn(googleUser){
+    console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
+  }
+</script>
