@@ -9,15 +9,20 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
   </head>
 
   <body>
-    
+    <%# Nave bar %>
     <%= render 'layouts/navigation.html.erb' %>
-
+    
+    <%# title of the page %>
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
     <%= debug(params) if Rails.env.development? %>
   </body>
+
 </html>
