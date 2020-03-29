@@ -11,13 +11,15 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- Bootstrap Scripts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
   </head>
 
   <body>
-    <%# Nave bar %>
+    <!-- Nav Bar -->
     <%= render 'layouts/navigation.html.erb' %>
     
     <%# title of the page %>
@@ -29,7 +31,11 @@
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
+    <!-- Footer -->
+    <%= render 'layouts/footer.html.erb' %>
+
     <%= debug(params) if Rails.env.development? %>
+
   </body>
 
 </html>
