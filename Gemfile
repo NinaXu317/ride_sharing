@@ -25,6 +25,7 @@ gem "font-awesome-rails"
 gem 'rails-ujs'
 # Use bootstrap
 gem 'bootstrap-sass', '3.4.1'
+gem 'popper_js', '~> 1.14.5'
 # gem 'bootstrap', '~>4.3.1'
 
 # Use Redis adapter to run Action Cable in production
