@@ -29,7 +29,8 @@
     <p>A new way to change your trip</p>
     <a class="btn btn-dark btn-lg download-button" href="/signup" role="button">Sign Up</a>
     <a class="btn btn-outline-light btn-lg download-button" href="/login" role="button">Log In</a>
-    </div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  </div>
 
     <div class="col-lg-6">
       <%=image_tag("ride1.png", alt: "Rails logo")%>
@@ -170,3 +171,9 @@
     <p>© Copyright 2020 TinDog</p>
 
   </footer>
+
+  <script>
+    function onSignIn(googleUser){
+      console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
+    }
+  </script>
