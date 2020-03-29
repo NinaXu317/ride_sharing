@@ -1,6 +1,6 @@
 class AvailabilitiesController < ApplicationController
+  respond_to :js
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :json, :js
   # GET /availabilities
   # GET /availabilities.json
   def index
@@ -8,17 +8,27 @@ class AvailabilitiesController < ApplicationController
   end
 
   def search
+    # @availabilities = Availability.unmatched
     puts "I'm inside search"
-    byebug
     if params[:search]
       puts "start searching"
       @availabilities = Availability.unmatched.search(params[:search])
-      respond_to do |format|
-        flash.now[:alert] = "Could not find an availability" unless @availabilities.any?
-        format.js {render partial: 'results', layout: false}
+      if @availabilities.nil?
+        flash.now[:alert] = "Could not find an availability"
       end
-    else
+      # respond_with @availabilities
+      respond_to do |format|
+        format.js
+        format.html
+      end
+      #   f.js { render layout: false, content_type: 'text/javascript' }
+      # end
+      #   format.html { render: 'result.html' }
+      #   format.js { render :result, :layout => false }
+      # end
+    else 
       @availabilities = Availability.unmatched
+      respond_with @availabilities
     end
   end
 

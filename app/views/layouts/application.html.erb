@@ -3,6 +3,8 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "RideSharingApp" %></title>
+    <meta name="google-signin-client_id" content="184395440098-tg6c5a6jpe6qu6dbgcpap9l0notib2fs.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "RideSharingApp" %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -19,6 +21,11 @@
     <%= render 'layouts/navigation.html.erb' %>
     
     <%# title of the page %>
+    <div class = "container" id>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+    </div>
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>

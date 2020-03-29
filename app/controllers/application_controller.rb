@@ -1,4 +1,9 @@
+require "application_responder"
+
 class ApplicationController < ActionController::Base
+  self.responder = ApplicationResponder
+  respond_to :html, :js
+
   helper_method :logged_in?, :current_user
   # respond_to :html, :json, :js
   
