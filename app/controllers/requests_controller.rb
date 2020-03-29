@@ -24,9 +24,7 @@ class RequestsController < ApplicationController
   # POST /requests
   # POST /requests.json
   def create
-    puts request_params
     @request = Request.new(request_params)
-
     respond_to do |format|
       if @request.save
         format.html { redirect_to @request, notice: 'Request was successfully created.' }
@@ -36,6 +34,9 @@ class RequestsController < ApplicationController
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
+    @user = User.find(current_user.id)
+    @make = Make.create!(user_id: current_user.id, request_id: @request.id)
+    @user.makes << @make
   end
 
   # PATCH/PUT /requests/1
@@ -69,10 +70,7 @@ class RequestsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    # def request_params
-    #   params.require(:request).permit(:user_id, :start_city, :start_street_address, :start_zip, :end_city, :end_street_address, :end_zip, :trip_date, :trip_time, :distance, :highest_price_to_pay, :matched_availability_id, :request_status)
-    # end
     def request_params
-      params.require(:request).permit(:start_city, :start_street_address, :end_city, :end_city_address, :trip_time, :highest_price_to_pay)
+      params.require(:request).permit(:start_city, :start_street_address, :start_zip, :end_city, :end_street_address, :end_zip, :trip_time, :distance, :highest_price_to_pay, :matched_availability_id, :request_status)
     end
 end

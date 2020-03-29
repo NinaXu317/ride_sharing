@@ -10,7 +10,7 @@
                 <strong>Price Requested: </strong><%= availability.lowest_acceptable_price %><br>
                 <br>
                 <%= button_to "View Details", search_rides_path, class: "btn btn-primary"%>
-                <%= button_to "Request Ride", request_rides_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-primary"} %>
+                <%= button_to "Request Ride", request_rides_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-primary", :availability_id => availability.id, } %>
             </div>
         </div>
 <% end %>

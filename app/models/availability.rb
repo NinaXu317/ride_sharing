@@ -1,6 +1,7 @@
 require 'time'
 
 class Availability < ApplicationRecord
+    defaults distance: 0.0, matched_request_id: -1, availability_status: "started"
     has_many :users, :through => :posts
     has_one :request
     scope :unmatched, ->{ where(matched_request_id: -1) }

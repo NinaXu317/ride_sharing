@@ -5,14 +5,12 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
       <th>Start city</th>
       <th>Start street address</th>
       <th>Start zip</th>
       <th>End city</th>
       <th>End street address</th>
       <th>End zip</th>
-      <th>Trip date</th>
       <th>Trip time</th>
       <th>Distance</th>
       <th>Highest price to pay</th>
@@ -25,14 +23,12 @@
   <tbody>
     <% @requests.each do |request| %>
       <tr>
-        <td><%= request.user_id %></td>
         <td><%= request.start_city %></td>
         <td><%= request.start_street_address %></td>
         <td><%= request.start_zip %></td>
         <td><%= request.end_city %></td>
         <td><%= request.end_street_address %></td>
         <td><%= request.end_zip %></td>
-        <td><%= request.trip_date %></td>
         <td><%= request.trip_time %></td>
         <td><%= request.distance %></td>
         <td><%= request.highest_price_to_pay %></td>

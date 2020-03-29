@@ -45,8 +45,7 @@ class AvailabilitiesController < ApplicationController
   end
 
   def match
-    puts "#{:user_id}"
-    puts "#{:availability_id}"
+    puts Availability.find_by(:availability_id)
   end
 
   # GET /availabilities/new
