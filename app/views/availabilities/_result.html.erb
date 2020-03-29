@@ -1,6 +1,5 @@
-<% if @availabilities %>
-    <%@availabilities.each do |availability|%>
-          <div class="card" style="width: 18rem;">
+<% @availabilities.each do |availability|%>
+        <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Ride</h5>
                 <strong>Start city: </strong> <%= availability.start_city %><br>
@@ -14,9 +13,5 @@
                 <a href="#" class="btn btn-primary">Request Ride</a>
             </div>
         </div>
-    <% end %>
-  </div>
-<% else %>
-    <h1> No results have been found </h1>
 <% end %>
 

@@ -6,6 +6,7 @@
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("channels")
+require("jquery")
 
 //= require bootstrap-datetimepicker
 //= require time_wrapper

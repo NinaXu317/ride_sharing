@@ -7,7 +7,7 @@ class Availability < ApplicationRecord
 
     def self.search (param)
         results = city_matches("start_city", "end_city", param[:start_city].lstrip.downcase, param[:end_city].lstrip.downcase).time_matches(param[:trip_date], param[:trip_time]).price_matches(param[:lowest_acceptable_price]) 
-        return nil unless results
+        return nil unless results.length > 0
         return results
     end
 

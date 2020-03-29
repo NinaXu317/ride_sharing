@@ -14,7 +14,11 @@
   <body>
     
     <%= render 'layouts/navigation.html.erb' %>
-
+    <div class = "container" id>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+    </div>
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>

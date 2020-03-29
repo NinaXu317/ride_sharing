@@ -1,4 +1,17 @@
 <p id="notice"><%= notice %></p>
-<%= render 'searchform' %>
-<div id="results">
+
+<div id = "search_page">
+    <div id = "search_form">
+        <%= render 'searchform' %>
+    </div>
+    <div id = "result">
+        <% if @availabilities %>
+            <h1> Results have been found </h1>
+            <div id="results">
+                <%= render 'result', :availabilities => @availabilities %>
+            </div>
+        <% else %>
+            <h1> no results have been found </h1>
+        <% end %>
+    </div>
 </div>
