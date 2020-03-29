@@ -37,6 +37,18 @@ class AvailabilitiesController < ApplicationController
   def show
   end
 
+  def requestModal
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def match
+    puts "#{:user_id}"
+    puts "#{:availability_id}"
+  end
+
   # GET /availabilities/new
   def new
     @availability = Availability.new

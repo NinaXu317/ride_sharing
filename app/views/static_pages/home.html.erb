@@ -134,5 +134,22 @@
 
   </section>
 
+  <script>
+    function onSignIn(googleUser){
+      console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
+      // current_user = User.find_by(email: googleUser.getBasicProfile().getEmail())
+      console.log(googleUser.getBasicProfile().getEmail().class)
+      var emailAdd = googleUser.getBasicProfile().getEmail()
+      user = User.find_by(email, emailAdd)
+      console.log(user)
+    }
+
+    function signOut(){
+      gapi.auth2.getAuthInstance().signOut().then(function(){
+        console.log("User signed out")
+      })
+    }
+  </script>
+
 
   
