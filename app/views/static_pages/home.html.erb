@@ -15,8 +15,13 @@
   <% else %>
     <h1 class="display-4">Welcome to Ride Sharing</h1>
     <hr class="my-4">
-    <%= link_to "Search for a ride", search_rides_path, class: "btn btn-primary btn-lg"%>
-    <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
+    <% if current_user.is_driver%>
+        <%= link_to "Search for a request", search_requests_path, class: "btn btn-primary btn-lg"%>
+        <%= link_to "Post an availability", new_availability_path, class: "btn btn-primary btn-lg"%>
+    <% else %>
+      <%= link_to "Search for a ride", search_rides_path, class: "btn btn-primary btn-lg"%>
+      <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
+    <% end %>
   <% end %>
 </div>
 </section>

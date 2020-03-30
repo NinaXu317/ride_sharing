@@ -1,9 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @availability.user_id %>
-</p>
 
 <p>
   <strong>Start city:</strong>
@@ -35,10 +31,6 @@
   <%= @availability.end_zip %>
 </p>
 
-<p>
-  <strong>Trip date:</strong>
-  <%= @availability.trip_date %>
-</p>
 
 <p>
   <strong>Trip time:</strong>
@@ -65,5 +57,5 @@
   <%= @availability.availability_status %>
 </p>
 
-<%= link_to 'Edit', edit_availability_path(@availability) %> |
-<%= link_to 'Back', availabilities_path %>
+<%= link_to 'Edit', edit_availability_path(@availability), class: "btn btn-primary" %>
+<%= link_to 'Back', search_rides_path, class: "btn btn-primary" %>

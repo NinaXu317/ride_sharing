@@ -6,12 +6,11 @@
     </div>
     <div id = "result">
         <% if @availabilities %>
-            <h1> Results have been found </h1>
             <div id="results">
                 <%= render 'result', :availabilities => @availabilities %>
             </div>
         <% else %>
-            <h1> no results have been found </h1>
+            <h2> no results have been found </h2>
         <% end %>
     </div>
 </div>
