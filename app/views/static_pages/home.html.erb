@@ -141,7 +141,6 @@
       // current_user = User.find_by(email: googleUser.getBasicProfile().getEmail())
       console.log(googleUser.getBasicProfile().getEmail().class)
       var emailAdd = googleUser.getBasicProfile().getEmail()
-      user = User.find_by(email, emailAdd)
       console.log(user)
     }
 
