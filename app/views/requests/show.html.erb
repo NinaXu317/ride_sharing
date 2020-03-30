@@ -1,10 +1,9 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @request.user_id %>
-</p>
-
+<div> 
+  <% if @request.matched_availability_id != -1 %>
+    <h2> You have been matched with a driver with availability id <%= @request.matched_availability_id %></h>
+  <% end %>
+</div>
 <p>
   <strong>Start city:</strong>
   <%= @request.start_city %>
@@ -13,11 +12,6 @@
 <p>
   <strong>Start street address:</strong>
   <%= @request.start_street_address %>
-</p>
-
-<p>
-  <strong>Start zip:</strong>
-  <%= @request.start_zip %>
 </p>
 
 <p>
@@ -31,33 +25,13 @@
 </p>
 
 <p>
-  <strong>End zip:</strong>
-  <%= @request.end_zip %>
-</p>
-
-<p>
-  <strong>Trip date:</strong>
-  <%= @request.trip_date %>
-</p>
-
-<p>
   <strong>Trip time:</strong>
   <%= @request.trip_time %>
 </p>
 
 <p>
-  <strong>Distance:</strong>
-  <%= @request.distance %>
-</p>
-
-<p>
   <strong>Highest price to pay:</strong>
   <%= @request.highest_price_to_pay %>
-</p>
-
-<p>
-  <strong>Matched availability:</strong>
-  <%= @request.matched_availability_id %>
 </p>
 
 <p>

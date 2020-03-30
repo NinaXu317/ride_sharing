@@ -1,5 +1,5 @@
 <form>
-    <%= simple_form_for :search, :url => search_rides_path, :remote => true, :method => :post do |f| %>
+    <%= simple_form_for :search, :url => search_rides_path, :remote => true, :method => :get do |f| %>
         <div class="form-row">
             <div class="form-group col-md-2">
                 <%= f.input :start_city, label: 'Start City', class: "form-control", error: 'Start address is mandatory, please specify one' %>

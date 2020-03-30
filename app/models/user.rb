@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  # after_commit :add_default_avatar, on: [:create, :update]
-
+  defaults number_of_rating_given: 0, sum_of_rating_given: 0, number_of_rating_received: 0, sum_of_rating_received: 0
   has_secure_password
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
@@ -21,6 +20,10 @@ class User < ApplicationRecord
   #   end
   def avatar_attachment_path
     avatar.attached? ? avatar : 'default.png'
+  end
+
+  def ratings
+    sum_of_rating_received.to_f / number_of_rating_received.to_f
   end
 
 end

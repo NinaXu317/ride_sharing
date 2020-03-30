@@ -5,6 +5,7 @@
     <p>A new way to change your trip</p>
     <a class="btn btn-dark btn-lg download-button" href="/signup" role="button">Sign Up</a>
     <a class="btn btn-outline-light btn-lg download-button" href="/login" role="button">Log In</a>
+    <a class="g-signin2 btn btn-outline-light btn-lg download-button" data-onsuccess="onSignIn">Google Sign In</a>
     </div>
 
     <div class="col-lg-6">
@@ -14,8 +15,13 @@
   <% else %>
     <h1 class="display-4">Welcome to Ride Sharing</h1>
     <hr class="my-4">
-    <%= link_to "Search for a ride", search_rides_path, class: "btn btn-primary btn-lg"%>
-    <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
+    <% if current_user.is_driver%>
+        <%= link_to "Search for a request", search_requests_path, class: "btn btn-primary btn-lg"%>
+        <%= link_to "Post an availability", new_availability_path, class: "btn btn-primary btn-lg"%>
+    <% else %>
+      <%= link_to "Search for a ride", search_rides_path, class: "btn btn-primary btn-lg"%>
+      <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
+    <% end %>
   <% end %>
 </div>
 </section>
@@ -140,7 +146,6 @@
       // current_user = User.find_by(email: googleUser.getBasicProfile().getEmail())
       console.log(googleUser.getBasicProfile().getEmail().class)
       var emailAdd = googleUser.getBasicProfile().getEmail()
-      user = User.find_by(email, emailAdd)
       console.log(user)
     }
 
