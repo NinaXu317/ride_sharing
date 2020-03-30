@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  defaults number_of_rating_give: 0, sum_of_rating_given: 0, number_of_rating_received: 0, sum_of_rating_received: 0
+  defaults number_of_rating_given: 0, sum_of_rating_given: 0, number_of_rating_received: 0, sum_of_rating_received: 0
   has_secure_password
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
