@@ -29,6 +29,11 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
     respond_to do |format|
       if @request.save
+        @user = User.find(current_user.id)
+        @make = Make.create!(user_id: current_user.id, request_id: @request.id)
+        @user.makes << @make
+        matched_id = match
+        puts matched_id
         format.html { redirect_to @request, notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
       else
@@ -36,11 +41,6 @@ class RequestsController < ApplicationController
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
-    @user = User.find(current_user.id)
-    @make = Make.create!(user_id: current_user.id, request_id: @request.id)
-    @user.makes << @make
-    matched_id = match
-    puts matched_id
   end
 
   # PATCH/PUT /requests/1
@@ -84,20 +84,23 @@ class RequestsController < ApplicationController
       matcher.add_item_to_match(@request.id, @request.start_city, @request.start_street_address, @request.end_city, @request.end_street_address, @request.trip_time, @request.highest_price_to_pay)
       matcher.find_all_availabilities(unmatched_availabilities)
       matched_id = matcher.find_best_match
-      # puts matched_id
-      # modify_request(matched_id)
-      # modify_availability(matched_id)
-      # return matched_id
+      if !matched_id.nil?
+        modify_request(matched_id)
+        modify_availability(matched_id)
+      end
+      return matched_id
     end
 
     def modify_request matched_id
       @request.matched_availability_id = matched_id
       @request.request_status = "waiting"
+      @request.save
     end
 
     def modify_availability matched_id
       availability = Availability.find(matched_id)
       availability.matched_request_id = @request.id
       availability.availability_status = "waiting"
+      availability.save
     end
 end

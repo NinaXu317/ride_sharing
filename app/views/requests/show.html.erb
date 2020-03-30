@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
-
+<div> 
+  <% if @request.matched_availability_id != -1 %>
+    <h2> You have been matched with a driver with availability id <%= @request.matched_availability_id %></h>
+  <% end %>
+</div>
 <p>
   <strong>Start city:</strong>
   <%= @request.start_city %>
@@ -8,11 +12,6 @@
 <p>
   <strong>Start street address:</strong>
   <%= @request.start_street_address %>
-</p>
-
-<p>
-  <strong>Start zip:</strong>
-  <%= @request.start_zip %>
 </p>
 
 <p>
@@ -26,29 +25,13 @@
 </p>
 
 <p>
-  <strong>End zip:</strong>
-  <%= @request.end_zip %>
-</p>
-
-
-<p>
   <strong>Trip time:</strong>
   <%= @request.trip_time %>
 </p>
 
 <p>
-  <strong>Distance:</strong>
-  <%= @request.distance %>
-</p>
-
-<p>
   <strong>Highest price to pay:</strong>
   <%= @request.highest_price_to_pay %>
-</p>
-
-<p>
-  <strong>Matched availability:</strong>
-  <%= @request.matched_availability_id %>
 </p>
 
 <p>
@@ -58,21 +41,3 @@
 
 <%= link_to 'Edit', edit_request_path(@request) %> |
 <%= link_to 'Back', requests_path %>
-
-
-<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">x</button>
-    </div>
-    <div class="modal-body">
-        <p> Your request has been created and waiting for matching with a driver</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    </div>
-    
-    </div>
-  </div>
-</div>

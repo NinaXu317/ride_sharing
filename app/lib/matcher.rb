@@ -38,7 +38,6 @@ class Matcher
     # end
 
     def time_matches(time_param)
-        puts time_param
         # date_time = combine_datetime(param_date, param_time)
         date_time = time_param.to_datetime
         before = date_time - (0.25 / 24.0)
