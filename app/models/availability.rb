@@ -5,6 +5,7 @@ class Availability < ApplicationRecord
     has_many :users, :through => :posts
     has_one :request
     scope :unmatched, ->{ where(matched_request_id: -1) }
+    scope :started, -> { where(availability_status: "started")}
 
     def self.search (param)
         results = city_matches("start_city", "end_city", param[:start_city].lstrip.downcase, param[:end_city].lstrip.downcase).time_matches(param[:trip_date], param[:trip_time]).price_matches(param[:lowest_acceptable_price]) 

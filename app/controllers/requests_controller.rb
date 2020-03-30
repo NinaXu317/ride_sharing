@@ -1,3 +1,5 @@
+require './app/lib/matcher'
+
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
 
@@ -37,6 +39,8 @@ class RequestsController < ApplicationController
     @user = User.find(current_user.id)
     @make = Make.create!(user_id: current_user.id, request_id: @request.id)
     @user.makes << @make
+    matched_id = match
+    puts matched_id
   end
 
   # PATCH/PUT /requests/1
@@ -72,5 +76,28 @@ class RequestsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def request_params
       params.require(:request).permit(:start_city, :start_street_address, :start_zip, :end_city, :end_street_address, :end_zip, :trip_time, :distance, :highest_price_to_pay, :matched_availability_id, :request_status)
+    end
+
+    def match
+      unmatched_availabilities = Availability.unmatched.to_a.map(&:serializable_hash)
+      matcher = Matcher.new
+      matcher.add_item_to_match(@request.id, @request.start_city, @request.start_street_address, @request.end_city, @request.end_street_address, @request.trip_time, @request.highest_price_to_pay)
+      matcher.find_all_availabilities(unmatched_availabilities)
+      matched_id = matcher.find_best_match
+      # puts matched_id
+      # modify_request(matched_id)
+      # modify_availability(matched_id)
+      # return matched_id
+    end
+
+    def modify_request matched_id
+      @request.matched_availability_id = matched_id
+      @request.request_status = "waiting"
+    end
+
+    def modify_availability matched_id
+      availability = Availability.find(matched_id)
+      availability.matched_request_id = @request.id
+      availability.availability_status = "waiting"
     end
 end

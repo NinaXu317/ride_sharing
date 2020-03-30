@@ -2,7 +2,6 @@
   <% if request.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(request.errors.count, "error") %> prohibited this availability from being saved:</h2>
-
       <ul>
         <% request.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -33,7 +32,7 @@
 
   <div class="field">
     <%= form.label :trip_time %>
-    <%= form.datetime_select :trip_time %>
+    <%= form.datetime_local_field(:trip_time) %>
   </div>
 
   <div class="field">
@@ -42,6 +41,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit%>
   </div>
 <% end %>
