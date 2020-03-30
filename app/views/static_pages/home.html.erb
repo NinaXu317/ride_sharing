@@ -143,10 +143,6 @@
   <script>
     function onSignIn(googleUser){
       console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
-      // current_user = User.find_by(email: googleUser.getBasicProfile().getEmail())
-      console.log(googleUser.getBasicProfile().getEmail().class)
-      var emailAdd = googleUser.getBasicProfile().getEmail()
-      console.log(user)
     }
 
     function signOut(){
