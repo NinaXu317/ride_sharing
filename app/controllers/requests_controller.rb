@@ -33,8 +33,7 @@ class RequestsController < ApplicationController
         @make = Make.create!(user_id: current_user.id, request_id: @request.id)
         @user.makes << @make
         matched_id = match
-        puts matched_id
-        format.html { redirect_to @request, notice: 'Request was successfully created.' }
+        format.html { redirect_to @request, :status => 301, notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
       else
         format.html { render :new }
