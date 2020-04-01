@@ -9,7 +9,6 @@ class AvailabilitiesController < ApplicationController
 
   def search
     # @availabilities = Availability.unmatched
-    puts "I'm inside search"
     if params[:search]
       puts "start searching"
       @availabilities = Availability.unmatched.search(params[:search])
@@ -45,7 +44,15 @@ class AvailabilitiesController < ApplicationController
   end
 
   def match
-    puts Availability.find_by(:availability_id)
+    @availability = Availability.find(params[:id])
+    @availability.matched_user_id = current_user.id
+    @availability.matched_request_id = -10
+    @availability.availability_status = "waiting"
+    if @availability.save
+      render :action => :search
+    else
+      flash.now["danger"] = "Request not made"
+    end
   end
 
   # GET /availabilities/new
