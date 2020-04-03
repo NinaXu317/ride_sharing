@@ -4,7 +4,7 @@
     <h1 class="display-4">Welcome to Ride Sharing</h1>
     <p>A new way to change your trip</p>
     <a class="btn btn-dark btn-lg download-button" href="/signup" role="button">Sign Up</a>
-    <a class="btn btn-outline-light btn-lg download-button" href="/login" role="button">Log In</a>
+    <a class="btn btn-dark btn-lg download-button" href="/login" role="button">Log In</a>
     <a class="g-signin2 btn btn-light btn-lg download-button" data-onsuccess="onSignIn">Google Sign In</a>
     </div>
 
@@ -49,97 +49,7 @@
 
   </section>
 
-  <%# testimonials %>
-  <section id="testimonials">
-      <div id="testmonial-carousel" class="carousel slide" data-ride="false">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <h2>I no longer have to wait for shutter bus to come. I've found my best driver on Ride_Sharing!</h2>
-                <img class="testimonials-image" <%=image_tag("testimonials-2.jpg", alt: "women-profile")%>
-                <em>Nina, Waltham</em>
-            </div>
-        <div class="carousel-item" >
-            <h2 class="testimonial-text">I used to spend tons of money when I drive, but with Ride_Sharing, I have meet regularly rider to splite my gas fee. Great!</h2>
-            <img class="testimonials-image" <%=image_tag("testimonials-5.jpg", alt: "man-profile")%>
-            <em>Beverly, Boston</em>
-        </div>
-    </div>
-          <a class="carousel-control-prev" href="#testmonial-carousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </a>
-    <a class="carousel-control-next" href="#testmonial-carousel" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-
-    </a>
-</div>
-</section>
-
-<!-- press -->
-<section id="press">
-    <img class="press-log" <%=image_tag("tnw.png", alt: "twn-logo")%> 
-    <img class="press-log" <%=image_tag("c1.png", alt: "twn-logo")%> 
-    <img class="press-log" <%=image_tag("c2.png", alt: "twn-logo")%> 
-    <img class="press-log" <%=image_tag("c3.png", alt: "twn-logo")%> 
-
-</section>
-
-<!-- Pricing -->
-
-  <section id="pricing">
-
-    <h2>A Plan for Every User's Needs</h2>
-    <p>All Free.</p>
-  <div class="row">
-
-      <div class="pricing-col col-lg-6 col-md-8">
-              <div class="card">
-        <div class="card-header">
-            <h3>Driver</h3>
-        </div>
-        <div class="card-body">
-            <h2>Free</h2>
-            <p>Unlimited Matches</p>
-            <p>Unlimited Messages</p>
-            <p>Unlimited App Usage</p>
-            <a class="btn btn-lg btn-block btn-outline-dark" href="/signup" role="button">Sign Up</a>
-        </div>
-    </div>
-
-      </div>
-
-      <div class="pricing-col col-lg-6 col-md-8">
-              <div class="card">
-        <div class="card-header">
-          <h3>Rider</h3>
-        </div>
-        <div class="card-body">
-          <h2>Free</h2>
-          <p>Unlimited Matches</p>
-          <p>Unlimited Messages</p>
-          <p>Unlimited App Usage</p>
-          <a class="btn btn-lg btn-block btn-dark" href="/signup" role="button">Sign Up</a>
-          
-        </div>
-    </div>
-
-      </div>
-
-      
-    </div>
-      </div>
-  </div>
-  </section>
-
-  <!-- Call to Action -->
-
-  <section id="cta">
-
-    <h3 class="cta-size">Find the Your Rider/Driver Today.</h3>
-      <button type="button" class="btn btn-dark btn-lg download-button"><i class="fab fa-apple"></i> Download</button>
-      <button type="button"class="btn btn-outline-light btn-lg download-button"><i class="fab fa-google-play"></i> Download</button>
-
-  </section>
-
+  
   <script>
     function onSignIn(googleUser){
       console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))

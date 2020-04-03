@@ -1,41 +1,27 @@
-<section id="topbar">
-    <div class="container d-flex">
-      <div class="contact-info mr-auto">
-        <i class="social-icon fas fa-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
-        <i class="social-icon fas fa-phone-square-alt"></i> +1 5589 55488 55
-      </div>
-      <div >
-        <i class="social-icon fab fa-twitter-square"></i>
-        <i class="social-icon fab fa-facebook-square"></i>
-        <i class="social-icon fab fa-linkedin"></i>
-        <i class="social-icon fab fa-instagram-square"></i>
-        <i class="social-icon fab fa-skype"></i>
-      </div>
-    </div>
-  </section>
 <section id="title">
   <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
       <a class="navbar-brand"><%= link_to "RideSharing", root_path, class: 'navbar-brand'%></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button> 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02"> </div>
-      <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto bg-dark"">
           <li class='nav-item'><%= link_to 'Home', root_path, class: 'nav-link' %></li>
-          <% if !logged_in? %>
-            <li class='nav-item'><%= link_to 'Log in', login_path, method: :get, class: 'nav-link' %></li>
-            <li class='nav-item'><%= link_to 'Sign up', signup_path, class: 'nav-link' %></li>
-          <% end %>
+            <% if !logged_in? %>
+          <li class='nav-item'><%= link_to 'Log in', login_path, method: :get, class: 'nav-link' %></li>
+          <li class='nav-item'><%= link_to 'Sign up', signup_path, class: 'nav-link' %></li>
+            <% end %>
           <li class='nav-item'><%= link_to 'About', root_path, class: 'nav-link' %></li>
           <li class='nav-item'><%= link_to 'Help', root_path, class: 'nav-link' %></li>
           <% if logged_in? %>
-              <li class='nav-item'><%= link_to 'Profile', user_path(current_user), class: 'nav-link' %></li>
-              <li class='nav-item'><%= link_to 'Log out', sessions_path, method: :delete, class: 'nav-link' %></li>
+          <li class='nav-item'><%= link_to 'Profile', user_path(current_user), class: 'nav-link' %></li>
+          <li class='nav-item'><%= link_to 'Log out', sessions_path, method: :delete, class: 'nav-link' %></li>
           <% end %>
-      </ul>
-  </div>
+        </ul>
+      </div>
     </nav>
-  </div>
+      </div>
 </section>
 
