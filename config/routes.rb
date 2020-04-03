@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # post '/availabilities', to: "availabilities#create"
   # get 'search_rides_result', to: "availabilities#search_rides_result"
   get 'search_requests', to: "requests#index"
+  get '/pickup', to: "static_pages#pickup"
   get '/signup', to: "users#new"
   get "/login", to: "sessions#new"
   post "/sessions", to: "sessions#create"

@@ -102,8 +102,10 @@ GEM
     ffi (1.12.2)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
+    geocoder (1.6.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gmaps4rails (2.1.2)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
@@ -255,6 +257,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
+    underscore-rails (1.8.3)
     unicode-display_width (1.6.1)
     web-console (4.0.1)
       actionview (>= 6.0.0)
@@ -292,6 +295,8 @@ DEPENDENCIES
   defaults
   faker
   font-awesome-rails
+  geocoder
+  gmaps4rails
   jbuilder (~> 2.7)
   jquery-rails
   json
@@ -312,6 +317,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
+  underscore-rails
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)

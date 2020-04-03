@@ -6,10 +6,26 @@ const webpack = require("webpack")
 //     jQuery: 'jquery',
 //     Popper: ['popper.js', 'default']
 // }))
+environment.loaders.append('gmap4rails', {
+  test: /gmaps_google/,
+  use: [
+    {
+      loader: 'imports-loader',
+      options: 'this=>window',
+    },
+  ],
+})
 
 environment.plugins.prepend('Provide', new webpack.ProvidePlugin({
     $: 'jquery/src/jquery',
     jQuery: 'jquery/src/jquery'
+  })
+)
+
+environment.plugins.append(
+  'lodash',
+  new webpack.ProvidePlugin({
+    _: 'lodash',
   })
 )
 

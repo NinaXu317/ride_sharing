@@ -17,6 +17,8 @@ require("jquery")
 //= require moment
 //= require moment/fr.js
 //= require rails-ujs
+//= require underscore
+//= require gmaps/google
 //= require_tree.
 
 // Uncomment to copy all static images under ../images to the output folder and reference
