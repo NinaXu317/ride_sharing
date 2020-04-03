@@ -1,20 +1,20 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  username: MyString
-  email: MyString
-  age: 1
-  gender: MyString
-  firstname: MyString
-  lastname: MyString
-  phone_number: MyString
-  major: MyString
-  year: MyString
-  is_driver: false
-  number_of_rating_given: 1
-  number_of_rating_received: 1
-  sum_of_rating_given: 1
-  sum_of_rating_received: 1
+  username: "Wyatt Wingfoot the Fated"
+  email: "arnulfo@gorczany.info"
+  age: 30
+  gender: "Male"
+  firstname: "Evelia"
+  lastname: "Rosenbaum"
+  phone_number: "1-208-271-7254"
+  major: "Physics"
+  year: "phd"
+  is_driver: true
+  number_of_rating_given: 0
+  number_of_rating_received: 0
+  sum_of_rating_given: 0
+  sum_of_rating_received: 0
 
 two:
   username: MyString

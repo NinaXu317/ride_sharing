@@ -1,14 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 1
   start_city: MyString
   start_street_address: MyString
   start_zip: MyString
   end_city: MyString
   end_street_address: MyString
   end_zip: MyString
-  trip_date: 2020-03-06
   trip_time: 2020-03-06 14:38:28
   distance: 1.5
   lowest_acceptable_price: 1.5
@@ -16,14 +14,12 @@ one:
   availability_status: MyString
 
 two:
-  user_id: 1
   start_city: MyString
   start_street_address: MyString
   start_zip: MyString
   end_city: MyString
   end_street_address: MyString
   end_zip: MyString
-  trip_date: 2020-03-06
   trip_time: 2020-03-06 14:38:28
   distance: 1.5
   lowest_acceptable_price: 1.5

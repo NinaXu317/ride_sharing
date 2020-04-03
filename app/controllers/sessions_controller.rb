@@ -6,9 +6,10 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to @user
+      redirect_to root_path, status: 301
     else
-      redirect_to login_path
+      flash[:alert] = "Invalid email or password"
+      redirect_to login_path, status: 301
     end
   end
 
