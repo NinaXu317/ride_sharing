@@ -21,7 +21,7 @@ gem 'simple_form'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'jquery-rails'
-gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 5.12.0'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'

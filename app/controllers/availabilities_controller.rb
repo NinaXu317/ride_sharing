@@ -34,6 +34,10 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities/1
   # GET /availabilities/1.json
   def show
+    user_id = Post.find_user_id(params[:id])
+    if !user_id.nil?
+      @user = User.find(user_id)
+    end
   end
 
   def requestModal

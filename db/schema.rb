@@ -60,6 +60,13 @@ ActiveRecord::Schema.define(version: 2020_04_01_000202) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "matches", force: :cascade do |t|
+    t.integer "availability_id"
+    t.integer "request_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "availability_id"
