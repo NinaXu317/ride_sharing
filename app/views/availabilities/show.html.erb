@@ -1,61 +1,43 @@
 <p id="notice"><%= notice %></p>
 
+<div class="card text-left", style="margin-left:10%; margin-right:10%;">
+  <div class="card-header">
+    Ride Details
+  </div>
+  <div class="card-body">
+      <div style="width:800px; margin-left:5px;">
+      <p>
+        <strong>Start Address:</strong>
+        <%= @availability.start_street_address %>, <%= @availability.start_city %>
+      </p>
+      <p>
+        <strong>End Address:</strong>
+        <%= @availability.end_street_address %>, <%= @availability.end_city %>
+      </p>
+      <p>
+        <strong>Trip time:</strong>
+        <%= @availability.trip_time %>
+      </p>
+      <p>
+        <strong>Lowest acceptable price:</strong>
+        <%= @availability.lowest_acceptable_price %>
+      </p>
+      <% if @user %>
+        <p>
+          <strong>Ride offered by:</strong>
+          <%= @user.username %>
+          <%= link_to 'View driver profile', search_rides_path, class: "btn btn-primary" %>
+        </p>
+      <% end %>
+      <%= link_to 'Back', search_rides_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Start city:</strong>
-  <%= @availability.start_city %>
-</p>
+<% if @user %>
+  <p>
+    <strong>Ride offered by:</strong>
+    <%= @availability.start_street_address %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Start street address:</strong>
-  <%= @availability.start_street_address %>
-</p>
-
-<p>
-  <strong>Start zip:</strong>
-  <%= @availability.start_zip %>
-</p>
-
-<p>
-  <strong>End city:</strong>
-  <%= @availability.end_city %>
-</p>
-
-<p>
-  <strong>End street address:</strong>
-  <%= @availability.end_street_address %>
-</p>
-
-<p>
-  <strong>End zip:</strong>
-  <%= @availability.end_zip %>
-</p>
-
-
-<p>
-  <strong>Trip time:</strong>
-  <%= @availability.trip_time %>
-</p>
-
-<p>
-  <strong>Distance:</strong>
-  <%= @availability.distance %>
-</p>
-
-<p>
-  <strong>Lowest acceptable price:</strong>
-  <%= @availability.lowest_acceptable_price %>
-</p>
-
-<p>
-  <strong>Matched request:</strong>
-  <%= @availability.matched_request_id %>
-</p>
-
-<p>
-  <strong>Availability status:</strong>
-  <%= @availability.availability_status %>
-</p>
-
-<%= link_to 'Edit', edit_availability_path(@availability), class: "btn btn-primary" %>
-<%= link_to 'Back', search_rides_path, class: "btn btn-primary" %>

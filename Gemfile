@@ -21,7 +21,10 @@ gem 'simple_form'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'jquery-rails'
-gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 5.12.0'
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore-rails'
 gem 'rails-ujs'
 # Use bootstrap
 gem 'bootstrap-sass', '3.4.1'
@@ -71,3 +74,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'phonelib'
+gem 'twilio-ruby'

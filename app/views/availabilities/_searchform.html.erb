@@ -5,10 +5,8 @@
                 <%= f.input :start_city, label: 'Start City', class: "form-control", error: 'Start address is mandatory, please specify one' %>
             </div>
             <div class="form-group col-md-4">
-                <%= f.input :start_street_address, label: 'Start Street Address', class: "form-control" %>
+                <%= f.input :start_street_address, label: 'Start Street Address', class: "form-control", error: 'Start city is mandatory, please specify one' %>
             </div>
-        </div>
-        <div class="form-row">
             <div class="form-group col-md-2">
                 <%= f.input :end_city, label: 'Destination City', class: "form-control" %>
             </div>
@@ -26,7 +24,9 @@
             <div class="form-group col-md-2">
                 <%= f.input :lowest_acceptable_price, label: 'Expected Price', class: "form-control" %>
             </div>
+            <div class="form-group col-md-4", style = "margin-top: 2.3%; margin-left: 5%;">
+                <%= f.button :submit, 'Search', class: "btn btn-primary" %>
+            </div>
         </div>
-        <%= f.button :submit, 'Search', class: "btn btn-primary" %>
     <% end %>
 </form>

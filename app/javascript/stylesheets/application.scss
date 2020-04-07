@@ -35,11 +35,96 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold; 
    }
 
-   .btn2 {
+   .btn-standard {
+    background-color: #123C69;
     border: 3px solid #123C69;
-    background-color: #EEE2DC;
+    color: #EEE2DC;
     border-radius: 5px;
-  }  
+  }
+
+//    .btn-standard {
+//     border: 3px solid #123C69;
+//     background-color: #EEE2DC;
+//     border-radius: 5px;
+//   }
+//    .download-button{
+//        margin: 5% 3% 5% 0;
+   
+//    }
+   
+//    .title-image{
+//        width:70%;
+//        transform: rotate(25deg);
+//        position: absolute;
+//        right:30%;
+//    }
+   
+//    #features{
+//        padding: 7% 15%;
+//        background-color:#fff;
+//        position:relative;
+//        z-index: 1;
+   
+//    }
+//    .feature-box{
+//        text-align: center;
+//        padding:5%;
+//    }
+   .icon{
+       color:#ef8172;
+       margin-bottom: 1rem;
+   }
+   .icon:hover{
+       color:#ff4c68;
+   }  
+   
+//    #testimonials{
+   
+//        text-align: center;
+//        background-color:#ef8172;
+//        color:#fff;
+//    }
+   
+//    .testimonials-image{
+//        width: 10%;
+//        border-radius:100%;
+//        margin: 20px;
+//    }
+//    #press{
+//        background-color: #ef8172;
+//        text-align:center;
+//        padding-bottom:3%;
+//    }
+//    .press-log{
+//        width:15%;
+//        margin:20px 20px 50px;
+//    }
+   
+//    #pricing{
+//        padding: 100px;
+//        text-align:center;
+//    }
+//    .pricing-col{
+//        padding:3% 2%;
+//    }
+   
+//    @media (max-width:1028px){
+//        #title{
+//           text-align:center;
+//        }
+//        .title-image{
+//            position: static;
+//            transform: rotate(0deg);
+   
+//        }
+//    }
+//    #cta{
+//        padding: 7% 15%;
+//        text-align:center;
+//        background-color:#ff4c68;
+//        color:#fff;
+   
+//    }
 
 footer{
        padding-top:7%;

@@ -1,0 +1,22 @@
+<div class="card" style="width: 18rem; height: 23rem;">
+    <div class="card-body">
+        <h5 class="card-title">Available Ride</h5>
+        <i class="fas fa-map-marker-alt"></i><strong> Start address: </strong><br>
+        <%= availability.start_street_address %>, <%= availability.start_city %><br>
+        <i class="fas fa-map-marker-alt"></i><strong> End street address: </strong><br>
+        <%= availability.end_city %>, <%= availability.end_street_address %><br>
+        <i class="far fa-clock"></i><strong> Trip Time: </strong><br>
+        <%= availability.trip_time %><br>
+        <i class="fas fa-dollar-sign"></i><strong> Price Requested: </strong><br>
+        <%= availability.lowest_acceptable_price %><br>
+        <br>
+        <div class = "row", style="position:absolute; top: 300px; width: 18rem; height: 23rem;">
+            <div class = "col-md-5">
+                <%= button_to "View Details", availability_path(availability.id), method: :get, class: "btn-standard"%>
+            </div>
+            <div class = "col-md-5">
+                <%= button_to "Request Ride", request_rides_path(:id => availability.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn-standard" } %>
+            </div>
+        </div>
+    </div>
+</div>
