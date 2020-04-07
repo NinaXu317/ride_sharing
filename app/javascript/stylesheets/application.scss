@@ -3,143 +3,43 @@
 
 
 body{
+    
+    background-color:#EEE2DC !important;
     font-family:"Montserrat";
     text-align: center;
    }
    
-
-.social-icon{
-    color: #9b9b9b;
-    margin: 20px 10px;
-    display: inline-block;
-    line-height: 1px;
-    transition: 0.3s;
-   }
-
-#title{
-        background-color:#EEE2DC;
-   }
    
 h1, h2, h3, h4, h5, h6 {
     font-family: "Montserrat-Bold";
   }
   
-//    }
-//    p{
-//        color:#8f8f8f;
-//    }
-//    .carousel-item{
-//         padding: 7% 15%;
-//    }
-/* Containers */
-
-    .container-fluid{
-    padding: 7% 15% !important;
-  }
-     
+/* Containers */     
    
-   .navbar{
-       padding:0 0 4.5rem !important;
+.navbar{
+       padding:8px 16px !important;
    }
    
-   .nav-item{
+.nav-item{
        padding: 0 18px !important;
    }
    
-   .nav-link{
+.nav-link{
        font-size: 1.2rem;
        font-family: "Montserrat-Light";
    }
-   .navbar-brand{
+
+.navbar-brand{
     font-family: "Ubuntu";
     font-size: 3rem !important;
-    font-weight: bold;
-    
+    font-weight: bold; 
    }
 
    .btn2 {
     border: 3px solid #123C69;
     background-color: #EEE2DC;
     border-radius: 5px;
-  }
-//    .download-button{
-//        margin: 5% 3% 5% 0;
-   
-//    }
-   
-//    .title-image{
-//        width:70%;
-//        transform: rotate(25deg);
-//        position: absolute;
-//        right:30%;
-//    }
-   
-//    #features{
-//        padding: 7% 15%;
-//        background-color:#fff;
-//        position:relative;
-//        z-index: 1;
-   
-//    }
-//    .feature-box{
-//        text-align: center;
-//        padding:5%;
-//    }
-   .icon{
-       color:#ef8172;
-       margin-bottom: 1rem;
-   }
-   .icon:hover{
-       color:#ff4c68;
-   }  
-   
-//    #testimonials{
-   
-//        text-align: center;
-//        background-color:#ef8172;
-//        color:#fff;
-//    }
-   
-//    .testimonials-image{
-//        width: 10%;
-//        border-radius:100%;
-//        margin: 20px;
-//    }
-//    #press{
-//        background-color: #ef8172;
-//        text-align:center;
-//        padding-bottom:3%;
-//    }
-//    .press-log{
-//        width:15%;
-//        margin:20px 20px 50px;
-//    }
-   
-//    #pricing{
-//        padding: 100px;
-//        text-align:center;
-//    }
-//    .pricing-col{
-//        padding:3% 2%;
-//    }
-   
-//    @media (max-width:1028px){
-//        #title{
-//           text-align:center;
-//        }
-//        .title-image{
-//            position: static;
-//            transform: rotate(0deg);
-   
-//        }
-//    }
-//    #cta{
-//        padding: 7% 15%;
-//        text-align:center;
-//        background-color:#ff4c68;
-//        color:#fff;
-   
-//    }
+  }  
 
 footer{
        padding-top:7%;
@@ -148,6 +48,41 @@ footer{
        font-size: 1rem;
    }
 
-.icon{
-       margin:20px 10px;
+   .social-icon{
+    color: #bab2b5;
+    margin: 20px 10px;
+    display: inline-block;
+    line-height: 1px;
+    transition: 0.3s;
    }
+
+   .social-icon:hover{
+    color:#123C69;
+}  
+
+.home{
+    padding: 3% 1.8% 37%;
+    height: auto;
+    width: auto;
+    background-image: url("/assets/ride2.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+    // opacity: 0.3; 
+
+.link-to-custome{
+    color:rgb(200, 211, 52);
+    background-color: #edc7b7;
+}
+
+
+// .icon{
+//        margin:20px 10px;
+//    }
+
+// .icon{
+//     color:#ef8172;
+//     margin-bottom: 1rem;
+// }

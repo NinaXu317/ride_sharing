@@ -1,57 +1,36 @@
-<div class="row">
-  <% if !logged_in? %>
-  <div class="col-lg-6">
-    <h1 class="display-4">Welcome to Ride Sharing</h1>
-    <p>A new way to change your trip</p>
-    <a class="btn btn-outline-success" href="/signup" role="button">Sign Up</a>
-    <a class="btn btn-outline-dark" href="/login" role="button">Log In</a>
-    <a class="g-signin2" data-onsuccess="onSignIn">Google Sign In</a>
-
-    <button class="btn2">Test</button>
+<section class="login">
+  <div class="home">
+    <% if !logged_in? %>
+    <div>
+      <h1>Welcome to Ride Sharing</h1>
+      <p>A new way to change your trip</p>
+      <a class="btn btn-outline-success" href="/signup" role="button">Sign Up</a>
+      <a class="btn btn-outline-dark" href="/login" role="button">Log In</a>
+      <a class="g-signin2" data-onsuccess="onSignIn">Google Sign In</a>
     </div>
 
-    <div class="col-lg-6">
-      <%=image_tag("ride1.png", alt: "Rails logo")%>
-    </div>
-    
-  <% else %>
-    <h1 class="display-4">Welcome to Ride Sharing</h1>
-    <hr class="my-4">
-    <% if current_user.is_driver%>
-        <%= link_to "Search for a request", search_requests_path, class: "btn btn-primary btn-lg"%>
-        <%= link_to "Post an availability", new_availability_path, class: "btn btn-primary btn-lg"%>
+      <%# <div class="col-lg-6">
+        <%=image_tag("ride2.jpg", alt: "Rails logo")  %>
+      <%# </div> %>
+  </div>
+
+  <div class="logged_in">
     <% else %>
-      <%= link_to "Search for a ride", search_rides_path, class: "btn btn-primary btn-lg"%>
-      <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
+      <h1 class="display-4">Welcome to Ride Sharing</h1>
+      <hr class="my-4">
+      <div>
+      <% if current_user.is_driver%>
+          <%= link_to "Search for a request", search_requests_path, class: "btn btn-primary btn-lg", style:"background-color: #edc7b7"%>
+          <%= link_to "Post an availability", new_availability_path, class: "btn btn-lg"%>
+      <% else %>
+        <%= link_to "Search for a ride", search_rides_path, class: "link-to-customebtn"%>
+        <%= link_to "Make a request", new_request_path, class: "btn btn-primary btn-lg"%>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+      </div>
+  </div>
 </section>
-<%# features %>
-<section id="features">
-      <div class="row">
-      <div class="feature-box col-lg-4">
-          <i class="icon fas fa-check-circle fa-4x"></i>
-          <h3>Easy to use.</h3>
-          <p>So easy to use, even your dog could do it.</p>
-      </div>
-
-      <div class="feature-box col-lg-4">
-          <i class="icon fas fa-bullseye fa-4x"></i>
-          <h3>Elite Clientele</h3>
-          <p>We have all the drivers, the greatest student driver.</p>
-      </div>
-
-      <div class="feature-box col-lg-4">
-          <i class="icon fas fa-heart fa-4x"></i>
-          <h3>Guaranteed to work.</h3>
-          <p>Find the driver on the way to school or go home.</p>
-      </div>
-      </div>
-
-  </section>
-
-  
+ 
   <script>
     function onSignIn(googleUser){
       console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
