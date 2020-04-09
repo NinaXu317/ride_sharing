@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :places
   resources :makes
   resources :posts
   resources :vehicles

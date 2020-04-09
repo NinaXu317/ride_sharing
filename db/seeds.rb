@@ -9,6 +9,15 @@
 
 require 'faker'
 
+def create_place
+    Place.create!([
+        { "name": "Buckingham Palace", "latitude": "51.501564","longitude": "-0.141944"},
+        { "name": "Westminster Abbey", "latitude": "51.499581", "longitude": "-0.127309"},
+        { "name": "Big Ben", "latitude": "51.500792", "longitude": "-0.124613"}
+    ])
+    puts "places created"
+end
+
 def create_user
     (0...50).each do
         @age = Faker::Number.within(range: 17..50)
@@ -160,6 +169,7 @@ def is_driver number
     end
 end
 
+create_place
 create_user
 create_request
 create_availability

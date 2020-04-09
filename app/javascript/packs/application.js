@@ -29,3 +29,12 @@ require("jquery")
 // const imagePath = (name) => images(name, true)
 import "bootstrap";
 import "../stylesheets/application";
+
+import "controllers"
+
+window.dispatchMapsEvent = function (...args) {
+    const event = document.createEvent("Events")
+    event.initEvent("google-maps-callback", true, true)
+    event.args = args
+    window.dispatchEvent(event)
+}
