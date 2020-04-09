@@ -6,8 +6,8 @@ class TwilioClient
     end
 
     def send_text(user, message)
-        client.messages.create(
-            to: user.phone,
+        @client.messages.create(
+            to: user.phone_number,
             from: phone_number,
             body: message
         )
