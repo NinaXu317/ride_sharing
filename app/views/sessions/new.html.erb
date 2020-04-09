@@ -1,22 +1,40 @@
-<div class="home">
-<% content_for :content do %>
 
-  <%= form_tag sessions_path do %>
+<% content_for :content do %>
+<div class="home">
+  <div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="https://img.icons8.com/ios-filled/50/000000/carpool.png" id="icon" alt="User Icon"/>
+      <h4>Welcom to Ride Sharing</h4>
+    </div>
+    <!-- Login Form -->
+    <%= form_tag sessions_path do %>
+      <%= label_tag "Email"%>
+      <%= text_field_tag :email, nil, placeholder: "Email", class: "fadeIn second" %>
+      <%= label_tag "Password"%>
+      <%= password_field_tag :email, nil, placeholder: "Password",class: "fadeIn third"%>
+      <%= submit_tag "Log In", class:"fadeIn fourth"%>
+    <% end %>
+      <%# <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"> %>
+      <%# <input type="submit" class="fadeIn fourth" value="Log In"> %>
+    <ul style="margin-left:28%">
+    <a class="g-signin2 fadeIn fourth"  data-onsuccess="onSignIn">Google Sign In</a>
+    </ul>
+  </div>
+</div>
+</div>
+<% end %>
+
+<%# saved for change back to original form %>
+<%= form_tag sessions_path do %>
     <%= label_tag "email" %>
     <%= text_field_tag :email, nil, placeholder: "Email" %>
     <%= label_tag "Password" %>
     <%= password_field_tag :password, nil, placeholder: "Password" %>
     <%= submit_tag "Log In"%>
-
-   
-      
-
   <% end %>
-
-<% end %>
-
-</div>
-<a class="g-signin2"  data-onsuccess="onSignIn">Google Sign In</a>
 
 <script>
     function onSignIn(googleUser){
