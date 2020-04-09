@@ -1,3 +1,4 @@
+<div class="home">
 <% content_for :content do %>
 
   <%= form_tag sessions_path do %>
@@ -6,6 +7,25 @@
     <%= label_tag "Password" %>
     <%= password_field_tag :password, nil, placeholder: "Password" %>
     <%= submit_tag "Log In"%>
+
+   
+      
+
   <% end %>
 
 <% end %>
+
+</div>
+<a class="g-signin2"  data-onsuccess="onSignIn">Google Sign In</a>
+
+<script>
+    function onSignIn(googleUser){
+      console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
+    }
+
+    function signOut(){
+      gapi.auth2.getAuthInstance().signOut().then(function(){
+        console.log("User signed out")
+      })
+    }
+  </script>
