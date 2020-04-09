@@ -1,32 +1,41 @@
-<form>
-    <%= simple_form_for :search, :url => search_rides_path, :remote => true, :method => :get do |f| %>
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                <%= f.input :start_city, label: 'Start City', class: "form-control", error: 'Start address is mandatory, please specify one' %>
-            </div>
-            <div class="form-group col-md-4">
-                <%= f.input :start_street_address, label: 'Start Street Address', class: "form-control", error: 'Start city is mandatory, please specify one' %>
-            </div>
-            <div class="form-group col-md-2">
-                <%= f.input :end_city, label: 'Destination City', class: "form-control" %>
-            </div>
-            <div class="form-group col-md-4">
-                <%= f.input :end_street_address, label: 'Destionation Street Address', class: "form-control" %>
-            </div>
+<%= form_with model: @availability, method: :get, local: true, data: { controller: "maps", action: "google-maps-callback@window->maps#initializeMap" } do |f| %>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <%= f.label :start_street_address %>
+            <%= f.text_field :start_street_address, class: "form-control", data: { target: "maps.field", action: "keydown->maps#preventSubmit" } %>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                <%= f.input :trip_date, as: :date, html5: true, inline_label: 'Yes, remember me', class: "form-control" %>
-            </div>
-            <div class="form-group col-md-2">
-                <%= f.input :trip_time, as: :time, html5: true, inline_label: 'Yes, remember me', class: "form-control" %>
-            </div>
-            <div class="form-group col-md-2">
-                <%= f.input :lowest_acceptable_price, label: 'Expected Price', class: "form-control" %>
-            </div>
-            <div class="form-group col-md-4", style = "margin-top: 2.3%; margin-left: 5%;">
-                <%= f.button :submit, 'Search', class: "btn btn-primary" %>
-            </div>
+        <div class="form-group col-md-4">
+            <%= f.label :end_street_address %>
+            <%= f.text_field :end_street_address, class: "form-control", data: { target: "maps.field", action: "keydown->maps#preventSubmit" } %>
         </div>
-    <% end %>
-</form>
+        <div class="field">
+            <%= f.label :latitude %>
+            <%= f.text_field :latitude, class: 'form-control', data: { target: "maps.latitude" } %>
+        </div>
+        <div class="field">
+            <%= f.label :longitude %>
+            <%= f.text_field :longitude, class: 'form-control', data: { target: "maps.longitude" } %>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <%= f.label :trip_date %>
+            <%= f.text_field :trip_date, as: :date, html5: true, inline_label: 'Yes, remember me', class: "form-control" %>
+        </div>
+        <div class="form-group col-md-2">
+            <%= f.label :trip_time %>
+            <%= f.text_field :trip_time, as: :time, html5: true, inline_label: 'Yes, remember me', class: "form-control" %>
+        </div>
+        <div class="form-group col-md-2">
+            <%= f.label :lowest_acceptable_price %>
+            <%= f.text_field :lowest_acceptable_price, label: 'Expected Price', class: "form-control" %>
+        </div>
+        <div class="form-group col-md-4", style = "margin-top: 2.3%; margin-left: 5%;">
+            <%= f.submit 'Search', class: "btn btn-primary" %>
+        </div>
+    </div>
+    <div>
+        <div data-target="maps.map", style="height:400px"></div>
+    </div>
+<% end %>
