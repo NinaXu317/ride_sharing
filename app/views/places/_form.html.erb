@@ -1,5 +1,5 @@
 <%= form_with model: place, local: true, data: {
-                                            controller: :maps,
+                                            controller: "maps",
                                             action: "google-maps-callback@window->maps#initializeMap"
                                           } do |form| %>
   <div class="field">
@@ -22,7 +22,9 @@
     <%= form.text_field :longitude, class: 'form-control', data: { target: "maps.longitude" } %>
   </div>
 
-  <%= content_tag :div, nil, data: { target: "maps.map" }, class: 'map' %>
+  <div>
+    <div data-target="maps.map", style="height:400px"></div>
+  </div>
 
   <div class="actions">
     <%= form.submit class: 'btn btn-primary' %>

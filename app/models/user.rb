@@ -12,6 +12,7 @@ class User < ApplicationRecord
   scope :is_rider, ->{ where(is_driver: false) }
   has_one_attached :avatar
 
+  validate :phone_number, phone: true
   # private
   #   def add_default_avatar
   #     unless avatar.attached?

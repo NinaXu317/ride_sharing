@@ -1,4 +1,4 @@
-import { Controller} from "stimulus"
+import { Controller } from "stimulus"
 
 export default class extends Controller {
   static targets = ["field", "map", "latitude", "longitude"]
@@ -20,10 +20,9 @@ export default class extends Controller {
     if(this._map == undefined) {
       this._map = new google.maps.Map(this.mapTarget, {
         center: new google.maps.LatLng(
-          this.latitudeTarget.value,
-          this.longitudeTarget.value
+          39.5, -98.35
         ),
-        zoom: 17
+        zoom: 4
       })
     }
     return this._map
