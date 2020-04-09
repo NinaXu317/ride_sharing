@@ -3,19 +3,23 @@
 
 
 body{
-    
-    background-color:#EEE2DC !important;
+    background-color:#eae7dc !important;
     font-family:"Montserrat";
     text-align: center;
    }
-   
+
+
    
 h1, h2, h3, h4, h5, h6 {
     font-family: "Montserrat-Bold";
   }
   
 /* Containers */     
-   
+.navbar_backgroud{
+    background-image: url("/assets/nav_bg.png");
+    background-size: cover;
+}
+
 .navbar{
        padding:8px 16px !important;
    }
@@ -61,17 +65,31 @@ footer{
     color:#123C69;
 }  
 
+
 .home{
     padding: 3% 1.8% 37%;
     height: auto;
     width: auto;
-    background-image: url("/assets/ride2.jpg");
+    background-image: url("/assets/bg.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
     // opacity: 0.3; 
+}
+.welcom{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}    
+.sign_up{
+    margin-top: 0;
+    margin-left: 34%;
+    margin-bottom: 1rem;
+}
+.sign_up_button{
+    margin:5%;
+}
 
 .link-to-custome{
     color:rgb(200, 211, 52);

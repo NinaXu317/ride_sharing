@@ -1,26 +1,39 @@
 <section class="login">
-  <div class="home">
+  <div class=home>
     <% if !logged_in? %>
     <div>
-      <h1>Welcome to Ride Sharing</h1>
-      <p>A new way to change your trip</p>
-      <a class="btn btn-outline-success" href="/signup" role="button">Sign Up</a>
-      <a class="btn btn-outline-dark" href="/login" role="button">Log In</a>
-      <a class="g-signin2" data-onsuccess="onSignIn">Google Sign In</a>
+      <h1 class="welcom">Welcome to Ride Sharing</h1>
+      <h3 class="welcom">A new way to change your trip</h3>
+        <ul class="sign_up">
+          <a class="btn btn-outline-success btn-lg sign_up_button" href="/signup" role="button">Sign Up</a>
+          <a class="btn btn-outline-dark btn-lg sign_up_button " href="/login" role="button">Log In</a>
+        </ul >
+       
+          <%# <a class="g-signin2"  data-onsuccess="onSignIn">Google Sign In</a> %>
+        
     </div>
+
+      <%# <div class="col-lg-6">
+    <%= image_tag("ride2.jpg", opacity: 0.3, alt: "Rails logo") %>
+      <%# </div> %>
   </div>
 
   <div class="logged_in">
     <% else %>
-      <h1 class="display-4">Welcome to Ride Sharing</h1>
+      <h1 class="display-4 welcom">Welcome to Ride Sharing</h1>
       <hr class="my-4">
       <div>
       <% if current_user.is_driver%>
-          <%= link_to "Search for a request", search_requests_path, class: "btn btn-primary btn-lg", style:"background-color: #edc7b7"%>
-          <%= link_to "Post an availability", new_availability_path, class: "btn btn-lg"%>
+      <%# style:"background-color: #def2f1" %>
+        <ul class="margin-left:28%">
+          <%= link_to "Search for a request", search_requests_path, class: "btn btn-lg btn-info sign_up_button"%>
+          <%= link_to "Post an availability", new_availability_path, class: "btn btn-lg  btn-info sign_up_button"%>
+        </ul>
       <% else %>
-        <%= link_to "Search for a ride", search_rides_path, class: "btn btn-outline-info"%>
-        <%= link_to "Make a request", new_request_path, class: "btn btn-outline-dark"%>
+        <ul style="margin-left:28%">
+          <%= link_to "Search for a ride", search_rides_path, class: "btn btn-lg btn-info sign_up_button"%>
+          <%= link_to "Make a request", new_request_path, class: "btn btn-lg btn-info sign_up_button"%>
+        </ul>
       <% end %>
     <% end %>
       </div>
