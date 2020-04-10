@@ -12,7 +12,7 @@
         <!-- Login Form -->
         <div class="sign_in_form">
             <div class="content">
-              <%= form_with model: @user do |f|%>
+              <%= form_for (@user) do |f|%>
                 <div id="email", style="margin-left:10px; margin-right: 10px;">
                   <%= f.label "Email"%><br>
                   <%= f.text_field :email, placeholder: "Email", class: "fadeIn second" %>
@@ -26,10 +26,10 @@
                   <%= f.password_field :password_confirmation, placeholder: "Password", class: "fadeIn third" %>
                 </div>
                 <div id="driver_rider", style="margin-top:5px;">
-                  <%= f.label :is_driver, 'Driver'%>
-                  <%= f.radio_button :is_driver, :checked => true %>
-                  <%= f.label :is_driver, 'Rider'%>
-                  <%= f.radio_button :is_driver %>
+                  <%= f.radio_button :is_driver?, true %>
+                  <%= f.label :is_driver, 'Driver', value: true%>
+                  <%= f.radio_button :is_driver?, false %>
+                  <%= f.label :is_driver, 'Rider', value: false%>
                 </div>
                 <div id="submit_button", style="margin-top:10px">
                   <%= f.submit "Sign Up", class:"fadeIn fourth"%>
