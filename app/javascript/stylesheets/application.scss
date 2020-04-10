@@ -1,18 +1,19 @@
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
+@font-face {
+    font-family: "IBM";
+    src: url("/assets/IBMPlexSerif-Medium.ttf")
+}
 
 body{
     background-color:#eae7dc !important;
-    font-family:"Montserrat";
     text-align: center;
-   }
+}
+*{
+    font-family: "IBM";
+}
 
-
-   
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Montserrat-Bold";
-  }
   
 /* Containers */     
 .navbar_backgroud{
@@ -30,11 +31,9 @@ h1, h2, h3, h4, h5, h6 {
    
 .nav-link{
        font-size: 1.2rem;
-       font-family: "Montserrat-Light";
    }
 
 .navbar-brand{
-    font-family: "Ubuntu";
     font-size: 3rem !important;
     font-weight: bold; 
    }
@@ -96,15 +95,6 @@ footer{
     background-color: #edc7b7;
 }
 
-
-// .icon{
-//        margin:20px 10px;
-//    }
-
-// .icon{
-//     color:#ef8172;
-//     margin-bottom: 1rem;
-// }
 .wrapper {
     display: flex;
     align-items: center;
