@@ -1,49 +1,50 @@
-
 <% content_for :content do %>
 <div class="home">
   <div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Icon -->
-    <div class="fadeIn first">
-      <img src="https://img.icons8.com/ios-filled/50/000000/carpool.png" id="icon" alt="User Icon"/>
-      <h4>Welcom to Ride Sharing</h4>
+    <div id="formContent">
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <div class="signin_icon", style="margin-top: 3px; margin-bottom: 5px;">
+          <img src="https://img.icons8.com/ios-filled/50/000000/carpool.png" id="icon" alt="User Icon"/>
+        </div>
+        <h4>Welcom to Ride Sharing</h4>
+      </div>
+      <!-- Login Form -->
+      <div class="sign_in_form">
+          <div class="content">
+          <%= form_tag sessions_path do %>
+            <div id="email", style="margin-left:10px; margin-right: 10px;">
+              <%= label_tag "Email"%><br>
+              <%= text_field_tag :email, nil, placeholder: "Email", class: "fadeIn second" %>
+            </div>
+            <div id="password", style="margin-top:5px; margin-left:10px; margin-right: 10px;">
+              <%= label_tag "Password"%><br>
+              <%= password_field_tag :password, nil, placeholder: "Password", class: "fadeIn third" %>
+            </div>
+            <div id="submit_button", style="margin-top:10px">
+              <%= submit_tag "Log In", class:"fadeIn fourth"%>
+            </div >
+        </div>
+        <% end %>
+      </div>
+      <ul style="margin-left:28%">
+        <a class="g-signin2 fadeIn fourth"  data-onsuccess="onSignIn">Google Sign In</a>
+      </ul>
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
     </div>
-    <!-- Login Form -->
-    <%= form_tag sessions_path do %>
-      <%= label_tag "Email"%>
-      <%= text_field_tag :email, nil, placeholder: "Email", class: "fadeIn second" %>
-      <%= label_tag "Password"%>
-      <%= password_field_tag :email, nil, placeholder: "Password",class: "fadeIn third"%>
-      <%= submit_tag "Log In", class:"fadeIn fourth"%>
-    <% end %>
-      <%# <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"> %>
-      <%# <input type="submit" class="fadeIn fourth" value="Log In"> %>
-    <ul style="margin-left:28%">
-    <a class="g-signin2 fadeIn fourth"  data-onsuccess="onSignIn">Google Sign In</a>
-    </ul>
   </div>
 </div>
-</div>
 <% end %>
-
-<%# saved for change back to original form %>
-<%= form_tag sessions_path do %>
-    <%= label_tag "email" %>
-    <%= text_field_tag :email, nil, placeholder: "Email" %>
-    <%= label_tag "Password" %>
-    <%= password_field_tag :password, nil, placeholder: "Password" %>
-    <%= submit_tag "Log In"%>
-  <% end %>
 
 <script>
     function onSignIn(googleUser){
       console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
     }
-
     function signOut(){
       gapi.auth2.getAuthInstance().signOut().then(function(){
         console.log("User signed out")
       })
     }
-  </script>
+</script>
