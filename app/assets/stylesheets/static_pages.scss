@@ -4,4 +4,29 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
+.home{
+    padding: 3% 1.8% 37%;
+    height: auto;
+    width: auto;
+    background-image: url("/assets/bg.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    .welcome {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }    
+    .sign_up{
+        margin-top: 3%;
+        margin-left: 27%;
+        margin-bottom: 1rem;
+    }
+    .sign_up_button{
+        margin: 3%;
+        padding: 10px;
+        font-size: 18px;
+    }
+}
+  
