@@ -76,3 +76,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'phonelib'
 gem 'twilio-ruby'
+gem 'binding_of_caller'

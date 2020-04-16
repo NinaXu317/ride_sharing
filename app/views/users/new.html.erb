@@ -1,15 +1,57 @@
 <% content_for :content do %>
-
-  <%= form_for @user do |f| %>
-    <%= f.label :email %>
-    <%= f.text_field :email, placeholder: "Email" %>
-    <%= f.label :is_driver %>
-    <%= f.select :is_driver, [["Yes", true], ["No", false]] %>
-    <%= f.label :password %>
-    <%= f.password_field :password, placeholder: "Password" %>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
-    <%= f.submit "Create Account" %>
-  <% end %>
-
+  <div class="home">
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <div class="signin_icon", style="margin-top: 3px; margin-bottom: 5px;">
+            <img src="https://img.icons8.com/ios-filled/50/000000/carpool.png" id="icon" alt="User Icon"/>
+          </div>
+          <h4>Welcom to Ride Sharing</h4>
+        </div>
+        <!-- Login Form -->
+        <div class="sign_in_form">
+            <div class="content">
+              <%= form_for (@user) do |f|%>
+                <div id="email", style="margin-left:10px; margin-right: 10px;">
+                  <%= f.label "Email"%><br>
+                  <%= f.text_field :email, placeholder: "Email", class: "fadeIn second" %>
+                </div>
+                <div id="password", style="margin-top:5px; margin-left:10px; margin-right: 10px;">
+                  <%= f.label "Password"%><br>
+                  <%= f.password_field  :password,placeholder: "Password", class: "fadeIn third" %>
+                </div>
+                <div id="password_confirmation", style="margin-top:5px; margin-left:10px; m argin-right: 10px;">
+                  <%= f.label "Password Confirmation"%><br>
+                  <%= f.password_field :password_confirmation, placeholder: "Password", class: "fadeIn third" %>
+                </div>
+                <div id="driver_rider", style="margin-top:5px;">
+                  <%= f.radio_button :is_driver?, true %>
+                  <%= f.label :is_driver, 'Driver', value: true%>
+                  <%= f.radio_button :is_driver?, false %>
+                  <%= f.label :is_driver, 'Rider', value: false%>
+                </div>
+                <div id="submit_button", style="margin-top:10px">
+                  <%= f.submit "Sign Up", class:"fadeIn fourth"%>
+                </div>
+              <% end %>
+          </div>
+        </div>
+        <ul style="margin-left:28%">
+          <a class="g-signin2 fadeIn fourth"  data-onsuccess="onSignIn">Google Sign In</a>
+        </ul>
+      </div>
+    </div>
+  </div>
 <% end %>
+
+<script>
+    function onSignIn(googleUser){
+      console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
+    }
+    function signOut(){
+      gapi.auth2.getAuthInstance().signOut().then(function(){
+        console.log("User signed out")
+      })
+    }
+</script>
