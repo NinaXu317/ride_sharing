@@ -31,3 +31,4 @@ yarn-debug.log*
 # Ignore file created by RubyMine
 .idea/
 /config/credentials/development.key
+/config/credentials.yml.enc

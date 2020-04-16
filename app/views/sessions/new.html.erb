@@ -28,7 +28,7 @@
         <% end %>
       </div>
       <ul style="margin-left:28%">
-        <a class="g-signin2 fadeIn fourth"  data-onsuccess="onSignIn">Google Sign In</a>
+        <a class="g-signin2 fadeIn fourth"  data-onsuccess="onSignIn" data-redirecturi="http://localhost:3000">Google Sign In</a>
       </ul>
       <div id="formFooter">
         <a class="underlineHover" href="#">Forgot Password?</a>
@@ -40,7 +40,8 @@
 
 <script>
     function onSignIn(googleUser){
-      console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
+      // console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
+      location.redirecturi("http://localhost:3000/users")
     }
     function signOut(){
       gapi.auth2.getAuthInstance().signOut().then(function(){
@@ -48,3 +49,4 @@
       })
     }
 </script>
+

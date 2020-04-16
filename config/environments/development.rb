@@ -12,6 +12,9 @@ Rails.application.configure do
   # Configure ngrok host
   config.hosts << "2fd5df82.ngrok.io"
 
+  # Setup active_storage for avatar
+  config.active_storage.service = :local
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
