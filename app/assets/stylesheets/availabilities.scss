@@ -1,11 +1,10 @@
 // Place all the styles related to the Availabilities controller here.
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.card {
+    font-size: 14px;
+}
 
-h1 {
-    font-size: 3em;
-    letter-spacing: -2px;
-    margin-bottom: 60px;
-    text-align: center;
-    color:#ff4c68;
+#search_form {
+    font-size: 16px;
 }

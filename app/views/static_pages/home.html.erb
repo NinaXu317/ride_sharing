@@ -8,9 +8,9 @@
   </div>
   <div id="home-buttons">
     <% if !logged_in? %>
-      <ul class="sign_up">
-        <a class="btn btn-outline-success btn-lg sign_up_button" href="/signup" role="button">Sign Up</a>
-        <a class="btn btn-outline-dark btn-lg sign_up_button " href="/login" role="button">Log In</a>
+      <ul class="before_sign_in">
+        <%= link_to "Sign Up", signup_path, class: "btn btn-outline-success btn-lg sign_up_button"%>
+        <%= link_to "Log In", login_path, class: "btn btn-outline-dark btn-lg sign_up_button"%>
       </ul> 
     <% else %>
       <% if current_user.is_driver%>
