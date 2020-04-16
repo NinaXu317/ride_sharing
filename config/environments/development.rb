@@ -12,6 +12,9 @@ Rails.application.configure do
   # Configure ngrok host
   config.hosts << "2fd5df82.ngrok.io"
 
+  # Set up action mailer
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # Setup active_storage for avatar
   config.active_storage.service = :local
 
