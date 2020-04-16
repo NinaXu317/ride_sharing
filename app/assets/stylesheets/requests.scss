@@ -1,3 +1,22 @@
 // Place all the styles related to the Requests controller here.
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.new_request {
+    width: 500px;
+    height: 600px;
+    margin-left: 30%;
+    margin-top: 10px;
+    font-size: 16px;
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .actions {
+        margin-left: 43%;
+        margin-top: 20px;
+    }
+    .form {
+        margin-top: 15px;
+    }
+}

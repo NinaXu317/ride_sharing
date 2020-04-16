@@ -2,11 +2,9 @@ require 'date'
 require 'time'
 
 class Matcher
-    def add_item_to_match id, start_city, start_address, end_city, end_address, trip_time, acceptable_price
+    def add_item_to_match id, start_address, end_address, trip_time, acceptable_price
         @availability_id = id
-        @start_city = start_city.lstrip.downcase
         @start_address = start_address.lstrip.downcase
-        @end_city = end_city.lstrip.downcase
         @end_address = end_address.lstrip.downcase
         @trip_time = trip_time
         @acceptable_price = acceptable_price.to_f
