@@ -12,9 +12,6 @@ Rails.application.configure do
   # Configure ngrok host
   config.hosts << "2fd5df82.ngrok.io"
 
-  # Set up action mailer
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
   # Setup active_storage for avatar
   config.active_storage.service = :local
 
@@ -60,4 +57,10 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
 end

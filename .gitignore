@@ -32,3 +32,4 @@ yarn-debug.log*
 .idea/
 /config/credentials/development.key
 /config/credentials.yml.enc
+/config/master.key
