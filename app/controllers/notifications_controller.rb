@@ -9,4 +9,10 @@ class NotificationsController < ApplicationController
         puts params["Body"]
         render 'static_pages/home'
     end
+
+    def notify
+        if params[]
+        else
+        end
+    end
 end
