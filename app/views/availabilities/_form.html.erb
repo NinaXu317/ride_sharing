@@ -13,38 +13,24 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.number_field :user_id, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :start_city %>
-    <%= form.text_field :start_city %>
+    <%= form.text_field :start_city, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :start_street_address %>
-    <%= form.text_field :start_street_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_zip %>
-    <%= form.text_field :start_zip %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_city %>
-    <%= form.text_field :end_city %>
+    <%= form.text_field :start_street_address, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :end_street_address %>
-    <%= form.text_field :end_street_address %>
+    <%= form.text_field :end_street_address, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :end_zip %>
-    <%= form.text_field :end_zip %>
-  </div>
 
   <div class="field">
     <%= form.label :trip_date %>
@@ -52,13 +38,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :trip_time %>
-    <%= form.datetime_select :trip_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :distance %>
-    <%= form.text_field :distance %>
+      <%= f.label :trip_time %><br>
+      <%= f.datetime_select :trip_time, :default => { :hour => 23, :minute => 59 }, class: "form-control" %>
   </div>
 
   <div class="field">
