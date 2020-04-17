@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   post "/sessions", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy"
   post "/message", to: "notifications#message"
+  get "/notify", to: "notifications#notify"
 end
