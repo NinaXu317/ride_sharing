@@ -76,4 +76,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'phonelib'
 gem 'twilio-ruby'
-gem 'binding_of_caller'
+gem 'devise'
+gem 'mailcatcher'
+# gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
