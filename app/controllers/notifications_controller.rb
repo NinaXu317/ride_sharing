@@ -11,8 +11,10 @@ class NotificationsController < ApplicationController
     end
 
     def notify
-        if params[]
-        else
-        end
-    end
+      if params[]
+
+      else
+
+      end
+
 end
