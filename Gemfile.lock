@@ -172,6 +172,7 @@ GEM
     parser (2.7.1.0)
       ast (~> 2.4.0)
     pg (1.2.3)
+    phonelib (0.6.43)
     popper_js (1.14.7)
     pry (0.13.0)
       coderay (~> 1.1)
@@ -357,6 +358,7 @@ DEPENDENCIES
   mailcatcher
   momentjs-rails (>= 2.9.0)
   pg (>= 0.18, < 2.0)
+  phonelib
   popper_js (~> 1.14.5)
   pry-rails
   puma (~> 4.1)
