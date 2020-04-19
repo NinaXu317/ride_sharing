@@ -17,12 +17,10 @@
     <div class="modal-body">
         <p>Ride has been requested. Please wait for driver to confirm your ride. </p>
         <br>
-        <p>Please select how to inform the driver.</p>
-        <label for="inform_method">Choose a way: </label>
-        <select id="inform_method">
-          <option value="send_text">Texting</option>
-          <option value="send_notification">Notification</option>
-        </select>
+        <p>Please select how to inform the driver.</p >
+        <%= form_with url: '/notify', method: :get  do %>
+          <%= options_for_select([["Texting", "texting"], ["Notification", "notification"]]) %>
+        <% end %>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_16_193832) do
+ActiveRecord::Schema.define(version: 2020_04_19_154427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,12 +37,8 @@ ActiveRecord::Schema.define(version: 2020_04_16_193832) do
   end
 
   create_table "availabilities", force: :cascade do |t|
-    t.string "start_city"
     t.string "start_street_address"
-    t.string "start_zip"
-    t.string "end_city"
     t.string "end_street_address"
-    t.string "end_zip"
     t.datetime "trip_time"
     t.float "distance"
     t.float "lowest_acceptable_price"
@@ -51,19 +47,15 @@ ActiveRecord::Schema.define(version: 2020_04_16_193832) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "matched_user_id"
+    t.float "start_lat"
+    t.float "start_lon"
+    t.float "end_lat"
+    t.float "end_lon"
   end
 
   create_table "makes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "request_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "places", force: :cascade do |t|
-    t.string "name"
-    t.decimal "latitude"
-    t.decimal "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -76,12 +68,8 @@ ActiveRecord::Schema.define(version: 2020_04_16_193832) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.string "start_city"
     t.string "start_street_address"
-    t.string "start_zip"
-    t.string "end_city"
     t.string "end_street_address"
-    t.string "end_zip"
     t.datetime "trip_time"
     t.float "distance"
     t.float "highest_price_to_pay"
@@ -90,6 +78,10 @@ ActiveRecord::Schema.define(version: 2020_04_16_193832) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "matched_user_id"
+    t.float "start_lat"
+    t.float "start_lon"
+    t.float "end_lat"
+    t.float "end_lon"
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,7 +104,6 @@ ActiveRecord::Schema.define(version: 2020_04_16_193832) do
     t.string "password_digest"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

@@ -120,7 +120,7 @@ class AvailabilitiesController < ApplicationController
     end
 
     def search_params
-      params.require(:search).permit(:start_city, :start_street_address, :trip_date, :end_city, :end_street_address, :trip_time, :lowest_acceptable_price)
+      params.require(:search).permit(:start_street_address, :trip_time, :end_street_address, :trip_time, :lowest_acceptable_price)
     end
 end
 
