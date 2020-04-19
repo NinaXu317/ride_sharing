@@ -17,32 +17,20 @@
     <div class="modal-body">
         <p>Ride has been requested. Please wait for driver to confirm your ride. </p>
         <br>
-<<<<<<< HEAD
-        <p>Please select how to inform the driver.</p >
-        <%= form_with url: '/notify', method: :get  do %>
-          <%= options_for_select([["Texting", "texting"], ["Notification", "notification"]]) %>
-        <% end %>
-=======
         <p>Please select how to inform the driver.</p>
-      <div class="sign_in_form">
-        <%= form_with url: '/notify', method: :get  do |f| %>
-          <div id="notify_way", style="margin-top:5px;">
-            <%= f.radio_button :is_send_notification?, true %>
-            <%= f.label :is_send_notification, 'Send Notification', value: true%>
-            <%= f.radio_button :is_send_notification?, false %>
-            <%= f.label :is_send_notification, 'Send Text', value: false%>
-          </div>
-          <div id="submit_button", style="margin-top:10px">
-            <%= f.submit "Notify", class:"fadeIn fourth"%>
-          </div>
-        <% end %>
-      </div>
-<!--        <label for="inform_method">Choose a way: </label>-->
-<!--        <select id="inform_method">-->
-<!--          <option value="send_text">Texting</option>-->
-<!--          <option value="send_notification">Notification</option>-->
-<!--        </select>-->
->>>>>>> e9f36a91eeffb9e04b8a5cf0757fc862fb5682d1
+        <div class="sign_in_form">
+            <%= form_with url: '/notify', method: :get  do |f| %>
+            <div id="notify_way", style="margin-top:5px;">
+                <%= f.radio_button :is_send_notification?, true %>
+                <%= f.label :is_send_notification, 'Send Notification', value: true%>
+                <%= f.radio_button :is_send_notification?, false %>
+                <%= f.label :is_send_notification, 'Send Text', value: false%>
+            </div>
+            <div id="submit_button", style="margin-top:10px">
+                <%= f.submit "Notify", class:"fadeIn fourth"%>
+            </div>
+            <% end %>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
