@@ -7,9 +7,14 @@ class Request < ApplicationRecord
     geocoded_by :start_street_address, :latitude => :start_lat, :longitude => :start_lon
     geocoded_by :end_street_address, :latitude => :end_lat, :longitude => :end_lon
     before_save :geocode_end
+    before_save :geocode_distance
     after_validation :geocode
 
-    private 
+    private
+    def geocode_distance
+        self.distance = Geocoder::Calculations.distance_between([self.start_lat, self.start_lon], [self.end_lat, self.end_lon])
+    end
+
     def geocode_end
         if start_street_address_changed?
             geocoded = Geocoder.search(start_street_address).first
