@@ -9,7 +9,7 @@ class Availability < ApplicationRecord
     geocoded_by :start_street_address, :latitude => :start_lat, :longitude => :start_lon
     geocoded_by :end_street_address, :latitude => :end_lat, :longitude => :end_lon
     before_save :geocode_end
-
+    after_validation :geocode
 
     def self.search (param)
         puts param[:start_street_address]

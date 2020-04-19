@@ -9,6 +9,13 @@
 
 require 'faker'
 
+User.delete_all
+Post.delete_all
+Make.delete_all
+Availability.delete_all
+Request.delete_all
+Vehicle.delete_all
+
 def create_user
     (0...50).each do
         @age = Faker::Number.within(range: 17..50)
@@ -87,15 +94,16 @@ end
 
 # generate brandeis location
 def brandeis_location
-    loc = [
-        ["Admissions Bus Stop, Brandeis University, Waltham, MA, 02453"],
-        ["Theater Lot, Brandeis University, Waltham, MA, 02453"],
-        ["Science Lot, Brandeis University, Waltham, MA, 02453"],
-        ["Usdan Student Center Bus Stop, Brandeis University, Waltham, MA, 02453"],
-        ["Charles River Apartment, Brandeis University, Waltham, MA, 02453"],
-        ["IBS - Lemberg Academic Center, Brandeis University, Waltham, MA, 02453"]
-    ]
-    return loc[rand(loc.size - 1)]
+    # loc = [
+    #     ["415 South Street, Brandeis University, Waltham, MA, 02453"],
+    #     ["Theater Lot, Brandeis University, Waltham, MA, 02453"],
+    #     ["Science Lot, Brandeis University, Waltham, MA, 02453"],
+    #     ["Usdan Student Center Bus Stop, Brandeis University, Waltham, MA, 02453"],
+    #     ["Charles River Apartment, Brandeis University, Waltham, MA, 02453"],
+    #     ["IBS - Lemberg Academic Center, Brandeis University, Waltham, MA, 02453"]
+    # ]
+    # return loc[rand(loc.size - 1)]
+    return "415 South Street, Waltham, MA, 02453"
 end
 
 # generate majors
@@ -114,20 +122,20 @@ end
 # generate street address
 def street_map
     street_list = [
-        ["1105 Lexington St, Waltham, MA, 02452"], 
-        ["1036 Lexington St, Waltham, MA, 02452"],
-        ["12 Marlborough Rd, Waltham, MA, 02452"],
-        ["15 Middlesex Rd, Waltham, MA, 02452"],
-        ["70 Middlesex Rd, Waltham, MA, 02452"],
-        ["14 Dawes St, Waltham, MA, 02452"],
-        ["15 Newburgh St, Waltham, MA, 02452"],
-        ["556 Main St, Waltham, MA, 02453"],
-        ["20 Fiske St, Waltham, MA, 02453"],
-        ["44 Curtis St, Waltham, MA, 02453"],
-        ["70 Hope Ave, Waltham, MA, 02453"],
-        ["60 Hope Ave, Waltham, MA, 02453"],
-        ["80 Hope Ave, Waltham, MA, 02453"],
-        ["25 Crescent St, Waltham, MA, 02453"]
+        "1105 Lexington St, Waltham, MA, 02452", 
+        "1036 Lexington St, Waltham, MA, 02452",
+        "12 Marlborough Rd, Waltham, MA, 02452",
+        "15 Middlesex Rd, Waltham, MA, 02452",
+        "70 Middlesex Rd, Waltham, MA, 02452",
+        "14 Dawes St, Waltham, MA, 02452",
+        "15 Newburgh St, Waltham, MA, 02452",
+        "556 Main St, Waltham, MA, 02453",
+        "20 Fiske St, Waltham, MA, 02453",
+        "44 Curtis St, Waltham, MA, 02453",
+        "70 Hope Ave, Waltham, MA, 02453",
+        "60 Hope Ave, Waltham, MA, 02453",
+        "80 Hope Ave, Waltham, MA, 02453",
+        "25 Crescent St, Waltham, MA, 02453"
     ]
     return street_list[rand(street_list.size - 1)]
 end

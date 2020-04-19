@@ -17,10 +17,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- Bootstrap Scripts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-     <!-- Google Map Scripts -->
+    <!-- Google Map Scripts -->
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:maps_api_key]%>&libraries=places&callback=dispatchMapsEvent", async:true, defer:true, data-turbolinks-eval="false"></script>
     <script src='//underscorejs.org/underscore-min.js' type='text/javascript'></script>
-    // <!-- Google Log In -->
+    <!-- Google Log In -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <%= yield(:head_tags) %>
@@ -31,13 +31,10 @@
     <main>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
-
   </body>
-   <footer class="white-section" id="footer">
+
+  <footer class="white-section" id="footer">
     <%= render 'layouts/footer.html.erb' %>
   </footer>
   
 </html>
-
-
- <%# <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:maps_api_key]&libraries=places&callback=dispatchMapsEvent" async defer data-turbolinks-eval="false"%> </script> %> %>
