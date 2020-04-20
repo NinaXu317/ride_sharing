@@ -25,6 +25,7 @@
                 <%= f.label :is_send_notification, 'Send Notification', value: true%>
                 <%= f.radio_button :is_send_notification?, false %>
                 <%= f.label :is_send_notification, 'Send Text', value: false%>
+                <%= f.hidden_field :availability, :value => availability %>
             </div>
             <div id="submit_button", style="margin-top:10px">
                 <%= f.submit "Notify", class:"fadeIn fourth"%>
