@@ -47,7 +47,7 @@ def create_availability
             @start_street_address = street_map
             @end_street_address = brandeis_location
         end
-        @date = Faker::Time.between_dates(from: Date.today - 265, to: Date.today, period: :day)
+        @date = Faker::Time.between_dates(from: Date.today + 20, to: Date.today + 365, period: :day)
         Availability.create(start_street_address: @start_street_address, end_street_address: @end_street_address, trip_time: @date,
         distance: 0, lowest_acceptable_price: Faker::Number.within(range: 17..50), matched_request_id: -1, availability_status: "started")
     end
@@ -63,7 +63,7 @@ def create_request
             @start_street_address = street_map
             @end_street_address = brandeis_location
         end
-        @date = Faker::Time.between_dates(from: Date.today - 265, to: Date.today, period: :day)
+        @date = Faker::Time.between_dates(from: Date.today + 20, to: Date.today + 365, period: :day)
         Request.create(start_street_address: @start_street_address, end_street_address: @end_street_address, trip_time: @date,
         distance: 0, highest_price_to_pay: Faker::Number.within(range: 17..50), matched_availability_id: -1, request_status: "started")
     end
