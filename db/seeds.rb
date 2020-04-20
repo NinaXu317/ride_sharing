@@ -9,14 +9,12 @@
 
 require 'faker'
 
-def create_place
-    Place.create!([
-        { "name": "Buckingham Palace", "latitude": "51.501564","longitude": "-0.141944"},
-        { "name": "Westminster Abbey", "latitude": "51.499581", "longitude": "-0.127309"},
-        { "name": "Big Ben", "latitude": "51.500792", "longitude": "-0.124613"}
-    ])
-    puts "places created"
-end
+User.delete_all
+Post.delete_all
+Make.delete_all
+Availability.delete_all
+Request.delete_all
+Vehicle.delete_all
 
 def create_user
     (0...50).each do
@@ -42,25 +40,15 @@ end
 # status: started, waiting, confirmed, canceled, complete
 def create_availability
     (0...50).each do
-        @start_city = "Waltham"
-        @end_city = "Waltham"
         if rand(100) % 2 == 0     
-            start_addr = brandeis_location
-            end_addr = street_map
-            @start_zip = start_addr[1]
-            @start_street_address = start_addr[0]
-            @end_street_address = end_addr[0]
-            @end_zip = end_addr[1]
+            @start_street_address = brandeis_location
+            @end_street_address = street_map
         else 
-            start_addr = street_map
-            end_addr = brandeis_location
-            @start_zipcode = start_addr[1]
-            @start_street_address = start_addr[0]
-            @end_street_address = end_addr[0]
-            @end_zip = end_addr[1]
+            @start_street_address = street_map
+            @end_street_address = brandeis_location
         end
         @date = Faker::Time.between_dates(from: Date.today - 265, to: Date.today, period: :day)
-        Availability.create(start_city: @start_city, start_street_address: @start_street_address, start_zip: @start_zip, end_city: @end_city, end_street_address: @end_street_address, end_zip: @end_zip, trip_time: @date,
+        Availability.create(start_street_address: @start_street_address, end_street_address: @end_street_address, trip_time: @date,
         distance: 0, lowest_acceptable_price: Faker::Number.within(range: 17..50), matched_request_id: -1, availability_status: "started")
     end
     puts "generated availability data"
@@ -68,25 +56,15 @@ end
 
 def create_request
     (0...50).each do
-        @start_city = "Waltham"
-        @end_city = "Waltham"
         if rand(100) % 2 == 0      
-            start_addr = brandeis_location
-            end_addr = street_map
-            @start_zip = start_addr[1]
-            @start_street_address = start_addr[0]
-            @end_street_address = end_addr[0]
-            @end_zip = end_addr[1]
+            @start_street_address = brandeis_location
+            @end_street_address = street_map
         else 
-            start_addr = street_map
-            end_addr = brandeis_location
-            @start_zip = start_addr[1]
-            @start_street_address = start_addr[0]
-            @end_street_address = end_addr[0]
-            @end_zip = end_addr[1]
+            @start_street_address = street_map
+            @end_street_address = brandeis_location
         end
         @date = Faker::Time.between_dates(from: Date.today - 265, to: Date.today, period: :day)
-        Request.create(start_city: @start_city, start_street_address: @start_street_address, start_zip: @start_zip, end_city: @end_city, end_street_address: @end_street_address, end_zip: @end_zip, trip_time: @date,
+        Request.create(start_street_address: @start_street_address, end_street_address: @end_street_address, trip_time: @date,
         distance: 0, highest_price_to_pay: Faker::Number.within(range: 17..50), matched_availability_id: -1, request_status: "started")
     end
     puts "generated request data"
@@ -116,15 +94,16 @@ end
 
 # generate brandeis location
 def brandeis_location
-    loc = [
-        ["Admissions Bus Stop", "02453"],
-        ["Theater Lot", "02453"],
-        ["Science Lot", "02453"],
-        ["Usdan Student Center Bus Stop", "02453"],
-        ["Charles River Apartment", "02453"],
-        ["IBS - Lemberg Academic Center", "02453"]
-    ]
-    return loc[rand(loc.size - 1)]
+    # loc = [
+    #     ["415 South Street, Brandeis University, Waltham, MA, 02453"],
+    #     ["Theater Lot, Brandeis University, Waltham, MA, 02453"],
+    #     ["Science Lot, Brandeis University, Waltham, MA, 02453"],
+    #     ["Usdan Student Center Bus Stop, Brandeis University, Waltham, MA, 02453"],
+    #     ["Charles River Apartment, Brandeis University, Waltham, MA, 02453"],
+    #     ["IBS - Lemberg Academic Center, Brandeis University, Waltham, MA, 02453"]
+    # ]
+    # return loc[rand(loc.size - 1)]
+    return "415 South Street, Waltham, MA, 02453"
 end
 
 # generate majors
@@ -143,20 +122,20 @@ end
 # generate street address
 def street_map
     street_list = [
-        ["1105 Lexington St", "02452"], 
-        ["1036 Lexington St", "02452"],
-        ["12 Marlborough Rd", "02452"],
-        ["15 Middlesex Rd", "02452"],
-        ["70 Middlesex Rd", "02452"],
-        ["14 Dawes St", "02452"],
-        ["15 Newburgh St", "02452"],
-        ["556 Main St", "02453"],
-        ["20 Fiske St", "02453"],
-        ["44 Curtis St", "02453"],
-        ["70 Hope Ave", "02453"],
-        ["60 Hope Ave", "02453"],
-        ["80 Hope Ave", "02453"],
-        ["25 Crescent St", "02453"]
+        "1105 Lexington St, Waltham, MA, 02452", 
+        "1036 Lexington St, Waltham, MA, 02452",
+        "12 Marlborough Rd, Waltham, MA, 02452",
+        "15 Middlesex Rd, Waltham, MA, 02452",
+        "70 Middlesex Rd, Waltham, MA, 02452",
+        "14 Dawes St, Waltham, MA, 02452",
+        "15 Newburgh St, Waltham, MA, 02452",
+        "556 Main St, Waltham, MA, 02453",
+        "20 Fiske St, Waltham, MA, 02453",
+        "44 Curtis St, Waltham, MA, 02453",
+        "70 Hope Ave, Waltham, MA, 02453",
+        "60 Hope Ave, Waltham, MA, 02453",
+        "80 Hope Ave, Waltham, MA, 02453",
+        "25 Crescent St, Waltham, MA, 02453"
     ]
     return street_list[rand(street_list.size - 1)]
 end
@@ -170,7 +149,6 @@ def is_driver number
     end
 end
 
-create_place
 create_user
 create_request
 create_availability

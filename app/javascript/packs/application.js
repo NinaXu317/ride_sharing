@@ -12,6 +12,7 @@ require("jquery")
 //= require time_wrapper
 //= require popper
 //= require bootstrap-sprockets
+//= require flatpickr
 //= require jquery
 //= require rails-ujs
 //= require moment
@@ -28,12 +29,25 @@ require("jquery")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import "bootstrap";
-
 import "controllers"
 
+// ./packs/application.js
+import { Application } from 'stimulus'
+// import Flatpickr
+import Flatpickr from 'stimulus-flatpickr'
+
+import { definitionsFromContext } from 'stimulus/webpack-helpers'
+const application = Application.start()
+const context = require.context('../controllers', true, /\.js$/)
+application.load(definitionsFromContext(context))
+
+// Manually register Flatpickr as a stimulus controller
+application.register('flatpickr', Flatpickr)
+
+// google map
 window.dispatchMapsEvent = function (...args) {
     const event = document.createEvent("Events")
     event.initEvent("google-maps-callback", true, true)
     event.args = args
     window.dispatchEvent(event)
-}
+};

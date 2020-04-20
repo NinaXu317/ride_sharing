@@ -30,13 +30,14 @@ gem 'bootstrap-sass', '3.4.1'
 gem 'popper_js', '~> 1.14.5'
 gem "defaults"
 # gem 'bootstrap', '~>4.3.1'
-
+gem 'geocoder'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem "responders"
+gem 'flatpickr'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
