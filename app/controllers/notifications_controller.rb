@@ -16,5 +16,7 @@ class NotificationsController < ApplicationController
       else
 
       end
+    end
+
 
 end
