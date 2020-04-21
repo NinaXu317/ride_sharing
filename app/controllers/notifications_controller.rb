@@ -11,10 +11,12 @@ class NotificationsController < ApplicationController
     end
 
     def notify
-      if params[]
-
+      if params["is_send_notification"] == "true"
+        puts "True"
       else
-
+        puts "False"
       end
+    end
+
 
 end

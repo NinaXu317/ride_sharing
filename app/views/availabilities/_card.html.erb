@@ -1,6 +1,6 @@
 <div class="card" style="width: 25rem; height: 30rem;">
     <div class="card-body" style="width: 23rem; height: 26rem;">
-        <h3 class="card-title">Available Ride</h5>
+        <h3 class="card-title">Available Ride</h3>
         <i class="fas fa-map-marker-alt"></i><strong> Start address: </strong><br>
         <%= availability.start_street_address %><br>
         <i class="fas fa-map-marker-alt"></i><strong> End street address: </strong><br>
@@ -16,7 +16,14 @@
             </div>
             <div class = "col-md-5">
                 <%= button_to "Request Ride", request_rides_path(:id => availability.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-info btn-lg" } %>
+                <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content"></div>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
