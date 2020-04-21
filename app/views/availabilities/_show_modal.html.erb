@@ -5,6 +5,7 @@
   <p>Ride has been requested. Please wait for driver to confirm your ride. </p>
   <br>
   <p>Please select how to inform the driver.</p>
+  <% puts @availability.id %>
   <div class="sign_in_form">
     <%= form_with url: '/notify', method: :get do |f| %>
       <div id="notify_way" , style="margin-top:5px;">
@@ -12,7 +13,7 @@
         <%= f.label :is_send_notification, 'Send Notification', value: true %>
         <%= f.radio_button :is_send_notification?, false %>
         <%= f.label :is_send_notification, 'Send Text', value: false %>
-        <%#= f.hidden_field :availability, :value => availability %>
+        <%= f.hidden_field :availability_id, :value => @availability.id %>
       </div>
       <div id="submit_button" , style="margin-top:10px">
         <%= f.submit "Notify", class: "fadeIn fourth" %>
