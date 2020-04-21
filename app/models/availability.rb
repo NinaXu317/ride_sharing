@@ -1,7 +1,7 @@
 require 'time'
 
 class Availability < ApplicationRecord
-    defaults distance: 0.0, matched_request_id: -1, availability_status: "started", matched_user_id: -1
+    defaults trip_distance: 0.0, matched_request_id: -1, availability_status: "started", matched_user_id: -1
     has_many :users, :through => :posts
     has_one :request
     scope :unmatched, -> { where(matched_request_id: -1) }
@@ -20,22 +20,24 @@ class Availability < ApplicationRecord
         @end_addr = param[:end_street_address]
         # puts @start_coordinates.length
         # puts @end_coordinates.length
-        results = start_address_matches
+        results = start_address_matches.time_matches(param[:trip_time]).price_matches(param[:lowest_acceptable_price])
+        # results = results.end_address_matches
         # .time_matches(param[:trip_time]).price_matches(param[:lowest_acceptable_price]) 
         return nil unless results.length > 0
         return results
     end
 
     def self.start_address_matches
-        Availability.near(@start_addr, 1, latitude: :start_lat, longitude: :start_lon)
+        near(@start_addr, 1, latitude: :start_lat, longitude: :start_lon)
     end
 
     def self.end_address_matches
-        Availability.near(@end_addr, 1, latitude: :end_lat, longitude: :end_lon)
+        near(@end_addr, 1, latitude: :end_lat, longitude: :end_lon)
     end
 
     def self.time_matches(param_time)
         date_time = param_time.to_s.to_datetime
+        puts param_time
         before = date_time - (0.5 / 24.0)
         after = date_time + (0.5 / 24.0)
         where("trip_time BETWEEN ? AND ? ", before, after)
@@ -47,10 +49,9 @@ class Availability < ApplicationRecord
         where("lowest_acceptable_price BETWEEN ? AND ? ", low, high)
     end
 
-
     private 
     def geocode_distance
-        self.distance = Geocoder::Calculations.distance_between([self.start_lat, self.start_lon], [self.end_lat, self.end_lon])
+        self.trip_distance = Geocoder::Calculations.distance_between([self.start_lat, self.start_lon], [self.end_lat, self.end_lon])
     end
 
     def geocode_end
