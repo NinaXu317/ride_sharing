@@ -1,5 +1,5 @@
 class Request < ApplicationRecord
-    defaults distance: 0.0, matched_availability_id: -1, request_status: "started", matched_user_id: -1
+    defaults trip_distance: 0.0, matched_availability_id: -1, request_status: "started", matched_user_id: -1
     has_many :users, :through => :makes
     has_one :availability
     scope :unmatched, ->{ where(matched_availability_id: -1) }
@@ -12,7 +12,7 @@ class Request < ApplicationRecord
 
     private
     def geocode_distance
-        self.distance = Geocoder::Calculations.distance_between([self.start_lat, self.start_lon], [self.end_lat, self.end_lon])
+        self.trip_distance = Geocoder::Calculations.distance_between([self.start_lat, self.start_lon], [self.end_lat, self.end_lon])
     end
 
     def geocode_end

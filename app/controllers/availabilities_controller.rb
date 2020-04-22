@@ -55,11 +55,19 @@ class AvailabilitiesController < ApplicationController
     @availability.availability_status = "waiting"
     # @driver_id = @availability.post.user
     if @availability.save
-      # render javascript: go to result patial driver id 
-      render 'confirm.html'
+      respond_to do |format|
+        format.html
+        format.js
+      end
     else
       flash.now["danger"] = "Request not made"
     end
+    # if @availability.save
+    #   # render javascript: go to result patial driver id
+    #   render 'confirm.html'
+    # else
+    #   flash.now["danger"] = "Request not made"
+    # end
   end
 
   # GET /availabilities/new
@@ -78,6 +86,8 @@ class AvailabilitiesController < ApplicationController
 
     respond_to do |format|
       if @availability.save
+        post = Post.create(user_id: current_user.id, availability_id: @availability.id)
+        @post_id = post.id
         format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
         format.json { render :show, status: :created, location: @availability }
       else

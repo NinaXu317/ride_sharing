@@ -37,21 +37,7 @@
               <% end %>
           </div>
         </div>
-        <ul style="margin-left:28%">
-          <a class="g-signin2 fadeIn fourth"  data-onsuccess="onSignIn">Google Sign In</a>
-        </ul>
       </div>
     </div>
   </div>
 <% end %>
-
-<script>
-    function onSignIn(googleUser){
-      console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
-    }
-    function signOut(){
-      gapi.auth2.getAuthInstance().signOut().then(function(){
-        console.log("User signed out")
-      })
-    }
-</script>
