@@ -11,10 +11,12 @@ class NotificationsController < ApplicationController
     end
 
     def notify
+      availability_id = params["availability_id"].to_i
       if params["is_send_notification"] == "true"
         puts "True"
       else
-        puts "False"
+        post = Post.find_by(availability_id: availability_id)
+        # puts post.id
       end
     end
 
