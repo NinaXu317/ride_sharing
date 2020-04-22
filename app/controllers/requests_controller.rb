@@ -34,7 +34,7 @@ class RequestsController < ApplicationController
         @make = Make.create!(user_id: current_user.id, request_id: @request.id)
         @user.makes << @make
         matched_id = match
-        format.html { redirect_to @request, :status => 301, notice: 'Request was successfully created.' }
+        format.html { redirect_to @request, :status => 200, notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
       else
         format.html { render :new }
@@ -81,7 +81,7 @@ class RequestsController < ApplicationController
     def match
       unmatched_availabilities = Availability.unmatched.to_a.map(&:serializable_hash)
       matcher = Matcher.new
-      matcher.add_item_to_match(@request.id, @request.start_city, @request.start_street_address, @request.end_city, @request.end_street_address, @request.trip_time, @request.highest_price_to_pay)
+      matcher.add_item_to_match(@request.id, @request.start_lat, @request.start_lon, @request.end_lat, @request.end_lon, @request.trip_time, @request.highest_price_to_pay)
       matcher.find_all_availabilities(unmatched_availabilities)
       matched_id = matcher.find_best_match
       if !matched_id.nil?

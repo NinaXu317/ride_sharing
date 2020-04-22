@@ -4,20 +4,12 @@
     <h2> You have been matched with a driver with availability id <%= @request.matched_availability_id %></h2>
   <% end %>
 </div>
-<p>
-  <strong>Start city:</strong>
-  <%= @request.start_city %>
-</p>
 
 <p>
   <strong>Start street address:</strong>
   <%= @request.start_street_address %>
 </p>
 
-<p>
-  <strong>End city:</strong>
-  <%= @request.end_city %>
-</p>
 
 <p>
   <strong>End street address:</strong>
@@ -35,9 +27,14 @@
 </p>
 
 <p>
+  <strong>Trip distance:</strong>
+  <%= @request.trip_distance %>
+</p>
+
+<p>
   <strong>Request status:</strong>
   <%= @request.request_status %>
 </p>
 
 <%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %>
+<%= link_to 'Home', root_path %>
