@@ -14,12 +14,8 @@ class Availability < ApplicationRecord
 
     def self.search (param)
         puts "I'm in Availability model"
-        # @start_coordinates = Geocoder.search(param[:start_street_address]).first.coordinates
-        # @end_coordinates = Geocoder.search(param[:end_street_address]).first.coordinates
         @start_addr = param[:start_street_address]
         @end_addr = param[:end_street_address]
-        # puts @start_coordinates.length
-        # puts @end_coordinates.length
         results = start_address_matches.time_matches(param[:trip_time]).price_matches(param[:lowest_acceptable_price])
         # results = results.end_address_matches
         # .time_matches(param[:trip_time]).price_matches(param[:lowest_acceptable_price]) 

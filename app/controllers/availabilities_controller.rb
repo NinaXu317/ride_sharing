@@ -53,8 +53,9 @@ class AvailabilitiesController < ApplicationController
     @availability.matched_user_id = current_user.id
     @availability.matched_request_id = -10
     @availability.availability_status = "waiting"
-    # @driver_id = @availability.post.user
     if @availability.save
+      # create the notifications
+      Notification.create(recipient: @availability.post.user, actor: current_user, action: "requested", notifiable: @availability)
       respond_to do |format|
         format.html
         format.js
