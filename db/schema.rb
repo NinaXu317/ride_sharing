@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_030531) do
+ActiveRecord::Schema.define(version: 2020_04_22_214918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,11 @@ ActiveRecord::Schema.define(version: 2020_04_21_030531) do
     t.float "start_lon"
     t.float "end_lat"
     t.float "end_lon"
+  end
+
+  create_table "curt_avails", force: :cascade do |t|
+    t.string "phone_number"
+    t.integer "availability_id"
   end
 
   create_table "makes", force: :cascade do |t|
@@ -108,6 +113,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_030531) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.boolean "is_send_notification"
   end
 
   create_table "vehicles", force: :cascade do |t|

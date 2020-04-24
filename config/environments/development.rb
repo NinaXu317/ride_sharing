@@ -10,7 +10,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Configure ngrok host
-  config.hosts << "293f9c8b.ngrok.io"
+  config.hosts << "1a90ee11.ngrok.io"
 
   # Setup active_storage for avatar
   config.active_storage.service = :local
