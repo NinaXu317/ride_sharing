@@ -1,0 +1,3 @@
+<% if current_user.is_driver?%>
+    <%= link_to 'Get direction with Google Map', "http://maps.google.com/maps?saddr=#{curr_lat},#{curr_lon}&daddr=20.5666,45.345", :target => '_blank', class: "btn btn-info" %>
+<% end %>

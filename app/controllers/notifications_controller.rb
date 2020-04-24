@@ -18,8 +18,11 @@ class NotificationsController < ApplicationController
       # puts current_user.username
       # puts "1 + #{current_user.current_availability_id}"
       if params["is_send_notification"] == "true"
-
-        puts "True"
+        # create the notifications
+        # user_id = availability.posts.find_user_id(availability.id)
+        # if !user_id.nil? && Notification.find_by(recipient_id: user_id, actor_id: current_user.id).present?
+        #   Notification.create!(recipient: User.find_by(id: user_id), actor: current_user, action: "requested", notifiable: availability)
+        # end
       else
         twilio_client = TwilioClient.new
         message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{availability.start_street_address}, ends at #{availability.end_street_address}.\nThe trip time is #{availability.trip_time}. Text Y to accpet or N to ignore."
