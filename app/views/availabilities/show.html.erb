@@ -22,22 +22,8 @@
         <strong>Lowest acceptable price:</strong>
         <%= @availability.lowest_acceptable_price %>
       </p>
-      <% if @user %>
-        <p>
-          <strong>Ride offered by:</strong>
-          <%= @user.username %>
-          <%= link_to 'View driver profile', search_rides_path, class: "btn btn-primary" %>
-        </p>
-      <% end %>
+      <%= render partial: 'showDriver', :locals => { :driver => local_assigns[:driver] } %>
       <%= link_to 'Back', search_rides_path, class: "btn btn-primary" %>
     </div>
   </div>
 </div>
-
-<% if @user %>
-  <p>
-    <strong>Ride offered by:</strong>
-    <%= @availability.start_street_address %>
-  </p>
-<% end %>
-

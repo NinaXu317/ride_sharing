@@ -19,7 +19,6 @@ class Availability < ApplicationRecord
 
     def self.post_id user_id
         post_id = Post.where("user_id = ?", user_id)
-
     end
 
     def self.search (param)

@@ -35,10 +35,14 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities/1
   # GET /availabilities/1.json
   def show
-    user_id = Post.find_user_id(params[:id])
+    user_id = Post.find_user_id_by_availability_id(params[:id])
+    puts user_id
+    driver = nil
     if !user_id.nil?
-      @user = User.find(user_id)
+      driver = User.find_by(id: user_id)
+      render 'show', :locals => { :driver => driver } 
     end
+    puts driver.nil?
   end
 
   def requestModal
