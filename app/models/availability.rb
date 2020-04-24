@@ -2,15 +2,25 @@ require 'time'
 
 class Availability < ApplicationRecord
     defaults trip_distance: 0.0, matched_request_id: -1, availability_status: "started", matched_user_id: -1
-    has_many :users, :through => :posts
+    has_one :user, :through => :posts
     has_one :request
+    has_many :posts, dependent: :destroy
     scope :unmatched, -> { where(matched_request_id: -1) }
     scope :started, -> { where(availability_status: "started")}
+    scope :waiting, -> { where(availability_status: "waiting")}
+    scope :upcoming, -> { where(availability_status: "confirmed")}
+    scope :completed, -> { where(availability_status: "completed")}
+    scope :canceled, -> { where(availability_status: "conceled")}
     geocoded_by :start_street_address, :latitude => :start_lat, :longitude => :start_lon
     geocoded_by :end_street_address, :latitude => :end_lat, :longitude => :end_lon
     before_save :geocode_end
     before_save :geocode_distance
     after_validation :geocode
+
+    def self.post_id user_id
+        post_id = Post.where("user_id = ?", user_id)
+
+    end
 
     def self.search (param)
         puts "I'm in Availability model"

@@ -50,12 +50,10 @@ class AvailabilitiesController < ApplicationController
 
   def match
     @availability = Availability.find(params[:id])
-    @availability.matched_user_id = current_user.id
-    @availability.matched_request_id = -10
-    @availability.availability_status = "waiting"
+    # @availability.matched_user_id = current_user.id
+    # @availability.matched_request_id = -10
+    # @availability.availability_status = "waiting"
     if @availability.save
-      # create the notifications
-      Notification.create(recipient: @availability.post.user, actor: current_user, action: "requested", notifiable: @availability)
       respond_to do |format|
         format.html
         format.js
@@ -87,7 +85,10 @@ class AvailabilitiesController < ApplicationController
 
     respond_to do |format|
       if @availability.save
-        post = Post.create(user_id: current_user.id, availability_id: @availability.id)
+        post = Post.create!(user_id: current_user.id, availability_id: @availability.id)
+        user = User.find(current_user.id)
+        user.posts << post
+        @availability.posts << post
         @post_id = post.id
         format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
         format.json { render :show, status: :created, location: @availability }
