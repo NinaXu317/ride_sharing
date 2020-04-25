@@ -16,11 +16,11 @@ Rails.application.routes.draw do
   get '/search_rides', to: "availabilities#search"
   post '/request_rides', to: "availabilities#match"
   get 'search_requests', to: "requests#index"
-  get '/pickup', to: "static_pages#pickup"
   get '/signup', to: "users#new"
   get "/login", to: "sessions#new"
   post "/sessions", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy"
   post "/message", to: "notifications#message"
   get "/notify", to: "notifications#notify"
+  get "/pickup", to: "rides#pickup"
 end

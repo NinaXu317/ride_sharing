@@ -2,24 +2,30 @@ require 'time'
 
 class Availability < ApplicationRecord
     defaults trip_distance: 0.0, matched_request_id: -1, availability_status: "started", matched_user_id: -1
-    has_many :users, :through => :posts
+    has_one :user, :through => :posts
     has_one :request
+    has_many :posts, dependent: :destroy
     scope :unmatched, -> { where(matched_request_id: -1) }
     scope :started, -> { where(availability_status: "started")}
+    scope :waiting, -> { where(availability_status: "waiting")}
+    scope :upcoming, -> { where(availability_status: "confirmed")}
+    scope :completed, -> { where(availability_status: "completed")}
+    scope :canceled, -> { where(availability_status: "conceled")}
     geocoded_by :start_street_address, :latitude => :start_lat, :longitude => :start_lon
     geocoded_by :end_street_address, :latitude => :end_lat, :longitude => :end_lon
     before_save :geocode_end
     before_save :geocode_distance
     after_validation :geocode
 
+    def self.post_id user_id
+        post_id = Post.where("user_id = ?", user_id)
+
+    end
+
     def self.search (param)
         puts "I'm in Availability model"
-        # @start_coordinates = Geocoder.search(param[:start_street_address]).first.coordinates
-        # @end_coordinates = Geocoder.search(param[:end_street_address]).first.coordinates
         @start_addr = param[:start_street_address]
         @end_addr = param[:end_street_address]
-        # puts @start_coordinates.length
-        # puts @end_coordinates.length
         results = start_address_matches.time_matches(param[:trip_time]).price_matches(param[:lowest_acceptable_price])
         # results = results.end_address_matches
         # .time_matches(param[:trip_time]).price_matches(param[:lowest_acceptable_price]) 

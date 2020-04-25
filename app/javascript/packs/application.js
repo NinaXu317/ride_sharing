@@ -31,6 +31,7 @@ require("jquery")
 // const imagePath = (name) => images(name, true)
 import "bootstrap";
 import "controllers"
+import 'bootstrap'
 
 // ./packs/application.js
 import { Application } from 'stimulus'

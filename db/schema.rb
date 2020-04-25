@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_04_24_234755) do
+=======
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2020_04_22_214918) do
+=======
+ActiveRecord::Schema.define(version: 2020_04_22_170029) do
+>>>>>>> 38ac95f8e1a787ac296def84443bf5248297412e
+>>>>>>> c875f75a63ab487eb6017a64788abcbf264360a5
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +61,11 @@ ActiveRecord::Schema.define(version: 2020_04_24_234755) do
     t.float "end_lon"
   end
 
+  create_table "curt_avails", force: :cascade do |t|
+    t.string "phone_number"
+    t.integer "availability_id"
+  end
+
   create_table "makes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "request_id"
@@ -60,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_234755) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+<<<<<<< HEAD
   create_table "matches", force: :cascade do |t|
     t.integer "availability_id"
     t.integer "request_id"
@@ -69,6 +83,15 @@ ActiveRecord::Schema.define(version: 2020_04_24_234755) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
+=======
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.integer "notifiable_id"
+    t.string "notifiable_type"
+>>>>>>> c875f75a63ab487eb6017a64788abcbf264360a5
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -120,6 +143,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_234755) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.boolean "is_send_notification"
   end
 
   create_table "vehicles", force: :cascade do |t|

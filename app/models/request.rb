@@ -1,9 +1,13 @@
 class Request < ApplicationRecord
     defaults trip_distance: 0.0, matched_availability_id: -1, request_status: "started", matched_user_id: -1
-    has_many :users, :through => :makes
+    has_one :user, :through => :makes
+    has_many :makes, dependent: :destroy
     has_one :availability
     scope :unmatched, ->{ where(matched_availability_id: -1) }
     scope :started, -> { where(request_status: "started")}
+    scope :upcoming, -> { where(request_status: "confirmed")}
+    scope :completed, -> { where(request_status: "completed")}
+    scope :canceled, -> { where(request_status: "conceled")}
     geocoded_by :start_street_address, :latitude => :start_lat, :longitude => :start_lon
     geocoded_by :end_street_address, :latitude => :end_lat, :longitude => :end_lon
     before_save :geocode_end

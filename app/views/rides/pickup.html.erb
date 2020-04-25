@@ -1,0 +1,25 @@
+<div id = "pickup", style="margin-left: 10%; margin-top: 20%">
+    <div class="navigation", style="margin-top: 10px;">
+        <%= link_to "Get my current location", "javascript:getLocation()", class:"btn btn-info"%>
+        <%= link_to "Notify Rider for Picking Up", class: "btn btn-primary"%>
+    </div>
+</div>
+<script>
+    function getLocation(){
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position){
+            $.ajax({
+                type: 'GET',
+                url: '/pickup',
+                data: { curr_lat: position.coords.latitude, curr_lon: position.coords.longitude },
+                success: function(){
+                    alert("Successfully get your current location");
+                },
+                error: function(){
+                    alert("Unable to get your current location");
+                }
+            })
+        })
+        }
+    };
+</script>
