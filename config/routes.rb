@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'landing/index'
   devise_for :users, controllers: {
     confirmations: 'confirmations'
   }
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   resources :requests
   resources :availabilities
   resources :users
+  resources :messages, only:[:new, :create]
   root 'static_pages#home'
   get 'about', to: "static_pages#about"
   get 'help', to: "static_pages#help"
