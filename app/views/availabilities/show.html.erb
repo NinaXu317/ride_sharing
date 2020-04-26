@@ -22,22 +22,22 @@
         <strong>Lowest acceptable price:</strong>
         <%= @availability.lowest_acceptable_price %>
       </p>
-      <% if @user %>
+      <% post = Post.find_by(availability_id: @availability.id) %>
+        <% user = User.find(post.user_id) %>
         <p>
           <strong>Ride offered by:</strong>
-          <%= @user.username %>
-          <%= link_to 'View driver profile', search_rides_path, class: "btn btn-primary" %>
+          <%= user.username %>
+          <%= link_to 'View driver profile', user_path(user), class: "btn btn-primary" %>
         </p>
-      <% end %>
       <%= link_to 'Back', search_rides_path, class: "btn btn-primary" %>
     </div>
   </div>
 </div>
 
-<% if @user %>
-  <p>
-    <strong>Ride offered by:</strong>
-    <%= @availability.start_street_address %>
-  </p>
-<% end %>
+<%# if @user %>
+<!--  <p>-->
+<!--    <strong>Ride offered by:</strong>-->
+    <%#= @availability.start_street_address %>
+<!--  </p>-->
+<%# end %>
 
