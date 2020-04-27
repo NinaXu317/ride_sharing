@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  get 'landing/index'
+  
   devise_for :users, controllers: {
     confirmations: 'confirmations',
     # registrations: 'registrations'
   }
+  
   resources :makes
   resources :posts
   resources :vehicles
@@ -25,4 +26,7 @@ Rails.application.routes.draw do
   post "/message", to: "notifications#message"
   get "/notify", to: "notifications#notify"
   get "/pickup", to: "rides#pickup"
+  get "/chat", to: "static_pages#chat"
+  # get 'landing/index'
+  get "landingIndex", to: "landing#index"
 end
