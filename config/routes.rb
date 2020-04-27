@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'landing/index'
   devise_for :users, controllers: {
-    confirmations: 'confirmations'
+    confirmations: 'confirmations',
+    # registrations: 'registrations'
   }
   resources :makes
   resources :posts

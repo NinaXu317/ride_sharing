@@ -1,14 +1,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :recoverable, :confirmable
-        #  :database_authenticatable, :registerable, :rememberable, :validatable
-         
+  devise :confirmable
+          # :recoverable, :database_authenticatable, :registerable, :rememberable, :validatable
 
-  defaults number_of_rating_given: 0, sum_of_rating_given: 0, number_of_rating_received: 0, sum_of_rating_received: 0
+  defaults number_of_rating_given: 0, sum_of_rating_given: 0, number_of_rating_received: 0, sum_of_rating_received: 0, deactivated: false
   has_secure_password
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true
+  validates :password, presence: true, on: :create
   has_many :availabilities, :through => :posts
   has_many :requests, :through => :makes
   has_many :posts, dependent: :destroy
@@ -27,6 +26,10 @@ class User < ApplicationRecord
   #       self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.jpg")), filename: 'default.jpg', content_type: "image/jpg")
   #     end
   #   end
+
+  def active_for_authentication?
+    super && !deactivated
+  end
 
   def avatar_attachment_path
     avatar.attached? ? avatar : 'default.png'
