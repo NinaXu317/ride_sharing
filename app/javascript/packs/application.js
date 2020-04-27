@@ -5,6 +5,7 @@
 
 require("@rails/ujs").start()
 require("turbolinks").start()
+// require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 
@@ -52,3 +53,9 @@ window.dispatchMapsEvent = function (...args) {
     event.args = args
     window.dispatchEvent(event)
 };
+
+$(document).on('turbolinks:load', function(){
+    console.log('we are ready')
+
+})
+

@@ -1,5 +1,6 @@
 class MakesController < ApplicationController
   before_action :set_make, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /makes
   # GET /makes.json
