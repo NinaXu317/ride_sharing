@@ -24,7 +24,7 @@
               <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab" aria-controls="timeline" aria-selected="false">Timeline</a>
+              <a class="nav-link" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab" aria-controls="timeline" aria-selected="false">Trip</a>
             </li>
             <% if @user.is_driver %>
               <li class="nav-item">
@@ -102,6 +102,14 @@
               </div>
               <div class="col-md-6">
                 <p><%= @user.major %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Year</label>
+              </div>
+              <div class="col-md-6">
+                <p><%= @user.year %></p>
               </div>
             </div>
           </div>

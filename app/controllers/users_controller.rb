@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authorized, only: [:show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+
   # GET /users
   # GET /users.json
   def index
@@ -75,6 +76,4 @@ class UsersController < ApplicationController
       # params.require(:user).permit(:username, :email, :password, :password_confirmation, :is_driver, :avatar)
       params.require(:user).permit(:username, :avatar, :password, :password_confirmation, :email, :phone_number, :age, :gender, :firstname, :lastname, :phone_number, :major, :year, :is_driver)
     end
-
-  # :password, :password_confirmation,
 end
