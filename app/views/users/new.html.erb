@@ -14,6 +14,10 @@
             <div class="content">
               <%= form_for (@user) do |f|%>
                 <div id="email", style="margin-left:10px; margin-right: 10px;">
+                  <%= f.label "Username"%><br>
+                  <%= f.text_field :username, placeholder: "Username", class: "fadeIn second" %>
+                </div>
+                <div id="email", style="margin-left:10px; margin-right: 10px;">
                   <%= f.label "Email"%><br>
                   <%= f.text_field :email, placeholder: "Email", class: "fadeIn second" %>
                 </div>

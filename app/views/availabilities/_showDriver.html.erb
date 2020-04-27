@@ -1,0 +1,7 @@
+<% if local_assigns[:driver]%>
+    <p>
+        <strong>Ride offered by:</strong>
+        <%= local_assigns[:driver].username %>
+        <%= link_to 'View driver profile', user_path(local_assigns[:driver]), class: "btn btn-info" %>
+    </p>
+<% end %>

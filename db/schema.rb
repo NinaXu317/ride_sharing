@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_234755) do
+ActiveRecord::Schema.define(version: 2020_04_26_202236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_234755) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.boolean "is_send_notification"
+    t.boolean "deactivated"
   end
 
   create_table "vehicles", force: :cascade do |t|
