@@ -10,4 +10,8 @@ class StaticPagesController < ApplicationController
 
   def fill_information
   end
+
+  def chat
+    
+  end
 end
