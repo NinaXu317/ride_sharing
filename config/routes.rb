@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   resources :users
   resources :messages, only:[:new, :create]
   root 'static_pages#home'
-  get 'about', to: "static_pages#about"
-  get 'help', to: "static_pages#help"
+  get '/about', to: "static_pages#about"
+  get '/help', to: "static_pages#help"
+  get '/fill_info', to: "static_pages#fill_information"
   get '/search_rides', to: "availabilities#search"
   post '/request_rides', to: "availabilities#match"
   get 'search_requests', to: "requests#index"

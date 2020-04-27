@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :confirmable
           # :recoverable, :database_authenticatable, :registerable, :rememberable, :validatable
 
-  defaults number_of_rating_given: 0, sum_of_rating_given: 0, number_of_rating_received: 0, sum_of_rating_received: 0, deactivated: false
+  defaults number_of_rating_given: 0, sum_of_rating_given: 0, number_of_rating_received: 0, sum_of_rating_received: 0
   has_secure_password
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, on: :create

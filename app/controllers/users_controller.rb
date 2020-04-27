@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authorized, only: [:show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_action :authenticate_user!, except: :new
 
 
   # GET /users
@@ -32,8 +33,14 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to  user_path(current_user)}
-        format.json { render :show, status: :created, location: @user }
+        if @user.is_driver
+          # redirect_to new_vehicle_path
+          format.html { redirect_to  new_vehicle_path }
+        else
+          format.html { redirect_to  root_path }
+          # format.html { redirect_to  user_path(current_user)}
+          format.json { render :show, status: :created, location: @user }
+        end
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -74,6 +81,6 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       # params.require(:user).permit(:username, :email, :password, :password_confirmation, :is_driver, :avatar)
-      params.require(:user).permit(:username, :avatar, :password, :password_confirmation, :email, :phone_number, :age, :gender, :firstname, :lastname, :phone_number, :major, :year, :is_driver)
+      params.require(:user).permit(:username, :avatar, :password, :password_confirmation, :email, :phone_number, :age, :gender, :firstname, :lastname, :phone_number, :major, :year, :is_driver, :deactivated)
     end
 end
