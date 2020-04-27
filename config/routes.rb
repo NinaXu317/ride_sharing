@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   post '/request_rides', to: "availabilities#match"
   get 'search_requests', to: "requests#index"
   get '/signup', to: "users#new"
-  get "/login", to: "sessions#new"
+  get "/login", to: "sessions#new", :as => :new_session
   post "/sessions", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy"
   post "/message", to: "notifications#message"
