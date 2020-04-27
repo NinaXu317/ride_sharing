@@ -5,6 +5,7 @@ class Availability < ApplicationRecord
     has_one :user, :through => :posts
     has_one :request
     has_many :posts, dependent: :destroy
+    default_scope { includes(:posts) }
     scope :unmatched, -> { where(matched_request_id: -1) }
     scope :started, -> { where(availability_status: "started")}
     scope :waiting, -> { where(availability_status: "waiting")}
@@ -17,17 +18,22 @@ class Availability < ApplicationRecord
     before_save :geocode_distance
     after_validation :geocode
 
-    def self.post_id user_id
-        post_id = Post.where("user_id = ?", user_id)
+    def self.find_availability_by_user_id user_id
+        post = Post.find_user_id(user_id)
+        availabilities_result = []
+        post.each do |p|
+            if !Availability.find_by(id: p.availability_id).nil?
+                availabilities_result << Availability.find_by(id: p.availability_id)
+            end
+        end
+        return availabilities_result
     end
 
     def self.search (param)
-        puts "I'm in Availability model"
         @start_addr = param[:start_street_address]
         @end_addr = param[:end_street_address]
         results = start_address_matches.time_matches(param[:trip_time]).price_matches(param[:lowest_acceptable_price])
         # results = results.end_address_matches
-        # .time_matches(param[:trip_time]).price_matches(param[:lowest_acceptable_price]) 
         return nil unless results.length > 0
         return results
     end

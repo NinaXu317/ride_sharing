@@ -3,6 +3,7 @@ class Request < ApplicationRecord
     has_one :user, :through => :makes
     has_many :makes, dependent: :destroy
     has_one :availability
+    default_scope { includes(:makes) }
     scope :unmatched, ->{ where(matched_availability_id: -1) }
     scope :started, -> { where(request_status: "started")}
     scope :upcoming, -> { where(request_status: "confirmed")}
@@ -13,6 +14,17 @@ class Request < ApplicationRecord
     before_save :geocode_end
     before_save :geocode_distance
     after_validation :geocode
+
+    def self.find_request_by_user_id user_id
+        make = Make.find_user_id(user_id)
+        requests_result = []
+        make.each do |m|
+            if !Request.find_by(id: m.request_id).nil?
+                requests_result << Request.find_by(id: m.request_id)
+            end
+        end
+        return requests_result
+    end
 
     private
     def geocode_distance
