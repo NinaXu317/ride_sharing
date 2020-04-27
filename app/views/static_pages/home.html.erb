@@ -28,17 +28,7 @@
   </div>
 </div>
 
-<script>
-  function onSignIn(googleUser){
-    console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
-  }
 
-  function signOut(){
-    gapi.auth2.getAuthInstance().signOut().then(function(){
-      console.log("User signed out")
-    })
-  }
-</script>
 
 
   
