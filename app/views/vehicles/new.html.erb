@@ -2,4 +2,4 @@
 
 <%= render 'form', vehicle: @vehicle %>
 
-<%= link_to 'Back', vehicles_path %>
+<%= link_to 'Back', user_path(current_user.id), class: "btn btn-primary" %>

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/fill_info', to: "static_pages#fill_information"
   get '/search_rides', to: "availabilities#search"
   post '/request_rides', to: "availabilities#match"
-  get 'search_requests', to: "requests#index"
+  get 'search_requests', to: "requests#search"
   get '/signup', to: "users#new"
   get "/login", to: "sessions#new", :as => :new_session
   post "/sessions", to: "sessions#create"
@@ -26,7 +26,10 @@ Rails.application.routes.draw do
   post "/message", to: "notifications#message"
   get "/notify", to: "notifications#notify"
   get "/pickup", to: "rides#pickup"
+  get "/index", to: "rides#index"
+  get "/start", to: "rides#start_trip"
   get "/chat", to: "static_pages#chat"
   # get 'landing/index'
   get "landingIndex", to: "landing#index"
+
 end

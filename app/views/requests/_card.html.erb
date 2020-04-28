@@ -1,0 +1,27 @@
+<div class="card" style="width: 25rem; height: 30rem;">
+    <div class="card-body" style="width: 23rem; height: 26rem;">
+        <h3 class="card-title">Available Request</h3>
+        <i class="fas fa-map-marker-alt"></i><strong> Start address: </strong><br>
+        <%= request.start_street_address %><br>
+        <i class="fas fa-map-marker-alt"></i><strong> End street address: </strong><br>
+        <%= request.end_street_address %><br>
+        <i class="far fa-clock"></i><strong> Trip Time: </strong><br>
+        <%= request.trip_time %><br>
+        <i class="fas fa-dollar-sign"></i><strong> Price Requested: </strong><br>
+        <%= request.highest_price_to_pay %><br>
+        <br>
+        <div class = "row", style="position: absolute; top: 25rem;">
+            <div class = "col-md-5">
+                <%= button_to "View Details", request_path(request.id), method: :get, class: "btn btn-info btn-lg"%>
+            </div>
+            <div class = "col-md-5">
+                <%= button_to "Accept Ride", request_rides_path(:id => request.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-info btn-lg" } %>
+                <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content"></div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
