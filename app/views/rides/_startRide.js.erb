@@ -1,1 +1,1 @@
-document.querySelector('.navigation').innerHTML = '<%= j render :partial => 'rides/startRide.html', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon } %>'
+document.querySelector('.navigation').innerHTML = '<%= j render :partial => 'rides/startRide.html', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon,  :dest_lat => dest_lat, :dest_lon => dest_lon } %>'
