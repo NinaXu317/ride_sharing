@@ -40,7 +40,7 @@ class User < ApplicationRecord
     avatar.attached? ? avatar : 'default.png'
   end
 
-  def self.ratings
+  def ratings
     sum_of_rating_received.to_f / number_of_rating_received.to_f
   end
 
