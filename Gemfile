@@ -80,4 +80,5 @@ gem 'twilio-ruby'
 gem 'redis', '~> 4.0'
 gem 'devise'
 gem "image_processing", "~> 1.0"
+gem 'kaminari'
 # gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'

@@ -1,4 +1,5 @@
-<% @requests.each_slice(4).each do |r|%>
+<%= paginate @requests, theme: 'my_custom_theme'%>
+<%= @requests.each_slice(4).each do |r|%>
     <div class = "row", style = "margin-top: 2%;">
         <% r.each do |request| %>
             <div class="col-md-3">

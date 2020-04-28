@@ -15,6 +15,7 @@ class Request < ApplicationRecord
     before_save :geocode_end
     before_save :geocode_distance
     after_validation :geocode
+    paginates_per 24
 
     def self.search (param)
         @start_addr = param[:start_street_address]
