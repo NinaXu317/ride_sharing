@@ -1,8 +1,10 @@
-<div id = "pickup", style="margin-left: 10%; margin-top: 20%">
-    <div class="navigation", style="margin-top: 10px;">
+<div id = "pickup", style="margin-left: 10%; margin-top:5%;">
+    <div id="map", data-controller="location", data-action="google-maps-callback@window->location#initMap">
+        <div data-target= "location.map", style="width: 600px; height:400px"></div>
+    </div>
+    <div class="navigation", style="margin-top: 5px;">
+        <h4> Click the button to get your current location and direction for the trip </h4>
         <%= link_to "Get my current location", "javascript:getLocation()", class:"btn btn-info"%>
-        <%= link_to "Notify Rider for Picking Up", index_path, class: "btn btn-primary", remote: true %>
-        <%= link_to "Start Trip", start_path, class: "btn btn-primary"%>
     </div>
 </div>
 <script>

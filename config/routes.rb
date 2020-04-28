@@ -26,10 +26,13 @@ Rails.application.routes.draw do
   post "/message", to: "notifications#message"
   get "/notify", to: "notifications#notify"
   get "/pickup", to: "rides#pickup"
-  get "/index", to: "rides#index"
-  get "/start", to: "rides#start_trip"
-  get "/chat", to: "static_pages#chat"
+  # get "/index", to: "rides#index"
+  get "/start", to: "rides#start_trip" 
+  get "/rider_pickup", to: "rides#rider_pickup"
+  get "/trip_complete", to: "rides#trip_complete"
+  get "/finish", to: "rides#finish"
+  get "/chat", to: "landing#chat"
   # get 'landing/index'
-  get "landingIndex", to: "landing#index"
+  get "/landingindex", to: "landing#index"
 
 end

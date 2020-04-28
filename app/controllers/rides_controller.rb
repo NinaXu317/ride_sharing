@@ -8,21 +8,33 @@ class RidesController < ApplicationController
             format.html
         end
     end
+    
+    def rider_pickup
+    end
+
+    def trip_complete
+        if params[:rating]
+            render 'finish'
+        else
+            respond_to do |format|
+                format.html
+            end
+        end
+    end
+
+    def finish
+    end
 
     def index
-        # ActionCable.server.broadcast "notifications_channel/#{@rider.id}",
-        # request_id: @ride.id,
-        # accepted: ApplicationController.render(partial: 'rides/accepted_request',
-        #                                        locals: { driver: @driver, ride: @ride }),
-        # notice_id: notice.id,
-        # notice_content: notice.content,
-        # notice: "You have #{@ride.rider.notices.for_request.where(kind: "accepted").size} requests accepted!"
+        @message = Message.new
     end
     
     def pickup
         # find the request with the driver_id that has the closest timestamp
         @driver_id = current_user.id
-        availability = Availability.upcoming.find_closest_availability(@driver_id)
+        availability = Availability.find_closest_availability(@driver_id)
+        dest_lat = availability.end_lat
+        dest_lon = availability.end_lon
         @availability_id = availability.id
         @rider_id = availability.matched_user_id
         @request_id = availability.matched_request_id
@@ -41,8 +53,14 @@ class RidesController < ApplicationController
             # puts curr_lat
             # puts curr_lon
             respond_to do |format|
-                format.js { render partial: 'rides/startRide', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon }}
+                format.js { render partial: 'rides/startRide', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon, :dest_lat => dest_lat, :dest_lon => dest_lon }}
             end
         end
     end
+
+    private
+        def rating_params
+            # params.require(:user).permit(:username, :email, :password, :password_confirmation, :is_driver, :avatar)
+            params.require(:rating).permit(:r)
+        end
 end
