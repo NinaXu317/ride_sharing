@@ -17,6 +17,7 @@ en:
 #      unauthenticated: "You need to sign in or sign up before continuing."
       unauthenticated: "You have to confirm your email address before continuing."
       unconfirmed: "You have to confirm your email address before continuing."
+      account_inactive: "You have to fill up vehicle information before continuing."
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
