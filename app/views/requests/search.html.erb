@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<div id = "search_page">
+    <div id = "search_form", style="margin-top: 2%; margin-left: 4%; margin-right: 4%;">
+        <%= render 'searchform' %>
+    </div>
+    <div id = "result", style="margin-top: 4%; margin-left: 4%; margin-right: 4%;">
+        <div id="results">
+            <% if @requests %>
+                <%= render 'result', :requests => @requests %>
+            <% else %>
+                <%= render 'noresult' %>
+             <% end %>
+        </div>
+    </div>
+</div>

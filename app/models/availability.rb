@@ -5,6 +5,7 @@ class Availability < ApplicationRecord
     has_one :user, :through => :posts
     has_one :request
     has_many :posts, dependent: :destroy
+    has_many :rides, foreign_key: :availability_id
     default_scope { includes(:posts) }
     scope :unmatched, -> { where(matched_request_id: -1) }
     scope :started, -> { where(availability_status: "started")}
@@ -17,6 +18,16 @@ class Availability < ApplicationRecord
     before_save :geocode_end
     before_save :geocode_distance
     after_validation :geocode
+
+    def self.find_closest_availability user_id
+        availabilities = Availability.find_availability_by_user_id(user_id)
+        availabilities.sort! {|a, b| a.trip_time <=> b.trip_time}
+        return availabilities[0]
+    end
+
+    def self.find_by_date
+        where("trip_time <= ?", Date.today).order_by("created_at DESC").limit(1)
+    end
 
     def self.find_availability_by_user_id user_id
         post = Post.find_user_id(user_id)

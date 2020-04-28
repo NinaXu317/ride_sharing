@@ -11,9 +11,31 @@ class RequestsController < ApplicationController
     @requests = Request.all
   end
 
+  def search
+    if params[:search]
+      puts "start searching"
+      @requests = Request.unmatched.search(params[:search])
+      if @requests.nil?
+        flash.now[:alert] = "Could not find an availability"
+      end
+      respond_to do |format|
+        format.js
+        format.html
+      end
+    else
+      @requests = Request.unmatched
+    end
+  end
+
   # GET /requests/1
   # GET /requests/1.json
   def show
+    user_id = Make.find_user_id_by_request_id(params[:id])
+    rider = nil
+    if !user_id.nil?
+      rider = User.find_by(id: user_id)
+      render 'show', :locals => { :rider => rider } 
+    end
   end
 
   # GET /requests/new

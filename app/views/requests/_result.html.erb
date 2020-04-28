@@ -1,0 +1,9 @@
+<% @requests.each_slice(4).each do |r|%>
+    <div class = "row", style = "margin-top: 2%;">
+        <% r.each do |request| %>
+            <div class="col-md-3">
+                <%= render 'card',  :request => request%>
+            </div>
+        <% end %>
+    </div>
+<% end %>

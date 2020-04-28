@@ -1,0 +1,11 @@
+<li class="nav-item">
+    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab" aria-controls="timeline" aria-selected="false">Trip</a>
+</li>
+<% if @user.is_driver %>
+    <li class="nav-item">
+        <a class="nav-link" id="vehicle-tab" data-toggle="tab" href="#vehicle" role="tab" aria-controls="vehicle" aria-selected="false">Vehicle</a>
+    </li>
+<% end %>

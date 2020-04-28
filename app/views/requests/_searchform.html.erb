@@ -1,0 +1,36 @@
+<%= form_for :search, method: :get, local: true, data: { controller: "maps", action: "google-maps-callback@window->maps#initializeMap" } do |f| %>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <%= f.label :start_street_address %>
+            <%= f.text_field :start_street_address, class: "form-control", data: { target: "maps.fieldStart", action: "keydown->maps#preventSubmit" } %>
+        </div>
+        <div class="form-group col-md-4">
+            <%= f.label :end_street_address %>
+            <%= f.text_field :end_street_address, class: "form-control", data: { target: "maps.fieldEnd", action: "keydown->maps#preventSubmit" } %>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <%= f.label :trip_time %><br>
+            <%= f.text_field :trip_time, data: {
+                controller: "flatpickr",
+                flatpickr_date_format: "Y-m-d H:i",
+                flatpickr_enable_time: true,
+                flatpickr_min_date: Time.zone.now }, class: "form-control" %>
+        </div>
+        <div class="form-group col-md-4">
+            <%= f.label :highest_price_to_pay %>
+            <%= f.text_field :highest_price_to_pay, label: 'Expected Price', class: "form-control" %>
+        </div>
+    </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-2", style = "margin-top: 2.3%">
+      <%= f.submit 'Search', class: "form-control btn btn-info btn-lg" %>
+    </div>
+  </div>
+    <%# <div>
+        <div data-target="maps.map", style="height:400px"></div>
+    </div> %>
+<% end %>

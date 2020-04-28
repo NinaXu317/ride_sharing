@@ -39,6 +39,7 @@ import { Application } from 'stimulus'
 import Flatpickr from 'stimulus-flatpickr'
 
 import { definitionsFromContext } from 'stimulus/webpack-helpers'
+
 const application = Application.start()
 const context = require.context('../controllers', true, /\.js$/)
 application.load(definitionsFromContext(context))
@@ -59,3 +60,9 @@ $(document).on('turbolinks:load', function(){
 
 })
 
+// Notification.requestPermission().then(function (result) {
+//     console.log("get permission");
+//     if (result.permission === 'denied') {
+//         alert("Permission for notification is not granted!");
+//     }
+// })

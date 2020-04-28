@@ -3,205 +3,46 @@
     <div class="row">
       <div class="col-md-4">
         <div class="profile-img">
-          <!-- < image_tag(@user.avatar) if @user.avatar.attached? > -->
-          <%#= image_tag @user.avatar_attachment_path.variant(resize_to_fit: [300, 200]) %>
           <%= image_tag @user.avatar_attachment_path %>
-          <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/> -->
-          <!-- <div class="file btn btn-lg btn-primary">
-              Change Photo
-              <input type="file" name="file"/>
-          </div> -->
         </div>
       </div>
       <div class="col-md-6">
         <div class="profile-head">
-          <h5>
-            <%= "#{@user.firstname} #{@user.lastname}" %>
-          </h5>
+          <h5><%= "#{@user.firstname} #{@user.lastname}" %></h5>
           <p class="proile-rating">RATINGS : <span><%= @user.ratings %></span></p>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="timeline-tab" data-toggle="tab" href="#timeline" role="tab" aria-controls="timeline" aria-selected="false">Trip</a>
-            </li>
-            <% if @user.is_driver %>
-              <li class="nav-item">
-                <a class="nav-link" id="vehicle-tab" data-toggle="tab" href="#vehicle" role="tab" aria-controls="vehicle" aria-selected="false">Vehicle</a>
-              </li>
-            <% end %>
+            <%= render 'profilenav'%>
           </ul>
         </div>
       </div>
       <div class="col-md-2">
         <%= link_to 'Edit Profile', edit_user_path(@user), class: 'profile-edit-btn' %>
+        <% if @user.is_driver%>
+          <% @vehicle = Vehicle.find_by(user_id: @user.id)%>
+          <% if !@vehicle.nil?%>
+            <%= link_to 'Edit Vehicle', edit_vehicle_path(@vehicle.id), class: 'profile-edit-btn' %>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="row">
       <div class="col-md-4">
-        <!-- <div class="profile-work">
-            <p>WORK LINK</p>
-            <a href="">Website Link</a><br/>
-            <a href="">Bootsnipp Profile</a><br/>
-            <a href="">Bootply Profile</a>
-            <p>SKILLS</p>
-            <a href="">Web Designer</a><br/>
-            <a href="">Web Developer</a><br/>
-            <a href="">WordPress</a><br/>
-            <a href="">WooCommerce</a><br/>
-            <a href="">PHP, .Net</a><br/>
-        </div> -->
       </div>
       <div class="col-md-8">
         <div class="tab-content profile-tab" id="myTabContent">
           <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="row">
-              <div class="col-md-6">
-                <label>User Name</label>
-              </div>
-              <div class="col-md-6">
-                <p><%= @user.username %></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Name</label>
-              </div>
-              <div class="col-md-6">
-                <p><%= "#{@user.firstname} #{@user.lastname}" %></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Email</label>
-              </div>
-              <div class="col-md-6">
-                <p><%= @user.email %></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Age</label>
-              </div>
-              <div class="col-md-6">
-                <p><%= @user.age %></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Phone</label>
-              </div>
-              <div class="col-md-6">
-                <p><%= @user.phone_number %></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Major</label>
-              </div>
-              <div class="col-md-6">
-                <p><%= @user.major %></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Year</label>
-              </div>
-              <div class="col-md-6">
-                <p><%= @user.year %></p>
-              </div>
-            </div>
+            <%= render 'userinfo'%>
           </div>
-          <div class="tab-pane fade" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
-            <div class="row">
-              <div class="col-md-6">
-                <label>Experience</label>
-              </div>
-              <div class="col-md-6">
-                <p>Expert</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Hourly Rate</label>
-              </div>
-              <div class="col-md-6">
-                <p>10$/hr</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Total Projects</label>
-              </div>
-              <div class="col-md-6">
-                <p>230</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>English Level</label>
-              </div>
-              <div class="col-md-6">
-                <p>Expert</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Availability</label>
-              </div>
-              <div class="col-md-6">
-                <p>6 months</p>
-              </div>
-            </div>
-          </div>
-          <% if @user.is_driver %>
-            <% @vehicle = Vehicle.find_by(user_id: @user.id) %>
-            <div class="tab-pane fade" id="vehicle" role="tabpanel" aria-labelledby="vehicle-tab">
-              <% if session[:user_id] == @user.id %>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>License Number</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p><%= @vehicle.license_number %></p>
-                  </div>
-                </div>
-              <% end %>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Make</label>
-                </div>
-                <div class="col-md-6">
-                  <p><%= @vehicle.vehicle_make %></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Model</label>
-                </div>
-                <div class="col-md-6">
-                  <p><%= @vehicle.vehicle_model %></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Color</label>
-                </div>
-                <div class="col-md-6">
-                  <p><%= @vehicle.vehicle_color %></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Plate</label>
-                </div>
-                <div class="col-md-6">
-                  <p><%= @vehicle.vehicle_plate %></p>
-                </div>
-              </div>
+          <% if session[:user_id] == @user.id %>
+            <div class="tab-pane fade" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
+              <%= render 'tripinfo'%>
             </div>
           <% end %>
+          <div class="tab-pane fade" id="vehicle" role="tabpanel" aria-labelledby="vehicle-tab">
+            <% if @user.is_driver%>
+              <%= render 'vehicleinfo'%>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

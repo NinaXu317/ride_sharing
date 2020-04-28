@@ -1,40 +1,31 @@
 <p id="notice"><%= notice %></p>
-<div> 
-  <% if @request.matched_availability_id != -1 %>
-    <h2> You have been matched with a driver with availability id <%= @request.matched_availability_id %></h2>
-  <% end %>
+
+<div class="card text-left", style="margin-left:10%; margin-right:10%;">
+  <div class="card-header">
+    Ride Details
+  </div>
+  <div class="card-body">
+      <div style="width:800px; margin-left:5px;">
+      <p>
+        <strong>Start Address:</strong>
+        <%= @request.start_street_address %>
+      </p>
+      <p>
+        <strong>End Address:</strong>
+        <%= @request.end_street_address %>
+      </p>
+      <p>
+        <strong>Trip time:</strong>
+        <%= @request.trip_time %>
+      </p>
+      <p>
+        <strong>Highest Price to Pay:</strong>
+        <%= @request.highest_price_to_pay %>
+      </p>
+      <%= render partial: 'showRider', :locals => { :rider => local_assigns[:rider] } %>
+      <%= link_to 'Back', search_rides_path, class: "btn btn-primary" %>
+    </div>
+  </div>
 </div>
 
-<p>
-  <strong>Start street address:</strong>
-  <%= @request.start_street_address %>
-</p>
 
-
-<p>
-  <strong>End street address:</strong>
-  <%= @request.end_street_address %>
-</p>
-
-<p>
-  <strong>Trip time:</strong>
-  <%= @request.trip_time %>
-</p>
-
-<p>
-  <strong>Highest price to pay:</strong>
-  <%= @request.highest_price_to_pay %>
-</p>
-
-<p>
-  <strong>Trip distance:</strong>
-  <%= @request.trip_distance %>
-</p>
-
-<p>
-  <strong>Request status:</strong>
-  <%= @request.request_status %>
-</p>
-
-<%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Home', root_path %>

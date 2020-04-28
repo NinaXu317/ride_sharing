@@ -1,0 +1,7 @@
+<% if local_assigns[:rider]%>
+    <p>
+        <strong>Ride offered by:</strong>
+        <%= local_assigns[:rider].username %>
+        <%= link_to 'View rider profile', user_path(local_assigns[:rider]), class: "btn btn-info" %>
+    </p>
+<% end %>
