@@ -28,18 +28,19 @@ class User < ApplicationRecord
   #     end
   #   end
 
-  def active_for_authentication?
-    super && !Vehicle.find_by(user_id: session[:user_id]).nil?
-  end
+  # def active_for_authentication?
+  #   super && !Vehicle.find_by(user_id: session[:user_id]).nil?
+  # end
 
-  def inactive_message
-    !Vehicle.find_by(user_id: session[:user_id]).nil? ? super: :account_inactive
-  end
+  # def inactive_message
+  #   !Vehicle.find_by(user_id: session[:user_id]).nil? ? super: :account_inactive
+  # end
+
   def avatar_attachment_path
     avatar.attached? ? avatar : 'default.png'
   end
 
-  def ratings
+  def self.ratings
     sum_of_rating_received.to_f / number_of_rating_received.to_f
   end
 
