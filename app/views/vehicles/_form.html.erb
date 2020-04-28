@@ -10,33 +10,32 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+   <div class="form-row">
     <%= form.label :license_number %>
-    <%= form.text_field :license_number, required: true %>
+    <%= form.text_field :license_number, class: "form-control", required: true %>
   </div>
 
-  <div class="field">
+   <div class="form-row">
     <%= form.label :vehicle_make %>
-    <%= form.text_field :vehicle_make, required: true %>
+    <%= form.text_field :vehicle_make, class: "form-control", required: true %>
   </div>
 
-  <div class="field">
+   <div class="form-row">
     <%= form.label :vehicle_model %>
-    <%= form.text_field :vehicle_model, required: true %>
+    <%= form.text_field :vehicle_model, class: "form-control", required: true %>
   </div>
 
-  <div class="field">
+   <div class="form-row">
     <%= form.label :vehicle_color %>
-    <%= form.text_field :vehicle_color, required: true %>
+    <%= form.text_field :vehicle_color, class: "form-control", required: true %>
   </div>
 
-  <div class="field">
+   <div class="form-row">
     <%= form.label :vehicle_plate %>
-    <%= form.text_field :vehicle_plate, required: true %>
+    <%= form.text_field :vehicle_plate, class: "form-control", required: true %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions", style="margin-top:20px; width: 30%; margin-left: 35%">
+    <%= form.submit 'Submit Vehicle Info', class: "form-control btn btn-info btn-lg" %>
   </div>
 <% end %>
