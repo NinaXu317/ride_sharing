@@ -31,18 +31,10 @@ class User < ApplicationRecord
   # def active_for_authentication?
   #   super && !Vehicle.find_by(user_id: session[:user_id]).nil?
   # end
-<<<<<<< HEAD
 
   # def inactive_message
   #   !Vehicle.find_by(user_id: session[:user_id]).nil? ? super: :account_inactive
   # end
-=======
-
-  # def inactive_message
-  #   !Vehicle.find_by(user_id: session[:user_id]).nil? ? super: :account_inactive
-  # end
-
->>>>>>> 94611c3694686bb02fa1dcbfcae44ac1cb6b2d75
   def avatar_attachment_path
     avatar.attached? ? avatar : 'default.png'
   end
