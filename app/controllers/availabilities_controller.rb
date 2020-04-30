@@ -14,7 +14,7 @@ class AvailabilitiesController < ApplicationController
     # @availabilities = Availability.unmatched
     if params[:search]
       puts "start searching"
-      @availabilities = Availability.unmatched.search(params[:search])
+      @availabilities = Availability.unmatched.search(params[:search]).page(params[:page])
       if @availabilities.nil?
         flash.now[:alert] = "Could not find an availability"
       end
@@ -29,7 +29,7 @@ class AvailabilitiesController < ApplicationController
       #   format.js { render :result, :layout => false }
       # end
     else 
-      @availabilities = Availability.unmatched
+      @availabilities = Availability.unmatched.page(params[:page])
       respond_with @availabilities
     end
   end

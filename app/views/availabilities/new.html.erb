@@ -2,6 +2,8 @@
     <h1>Submit a New Availability</h1>
     <div class="form">
         <%= render 'form', availability: @availability %>
-        <%= link_to 'Back', root_path %>
+        <div id="back_button", style="text-align:right">
+            <%= link_to 'Back', root_path, class: "btn btn-primary" %>
+        </div>
     </div>
 </div>

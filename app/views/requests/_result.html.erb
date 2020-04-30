@@ -1,4 +1,4 @@
-<% @requests.each_slice(4).each do |r|%>
+<%= @requests.each_slice(4).each do |r|%>
     <div class = "row", style = "margin-top: 2%;">
         <% r.each do |request| %>
             <div class="col-md-3">
@@ -7,3 +7,6 @@
         <% end %>
     </div>
 <% end %>
+<div id="request_paginate", style="margin-top: 8%; margin-left: 40%;">
+    <%= paginate @requests, theme: 'my_custom_theme'%>
+</div>

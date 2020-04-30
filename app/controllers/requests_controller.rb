@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
   def search
     if params[:search]
       puts "start searching"
-      @requests = Request.unmatched.search(params[:search])
+      @requests = Request.unmatched.search(params[:search]).page(params[:page])
       if @requests.nil?
         flash.now[:alert] = "Could not find an availability"
       end
@@ -23,7 +23,7 @@ class RequestsController < ApplicationController
         format.html
       end
     else
-      @requests = Request.unmatched
+      @requests = Request.unmatched.page(params[:page])
     end
   end
 

@@ -9,7 +9,17 @@
       <div class="col-md-6">
         <div class="profile-head">
           <h5><%= "#{@user.firstname} #{@user.lastname}" %></h5>
-          <p class="proile-rating">RATINGS : <span><%= @user.ratings %></span></p>
+          <p class="proile-rating">RATINGS :   <br>
+            <% if @user.ratings > 0 %>
+              <div style="margin-top:3px;">
+                <% @user.ratings.to_i.times do  %>
+                  <span class="glyphicon glyphicon-star">
+                <% end %> 
+              </div>
+            <% else %> 
+                <p> N/A</p>
+            <% end %>
+          </p>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <%= render 'profilenav'%>
           </ul>

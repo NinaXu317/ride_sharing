@@ -18,6 +18,7 @@ class Availability < ApplicationRecord
     before_save :geocode_end
     before_save :geocode_distance
     after_validation :geocode
+    paginates_per 24
 
     def self.find_closest_availability user_id
         availabilities = Availability.find_availability_by_user_id(user_id)

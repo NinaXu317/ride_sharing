@@ -13,13 +13,6 @@ class RidesController < ApplicationController
     end
 
     def trip_complete
-        if params[:rating]
-            render 'finish'
-        else
-            respond_to do |format|
-                format.html
-            end
-        end
     end
 
     def finish
@@ -43,7 +36,7 @@ class RidesController < ApplicationController
         end
         rider = User.find(@rider_id)
         if Ride.find_by(driver: current_user, rider: rider, availability_id: @availability_id).nil?
-            Ride.create!(driver: current_user, rider: rider, request_id: @request_id, availability_id: @availability_id)
+            @ride = Ride.create!(driver: current_user, rider: rider, request_id: @request_id, availability_id: @availability_id)
         end
         puts "successfully created"
         if request.xhr?
