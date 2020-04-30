@@ -1,18 +1,6 @@
 <div id= "trip_complete", style="margin-left:20%; margin-top:10%">
     <h2> You have completed the trip, please rate your rider </h2>
     <div class="field">
-        <%= form_for :rating, url: trip_complete_path, method: :get do |f| %>
-            <%= f.radio_button :r, true %>
-            <%= f.label :r, "1", :value => "1"  %><br>
-            <%= f.radio_button :two, true %>
-            <%= f.label :r, "2", :value => "2"  %><br>
-            <%= f.radio_button :three, true %>
-            <%= f.label :r, "3", :value => "3"  %><br>
-            <%= f.radio_button :four, true %>
-            <%= f.label :r, "4", :value => "4"  %><br>
-            <%= f.radio_button :five, true %>
-            <%= f.label :r, "5", :value => "5"  %><br>
-            <%= f.submit %>
-        <% end %>
+        <%= rating_for @ride, enable_half: true %>
     </div>
 </div>

@@ -12,6 +12,8 @@ require("jquery")
 //= require bootstrap-datetimepicker
 //= require time_wrapper
 //= require popper
+//= require jquery.raty
+//= require ratyrate
 //= require bootstrap-sprockets
 //= require flatpickr
 //= require jquery
