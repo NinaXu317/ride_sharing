@@ -1,4 +1,5 @@
 import consumer from "./consumer"
+// import SessionsHelper from "../helpers/sessions_helper"
 
 consumer.subscriptions.create("RoomChannel", {
   connected() {
@@ -11,8 +12,16 @@ consumer.subscriptions.create("RoomChannel", {
   },
 
   received(data) {
-    $('#message_holder').append('<div class="message">' + data.content + '</div>')
-    console.log(data)
+    console.log(data.sender_id)
+    console.log($('form label').attr("data-current-user-id"))
+    if(data.sender_id == $('form label').attr("data-current-user-id")){
+      $('#message_holder').append('<div class="message">' + data.content + '</div>')
+    }
+    else{
+      $('#message_holder').append('<div class="message" style="color: blue">' + data.content + '</div>')
+    }
+    
+    console.log("!!!"+ data.sender_id)
     // Called when there's incoming data on the websocket for this channel
   }
 });

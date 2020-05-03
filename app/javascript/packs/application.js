@@ -58,7 +58,7 @@ window.dispatchMapsEvent = function (...args) {
 };
 
 $(document).on('turbolinks:load', function(){
-    console.log('we are ready')
+    // console.log('we are ready')
 
 })
 

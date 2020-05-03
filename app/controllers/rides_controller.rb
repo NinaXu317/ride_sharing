@@ -10,6 +10,8 @@ class RidesController < ApplicationController
     end
     
     def rider_pickup
+        # @driver_id = current_user.id
+        # :sender_id => @driver_id, :receiver_id => @rider_id
     end
 
     def trip_complete
@@ -46,7 +48,7 @@ class RidesController < ApplicationController
             # puts curr_lat
             # puts curr_lon
             respond_to do |format|
-                format.js { render partial: 'rides/startRide', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon, :dest_lat => dest_lat, :dest_lon => dest_lon }}
+                format.js { render partial: 'rides/startRide', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon, :dest_lat => dest_lat, :dest_lon => dest_lon}}
             end
         end
     end
