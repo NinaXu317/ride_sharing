@@ -1,10 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :confirmable
-          # :recoverable, :database_authenticatable, :registerable, :rememberable, :validatable
+  devise :confirmable, :recoverable, :database_authenticatable, :registerable, :rememberable, :validatable
   defaults number_of_rating_given: 0, sum_of_rating_given: 0, number_of_rating_received: 0, sum_of_rating_received: 0
-  has_secure_password
+
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, on: :create
   has_many :availabilities, :through => :posts
@@ -18,8 +17,6 @@ class User < ApplicationRecord
   scope :is_rider, ->{ where(is_driver: false) }
   has_one_attached :avatar
 
-  # devise :confirmable
-  # validates :phone_number, phone: true
   # private
   #   def add_default_avatar
   #     unless avatar.attached?
