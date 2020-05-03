@@ -7,10 +7,10 @@
     <h3 class="welcome", style="font-size: 2.5rem;">A new way to change your trip</h3>
   </div>
   <div id="home-buttons">
-    <% if !logged_in? %>
+    <% if !current_user %>
       <ul class="before_sign_in">
-        <%= link_to "Sign Up", signup_path, class: "btn btn-outline-success btn-lg sign_up_button"%>
-        <%= link_to "Log In", new_session_path, class: "btn btn-outline-dark btn-lg sign_up_button"%>
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-success btn-lg sign_up_button"%>
+        <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-dark btn-lg sign_up_button"%>
       </ul> 
     <% else %>
       <% if current_user.is_driver%>

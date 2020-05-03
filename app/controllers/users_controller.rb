@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authorized, only: [:show]
+  # before_action :authorized, only: [:show]
+  before_action :authenticate_user!, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_action :authenticate_user!, except: :new
 
 
   # GET /users
@@ -29,13 +29,14 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    puts @user.is_driver
+    # puts @user.is_driver
     respond_to do |format|
       if @user.save
-        session[:user_id] = @user.id
         if @user.is_driver
-          # redirect_to new_vehicle_path
-          format.html { redirect_to  new_vehicle_path }
+          # redirect_to new_vehicle_path]
+          puts "create vehicle"
+          @vehicle = Vehicle.create(user_id: @user.id)
+          format.html { redirect_to  edit_vehicle_path @vehicle }
         else
           format.html { redirect_to  root_path }
           # format.html { redirect_to  user_path(current_user)}
@@ -47,6 +48,27 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  # def create
+  #   @user = User.new(user_params)
+  #   puts @user.is_driver
+  #   respond_to do |format|
+  #     if @user.save
+  #       session[:user_id] = @user.id
+  #       if @user.is_driver
+  #         # redirect_to new_vehicle_path
+  #         format.html { redirect_to  new_vehicle_path }
+  #       else
+  #         format.html { redirect_to  root_path }
+  #         # format.html { redirect_to  user_path(current_user)}
+  #         format.json { render :show, status: :created, location: @user }
+  #       end
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @user.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json

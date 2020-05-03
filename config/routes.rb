@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   devise_for :users, controllers: {
     confirmations: 'confirmations',
-    # registrations: 'registrations'
+    registrations: 'registrations',
   }
   
   resources :makes
