@@ -10,6 +10,28 @@ class AvailabilitiesController < ApplicationController
     @availabilities = Availability.unmatched
   end
 
+  def show_upcoming_trip
+    # respond_to do |format|
+    #   if @availability.update(availability_params)
+    #     format.html { redirect_to @availability, notice: 'Availability was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @availability }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @availability.errors, status: :unprocessable_entity }
+    #   end
+    # end
+    @upcoming_trip = Availability.where(matched_user_id: current_user.id, availability_status: params[:status])
+    puts @upcoming_trip
+  end
+
+  def show_past_trip
+
+  end
+
+  def show_canceled_trip
+
+  end
+
   def search
     # @availabilities = Availability.unmatched
     if params[:search]

@@ -34,5 +34,7 @@ Rails.application.routes.draw do
   get "/chat", to: "landing#chat"
   # get 'landing/index'
   get "/landingindex", to: "landing#index"
-
+  get "/upcoming_trip", to: "availabilities#show_upcoming_trip"
+  get "/past_trip", to: "availabilities#show_past_trip"
+  get "/canceled_trip", to: "availabilities#show_canceled_trip"
 end

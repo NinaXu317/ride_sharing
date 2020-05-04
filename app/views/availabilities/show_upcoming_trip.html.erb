@@ -1,0 +1,17 @@
+<% @upcoming_trip.each do |availability| %>
+  <div class="card" style="width: 25rem; height: 30rem;">
+    <div class="card-body" style="width: 23rem; height: 26rem;">
+      <h3 class="card-title">Available Ride</h3>
+      <i class="fas fa-map-marker-alt"></i><strong> Start address: </strong><br>
+      <%= availability.start_street_address %><br>
+      <i class="fas fa-map-marker-alt"></i><strong> End street address: </strong><br>
+      <%= availability.end_street_address %><br>
+      <i class="far fa-clock"></i><strong> Trip Time: </strong><br>
+      <%= availability.trip_time %><br>
+      <i class="fas fa-dollar-sign"></i><strong> Price Requested: </strong><br>
+      <%= availability.lowest_acceptable_price %><br>
+      <br>
+    </div>
+  </div>
+
+<% end %>

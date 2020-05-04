@@ -1,6 +1,6 @@
 class Vehicle < ApplicationRecord
     belongs_to :user
 
-    defaults number_of_rating_given: 0, sum_of_rating_given: 0, number_of_rating_received: 0, sum_of_rating_received: 0
+    defaults license_number: "", vehicle_make: "", vehicle_model: "", vehicle_color: "", vehicle_plate: ""
 
 end
