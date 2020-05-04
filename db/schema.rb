@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_033258) do
+ActiveRecord::Schema.define(version: 2020_05_04_160640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2020_05_04_033258) do
   end
 
   create_table "curt_avails", force: :cascade do |t|
-    t.string "phone_number"
     t.integer "availability_id"
+    t.bigint "phone_number"
   end
 
   create_table "makes", force: :cascade do |t|

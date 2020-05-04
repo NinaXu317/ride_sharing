@@ -1,10 +1,8 @@
 <% if @user.is_driver %>
     <% @vehicle = Vehicle.find_by(user_id: @user.id) %>
     <% if @vehicle.nil? %>
-        <% if current_user.id == @user.id %>
-          <h1>Please submit your vehicle information</h1>
-          <%= link_to 'Submit Vehicle Info', new_vehicle_path, class: 'btn btn-primary btn-btn-lg' %>
-        <% end %>
+        <h1>Please submit your vehicle information</h1>
+        <%= link_to 'Submit Vehicle Info', new_vehicle_path, class: 'btn btn-primary btn-btn-lg' %>
     <% else %>
         <% if session[:user_id] != @user.id %>
             <div class="row">

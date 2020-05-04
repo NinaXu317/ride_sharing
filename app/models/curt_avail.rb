@@ -1,0 +1,2 @@
+class CurtAvail < ApplicationRecord
+end
