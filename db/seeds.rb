@@ -16,6 +16,27 @@ Availability.delete_all
 Request.delete_all
 Vehicle.delete_all
 
+# def create_user
+#     (0...50).each do
+#         @age = Faker::Number.within(range: 17..50)
+#         random_name = Faker::Name.unique.name.strip.split(" ")
+#         @firstname = random_name[0]
+#         @lastname = random_name[1]
+#         @year = get_year(@age)
+#         @is_driver = is_driver(rand(100))
+#         @major = random_major
+#         @user = User.create(username: Faker::Superhero.name, email: Faker::Internet.email, password: "111111", age: @age, gender: Faker::Gender.binary_type, firstname: @firstname, lastname: @lastname,
+#         phone_number: Faker::PhoneNumber.cell_phone, major: @major, year: @year, is_driver: @is_driver, number_of_rating_given: 0, number_of_rating_received: 0,
+#         sum_of_rating_given: 0, sum_of_rating_received: 0)
+#         if @is_driver
+#             @vehicle_make = Faker::Vehicle.make
+#             @vehicle_model = Faker::Vehicle.model(make_of_model: @vehicle_make)
+#             @user.vehicle = Vehicle.create(license_number: Faker::Alphanumeric.alpha(number: 9), vehicle_make: @vehicle_make, vehicle_model: @vehicle_model, vehicle_plate: Faker::Vehicle.license_plate, vehicle_color: Faker::Color.color_name)
+#         end
+#     end
+#     puts "generated user and vehicle data"
+# end
+#
 def create_user
     (0...50).each do
         @age = Faker::Number.within(range: 17..50)
@@ -26,8 +47,8 @@ def create_user
         @is_driver = is_driver(rand(100))
         @major = random_major
         @user = User.create(username: Faker::Superhero.name, email: Faker::Internet.email, password: "111111", age: @age, gender: Faker::Gender.binary_type, firstname: @firstname, lastname: @lastname,
-        phone_number: Faker::PhoneNumber.cell_phone, major: @major, year: @year, is_driver: @is_driver, number_of_rating_given: 0, number_of_rating_received: 0,
-        sum_of_rating_given: 0, sum_of_rating_received: 0)
+                            phone_number: Faker::Number.number(digits: 10), major: @major, year: @year, is_driver: @is_driver, number_of_rating_given: 0, number_of_rating_received: 0,
+                            sum_of_rating_given: 0, sum_of_rating_received: 0)
         if @is_driver
             @vehicle_make = Faker::Vehicle.make
             @vehicle_model = Faker::Vehicle.model(make_of_model: @vehicle_make)

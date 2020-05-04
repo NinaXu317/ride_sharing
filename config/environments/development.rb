@@ -10,7 +10,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Configure ngrok host
-  config.hosts << "8d51c4a3.ngrok.io"
+  config.hosts << "22987c9a.ngrok.io"
 
   # Setup active_storage for avatar
   config.active_storage.service = :local
@@ -60,8 +60,8 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
-  # config.action_mailer.perform_deliveries = false
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
+  # config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
