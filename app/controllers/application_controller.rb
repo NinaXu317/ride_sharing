@@ -7,20 +7,16 @@ class ApplicationController < ActionController::Base
   # respond_to :html, :json, :js
   
   def current_user
-    puts "current"
     if session[:user_id]
       @user = User.find(session[:user_id])
     end
   end
 
   def logged_in?
-
-    puts "logged in"
     !current_user.nil?
   end
 
   def authorized
-    puts "authorized"
     redirect_to login_path unless logged_in?
   end
 
