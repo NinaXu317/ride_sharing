@@ -22,8 +22,11 @@
         <strong>Lowest acceptable price:</strong>
         <%= @availability.lowest_acceptable_price %>
       </p>
-      <%= render partial: 'showDriver', :locals => { :driver => local_assigns[:driver] } %>
-      <%= link_to 'Back', search_rides_path, class: "btn btn-primary" %>
+        <% if current_user.id != local_assigns[:driver].id %>
+          <%= render partial: 'showDriver', :locals => { :driver => local_assigns[:driver] } %>
+        <% end %>
+        <%= link_to 'Back', new_availability_path, class: "btn btn-primary" %>
+        <%#= link_to 'Back', search_rides_path, class: "btn btn-primary" %>
     </div>
   </div>
 </div>
