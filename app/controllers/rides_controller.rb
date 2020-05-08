@@ -44,7 +44,7 @@ class RidesController < ApplicationController
     
     def pickup
         # find the request with the driver_id that has the closest timestamp
-        @ride = Ride.find_by(driver: current_user)
+        @trip = Ride.find_by(driver: current_user)
         availability = Availability.find(@ride.availability_id)
         dest_lat = availability.end_lat
         dest_lon = availability.end_lon

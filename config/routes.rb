@@ -6,6 +6,15 @@ Rails.application.routes.draw do
     registrations: 'registrations',
   }
   resources :users do
+    resources :trips do
+      collection do
+        get "/pickup", to: "trips#pickup"
+        get "/start", to: "trips#start_trip"
+        get "/rider_pickup", to: "trips#rider_pickup"
+        get "/trip_complete", to: "trips#trip_complete"
+        get "/finish", to: "trips#finish"
+      end
+    end
     resources :vehicles
     resources :makes
     resources :requests do
@@ -31,14 +40,8 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new", :as => :new_session
   post "/message", to: "notifications#message"
   get "/notify", to: "notifications#notify"
-  get "/pickup", to: "rides#pickup"
   # get "/index", to: "rides#index"
-  get "/start", to: "rides#start_trip" 
-  get "/rider_pickup", to: "rides#rider_pickup"
-  get "/trip_complete", to: "rides#trip_complete"
-  get "/finish", to: "rides#finish"
   get "/chat", to: "landing#chat"
   # get 'landing/index'
   get "/landingindex", to: "landing#index"
-  get "/rides/:id", to: "rides#show"
 end

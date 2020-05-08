@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  # attr_accessor :login
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :confirmable, :recoverable, :database_authenticatable, :registerable, :rememberable, :validatable
@@ -11,7 +12,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :makes, dependent: :destroy
   has_many :notifications, foreign_key: :recipient_id
-  has_many :rides, foreign_key: :driver_id
+  # has_many :trips, foreign_key: :driver_id
   has_one :vehicle
   scope :is_driver, ->{ where(is_driver: true) }
   scope :is_rider, ->{ where(is_driver: false) }
@@ -30,6 +31,14 @@ class User < ApplicationRecord
 
   # def inactive_message
   #   !Vehicle.find_by(user_id: session[:user_id]).nil? ? super: :account_inactive
+  # end
+  #
+  # def self.find_for_database_authentication warden_condition
+  #   conditions = warden_condition.dup
+  #   login = conditions.delete(:login)
+  #   where(conditions).where(["lower(email) = :value", {
+  #       value: login.strip.downcase
+  #   }]).first
   # end
   def avatar_attachment_path
     avatar.attached? ? avatar : 'default.png'
