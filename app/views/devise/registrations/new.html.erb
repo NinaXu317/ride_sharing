@@ -1,36 +1,58 @@
-<h2>Sign up</h2>
+<% content_for :content do %>
+  <div class="home">
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <div class="signin_icon" , style="margin-top: 3px; margin-bottom: 5px;">
+            <img src="https://img.icons8.com/ios-filled/50/000000/carpool.png" id="icon" alt="User Icon"/>
+          </div>
+          <h4>Welcome to Ride Sharing</h4>
+        </div>
+        <!-- Login Form -->
+        <div class="sign_in_form">
+          <div class="content">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+              <div id="email", style="margin-left:10px; margin-right: 10px;">
+                <%= f.label "Username" %><br/>
+                <%= f.text_field :username, placeholder: "Username", class: "fadeIn second" %>
+              </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+              <div class="email", style="margin-left:10px; margin-right: 10px;">
+                <%= f.label "Email" %><br/>
+                <%= f.text_field :email, placeholder: "Email", class: "fadeIn second" %>
+              </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+              <div id="password", style="margin-left:10px; margin-right: 10px;">
+                <%= f.label "Password" %>
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br/>
+                <%= f.password_field :password, placeholder: "Password", class: "fadeIn third" %>
+              </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+              <div id="password_confirmation", style="margin-left:10px; margin-right: 10px;">
+                <%= f.label "Password Confirmation" %><br/>
+                <%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: "fadeIn third" %>
+              </div>
 
-  <div class="field">
-    <%= f.radio_button :is_driver, true %>
-    <%= f.label :is_driver, 'Driver', value: true %>
-    <%= f.radio_button :is_driver, false, checked: true %>
-    <%= f.label :is_driver, 'Rider', value: false %>
-  </div>
+              <div class="field", style="margin-top: 5px;">
+                <%= f.radio_button :is_driver, true %>
+                <%= f.label :is_driver, 'Driver', value: true %>
+                <%= f.radio_button :is_driver, false, checked: true %>
+                <%= f.label :is_driver, 'Rider', value: false %>
+              </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+              <div id="submit_button", style="margin-top:10px" >
+                <%= f.submit "Sign up", class:"fadeIn fourth" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>

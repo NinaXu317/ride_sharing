@@ -18,9 +18,7 @@ Rails.application.routes.draw do
       collection do
         get '/search_rides', to: "availabilities#search"
         post '/request_rides', to: "availabilities#match"
-        get "/upcoming_trip", to: "availabilities#show_upcoming_trip"
-        get "/past_trip", to: "availabilities#show_past_trip"
-        get "/canceled_trip", to: "availabilities#show_canceled_trip"
+        get "/trips", to: "availabilities#show_upcoming_trip"
       end
     end
   end
