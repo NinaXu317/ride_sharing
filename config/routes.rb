@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :requests
   resources :availabilities
   resources :users
-  resources :messages, only:[:new, :create]
+  resources :messages 
+  # only:[:new, :create]
   root 'static_pages#home'
   get '/about', to: "static_pages#about"
   get '/help', to: "static_pages#help"
