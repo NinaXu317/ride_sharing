@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @trip.driver_id %>
+</p>
+
+<p>
+  <strong>Rider:</strong>
+  <%= @trip.rider_id %>
+</p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= @trip.availability_id %>
+</p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @trip.request_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @trip.status %>
+</p>
+
+<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Back', trips_path %>

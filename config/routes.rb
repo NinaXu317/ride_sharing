@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     registrations: 'registrations',
   }
   resources :users do
+    resources :trips
     resources :vehicles
     resources :makes
     resources :requests do
