@@ -23,7 +23,7 @@
         <%= @request.highest_price_to_pay %>
       </p>
       <%= render partial: 'showRider', :locals => { :rider => local_assigns[:rider] } %>
-      <%= link_to 'Back', search_rides_path, class: "btn btn-primary" %>
+      <%= link_to 'Back', search_user_requests_path(current_user), class: "btn btn-primary" %>
     </div>
   </div>
 </div>

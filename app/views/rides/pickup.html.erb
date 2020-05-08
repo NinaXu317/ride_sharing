@@ -5,6 +5,7 @@
     <div class="navigation", style="margin-top: 5px;">
         <h4> Click the button to get your current location and direction for the trip </h4>
         <%= link_to "Get my current location", "javascript:getLocation()", class:"btn btn-info"%>
+        <%= link_to "Chat With Your Rider", landingindex_path(sender_id:@driver_id, receiver_id:@rider_id), class: "btn btn-primary"%>
     </div>
 </div>
 <script>

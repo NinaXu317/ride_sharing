@@ -26,8 +26,8 @@ def create_user
         @is_driver = is_driver(rand(100))
         @major = random_major
         @user = User.create(username: Faker::Superhero.name, email: Faker::Internet.email, password: "111111", age: @age, gender: Faker::Gender.binary_type, firstname: @firstname, lastname: @lastname,
-        phone_number: Faker::PhoneNumber.cell_phone, major: @major, year: @year, is_driver: @is_driver, number_of_rating_given: 0, number_of_rating_received: 0,
-        sum_of_rating_given: 0, sum_of_rating_received: 0)
+                            phone_number: Faker::Number.number(digits: 10), major: @major, year: @year, is_driver: @is_driver, number_of_rating_given: 0, number_of_rating_received: 0,
+                            sum_of_rating_given: 0, sum_of_rating_received: 0)
         if @is_driver
             @vehicle_make = Faker::Vehicle.make
             @vehicle_model = Faker::Vehicle.model(make_of_model: @vehicle_make)
@@ -92,15 +92,6 @@ end
 
 # generate brandeis location
 def brandeis_location
-    # loc = [
-    #     ["415 South Street, Brandeis University, Waltham, MA, 02453"],
-    #     ["Theater Lot, Brandeis University, Waltham, MA, 02453"],
-    #     ["Science Lot, Brandeis University, Waltham, MA, 02453"],
-    #     ["Usdan Student Center Bus Stop, Brandeis University, Waltham, MA, 02453"],
-    #     ["Charles River Apartment, Brandeis University, Waltham, MA, 02453"],
-    #     ["IBS - Lemberg Academic Center, Brandeis University, Waltham, MA, 02453"]
-    # ]
-    # return loc[rand(loc.size - 1)]
     return "415 South Street, Waltham, MA, 02453"
 end
 

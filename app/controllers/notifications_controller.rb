@@ -26,6 +26,7 @@ class NotificationsController < ApplicationController
       else
         twilio_client = TwilioClient.new
         message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{availability.start_street_address}, ends at #{availability.end_street_address}.\nThe trip time is #{availability.trip_time}. Text Y to accpet or N to ignore."
+        CurtAvail.create!(availability_id: availability_id, phone_number: user.phone_number)
         twilio_client.send_text(user, message)
       end
     end
@@ -39,11 +40,19 @@ class NotificationsController < ApplicationController
       end
       puts params["Body"]
       response_text = params["Body"].downcase!
-
-      if response_text == "y"
-
-      elsif response_text == "n"
-
+      response_number = params["From"][2..-1].to_i
+      curtAvail = CurtAvail.find_by(phone_number: response_number)
+      if !curtAvail.nil?
+        availability_id = curtAvail.availability_id
+        if response_text == "y"
+          availability = Availability.find(availability_id)
+          availability.matched_user_id = User.find_by(phone_number: response_number).id
+          availability.availability_status = "confirmed"
+          availability.save
+          curtAvail.destroy
+        elsif response_text == "n"
+          curtAvail.destroy
+        end
       end
       render 'static_pages/home'
     end

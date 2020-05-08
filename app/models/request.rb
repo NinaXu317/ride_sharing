@@ -20,7 +20,17 @@ class Request < ApplicationRecord
     def self.search (param)
         @start_addr = param[:start_street_address]
         @end_addr = param[:end_street_address]
-        results = start_address_matches.time_matches(param[:trip_time]).price_matches(param[:highest_price_to_pay])
+        results = Request.all
+        if !@start_addr.empty?
+            results = results.start_address_matches
+        end
+        if !param[:trip_time].empty?
+            results = results.time_matches(param[:trip_time])
+        end
+        if !param[:highest_price_to_pay].empty?
+            results = results.price_matches(param[:highest_price_to_pay])
+        end
+        # results = start_address_matches.time_matches(param[:trip_time]).price_matches(param[:highest_price_to_pay])
         # results = results.end_address_matches
         return nil unless results.length > 0
         return results

@@ -1,7 +1,7 @@
 require './app/lib/matcher'
 
 class RequestsController < ApplicationController
-  before_action :authorized, only: [:show]
+  # before_action :authorized, only: [:show]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
@@ -14,9 +14,11 @@ class RequestsController < ApplicationController
   def search
     if params[:search]
       puts "start searching"
-      @requests = Request.unmatched.search(params[:search]).page(params[:page])
+      @requests = Request.unmatched.search(params[:search])
       if @requests.nil?
         flash.now[:alert] = "Could not find an availability"
+      else
+        @requests = @requests.page(params[:page])
       end
       respond_to do |format|
         format.js

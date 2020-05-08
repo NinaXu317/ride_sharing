@@ -1,29 +1,35 @@
 <p id="notice"><%= notice %></p>
+<div class="card", style="width:40em;margin-left:25%">
+  <div class="card-body", style="text-align: center">
+    <h2 class="card-title">Your Vehicle Info: </h2>
+    <p>
+      <strong>License number:</strong>
+      <%= @vehicle.license_number %>
+    </p>
 
-<p>
-  <strong>License number:</strong>
-  <%= @vehicle.license_number %>
-</p>
+    <p>
+      <strong>Vehicle make:</strong>
+      <%= @vehicle.vehicle_make %>
+    </p>
 
-<p>
-  <strong>Vehicle make:</strong>
-  <%= @vehicle.vehicle_make %>
-</p>
+    <p>
+      <strong>Vehicle model:</strong>
+      <%= @vehicle.vehicle_model %>
+    </p>
 
-<p>
-  <strong>Vehicle model:</strong>
-  <%= @vehicle.vehicle_model %>
-</p>
+    <p>
+      <strong>Vehicle color:</strong>
+      <%= @vehicle.vehicle_color %>
+    </p>
 
-<p>
-  <strong>Vehicle color:</strong>
-  <%= @vehicle.vehicle_color %>
-</p>
+    <p>
+      <strong>Vehicle plate:</strong>
+      <%= @vehicle.vehicle_plate %>
+    </p>
 
-<p>
-  <strong>Vehicle plate:</strong>
-  <%= @vehicle.vehicle_plate %>
-</p>
+    <%= link_to 'Edit', edit_user_vehicle_path(current_user.id, @vehicle), class:"btn btn-primary" %> |
+    <%= link_to 'Back', user_path(current_user.id), class:"btn btn-primary"%>
 
-<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
-<%= link_to 'Back', vehicles_path %>
+  </div>
+</div>
+

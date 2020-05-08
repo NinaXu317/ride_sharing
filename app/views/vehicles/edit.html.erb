@@ -1,6 +1,7 @@
+<div id="edit vehicle"; style="margin-left:20%; margin-right:20%">
 <h1>Editing Vehicle</h1>
-
 <%= render 'form', vehicle: @vehicle %>
 
-<%= link_to 'Show', @vehicle %> |
-<%= link_to 'Back', vehicles_path %>
+<%= link_to 'Show', user_vehicle_path(@user, @vehicle), class:"btn btn-primary" %> |
+<%= link_to 'Back', user_path(@user), class:"btn btn-primary" %>
+</div>
