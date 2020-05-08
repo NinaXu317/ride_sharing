@@ -1,6 +1,5 @@
 class LandingController < ApplicationController
-  # before_action :authorized
-  before_action :authenticate_user!
+  # before_action :authorized!
 
   def index
     @message = Message.new

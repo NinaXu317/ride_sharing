@@ -22,8 +22,16 @@
         <strong>Highest Price to Pay:</strong>
         <%= @request.highest_price_to_pay %>
       </p>
+<<<<<<< HEAD
       <%= render partial: 'showRider', :locals => { :rider => local_assigns[:rider] } %>
-      <%= link_to 'Back', search_rides_path, class: "btn btn-primary" %>
+      <%= link_to 'Back', search_user_requests_path(current_user), class: "btn btn-primary" %>
+=======
+        <% if current_user.id != local_assigns[:rider].id %>
+          <%= render partial: 'showRider', :locals => { :rider => local_assigns[:rider] } %>
+        <% end %>
+        <%= link_to 'Back', new_request_path, class: "btn btn-primary" %>
+        <%#= link_to 'Back', search_rides_path, class: "btn btn-primary" %>
+>>>>>>> 41d6b3979aa3cad467067fefc3e7c0b71f792b63
     </div>
   </div>
 </div>

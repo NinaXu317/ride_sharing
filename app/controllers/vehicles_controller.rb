@@ -10,15 +10,18 @@ class VehiclesController < ApplicationController
   # GET /vehicles/1
   # GET /vehicles/1.json
   def show
+    @user = User.find(current_user.id)
   end
 
   # GET /vehicles/new
   def new
+    @user = User.find(current_user.id)
     @vehicle = Vehicle.new
   end
 
   # GET /vehicles/1/edit
   def edit
+    @user = User.find(current_user.id)
   end
 
   # POST /vehicles
@@ -29,7 +32,7 @@ class VehiclesController < ApplicationController
 
     respond_to do |format|
       if @vehicle.save
-        format.html { redirect_to @vehicle, notice: 'Vehicle was successfully created.' }
+        format.html { redirect_to user_vehicle_path(current_user.id, @vehicle), notice: 'Vehicle was successfully created.' }
         format.json { render :show, status: :created, location: @vehicle }
       else
         format.html { render :new }
@@ -43,7 +46,7 @@ class VehiclesController < ApplicationController
   def update
     respond_to do |format|
       if @vehicle.update(vehicle_params)
-        format.html { redirect_to @vehicle, notice: 'Vehicle was successfully updated.' }
+        format.html { redirect_to user_vehicle_path(current_user.id, @vehicle), notice: 'Vehicle was successfully updated.' }
         format.json { render :show, status: :ok, location: @vehicle }
       else
         format.html { render :edit }

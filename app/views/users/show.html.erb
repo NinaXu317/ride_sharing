@@ -49,7 +49,7 @@
         <% if @user.is_driver %>
           <% @vehicle = Vehicle.find_by(user_id: @user.id) %>
           <% if !@vehicle.nil? && current_user.id == @user.id %>
-            <%= link_to 'Edit Vehicle', edit_vehicle_path(@vehicle.id), class: 'profile-edit-btn' %>
+            <%= link_to 'Edit Vehicle', edit_user_vehicle_path(current_user.id, @vehicle.id), class: 'profile-edit-btn' %>
           <% end %>
         <% end %>
       </div>

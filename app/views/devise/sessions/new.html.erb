@@ -1,26 +1,48 @@
-<h2>Log in</h2>
+<% content_for :content do %>
+  <div class="home">
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <div class="signin_icon" , style="margin-top: 3px; margin-bottom: 5px;">
+            <img src="https://img.icons8.com/ios-filled/50/000000/carpool.png" id="icon" alt="User Icon"/>
+          </div>
+          <h4>Welcome to Ride Sharing</h4>
+        </div>
+        <!-- Login Form -->
+        <div class="sign_in_form">
+          <div class="content">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+            <%= form_for(resource, as: resource_name, url: new_user_session_path(resource_name)) do |f| %>
+              <div id="email" , style="margin-left:10px; margin-right: 10px;">
+                <%= f.label "Email" %><br/>
+                <%= f.text_field :email, placeholder: "Email", class: "fadeIn second" %>
+              </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+              <div id="password" , style="margin-top: 10px;">
+                <%= f.label "Password" %><br/>
+                <%= f.password_field :password, placeholder: "Password", class: "fadeIn third" %>
+              </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+              <%# if devise_mapping.rememberable? %>
+              <!--    <div class="field">-->
+              <%#= f.check_box :remember_me %>
+              <%#= f.label :remember_me %>
+              <!--    </div>-->
+              <%# end %>
+
+              <div id="submit_button" , style="margin-top:10px">
+                <%= f.submit "Log In", class: "fadeIn fourth" %>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+        <div id="formFooter">
+          <a class="underlineHover" href="#">Forgot Password?</a>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>

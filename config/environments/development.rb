@@ -10,7 +10,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Configure ngrok host
-  config.hosts << "9d8cb19e.ngrok.io"
+  config.hosts << "7c1ecbf2.ngrok.io"
 
   # Setup active_storage for avatar
   config.active_storage.service = :local
@@ -65,5 +65,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
+  config.action_cable.url = "ws://localhost:3000/cable"
+
+  config.action_cable.allowed_request_origins = [/http:\/\/*/,
+                                                 /https:\/\/*/]
 
 end

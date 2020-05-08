@@ -11,23 +11,24 @@
       <ul class="before_sign_in">
         <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-success btn-lg sign_up_button"%>
         <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-dark btn-lg sign_up_button"%>
-      </ul> 
+      </ul>
     <% else %>
       <% if current_user.is_driver%>
         <ul class="sign_up">
-          <%= link_to "Search for a request", search_requests_path, class: "btn btn-lg  btn-info sign_up_button"%>
-          <%= link_to "Post an availability", new_availability_path, class: "btn btn-lg  btn-info sign_up_button"%>
+          <%= link_to "Search for a request", search_user_requests_path(current_user), class: "btn btn-lg  btn-info sign_up_button"%>
+          <%= link_to "Post an availability", new_user_availability_path(current_user), class: "btn btn-lg  btn-info sign_up_button"%>
         </ul>
       <% else %>
         <ul class="sign_up">
           <%= link_to "Search for a ride", search_rides_path, class: "btn btn-lg btn-info sign_up_button"%>
-          <%= link_to "Make a request", new_request_path, class: "btn btn-lg btn-info sign_up_button"%>
+          <%= link_to "Make a request", new_user_request_path(current_user), class: "btn btn-lg btn-info sign_up_button"%>
         </ul>
       <% end %>
     <% end %>
   </div>
 </div>
-
+<div id="notifications">
+</div>
 
 
 

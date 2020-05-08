@@ -3,21 +3,12 @@ module ApplicationCable
     identified_by :curr_user
 
     def connect
-      self.curr_user = find_verified_user
-      # logger.add_tags curr_user.id
+      self.curr_user = find_verfied_user
     end
 
     protected
-    def find_verified_user
-      # curr_user = User.find_by(id: cookies.signed['user_id'])
-      # puts "connecting action cable...."
-      # puts curr_user.nil?
-      # # && cookies.signed['user_expires_at'] > Time.now
-      # if curr_user
-      #   curr_user
-      # else
-      #   reject_unauthorized_connection
-      # end
+
+    def find_verfied_user
       if curr_user = env['warden'].user
         curr_user
       else

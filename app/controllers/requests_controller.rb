@@ -1,7 +1,7 @@
 require './app/lib/matcher'
 
 class RequestsController < ApplicationController
-  before_action :authorized, only: [:show]
+  # before_action :authorized, only: [:show]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
@@ -14,9 +14,11 @@ class RequestsController < ApplicationController
   def search
     if params[:search]
       puts "start searching"
-      @requests = Request.unmatched.search(params[:search]).page(params[:page])
+      @requests = Request.unmatched.search(params[:search])
       if @requests.nil?
         flash.now[:alert] = "Could not find an availability"
+      else
+        @requests = @requests.page(params[:page])
       end
       respond_to do |format|
         format.js
@@ -53,13 +55,17 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
     respond_to do |format|
       if @request.save
-        @user = User.find(current_user.id)
-        @make = Make.create!(user_id: current_user.id, request_id: @request.id)
-        @user.makes << @make
-        @request.makes << @make
-        matched_id = match
-        format.html { redirect_to @request, :status => 200, notice: 'Request was successfully created.' }
+        user = User.find(current_user.id)
+        make = Make.create!(user_id: current_user.id, request_id: @request.id)
+        user.makes << make
+        @request.makes << make
+        @make_id = make.id
+
+        format.html { redirect_to @request, notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
+        # matched_id = match
+        # format.html { redirect_to @request, :status => 200, notice: 'Request was successfully created.' }
+        # format.json { render :show, status: :created, location: @request }
       else
         format.html { render :new }
         format.json { render json: @request.errors, status: :unprocessable_entity }

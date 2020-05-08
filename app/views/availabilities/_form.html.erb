@@ -1,4 +1,4 @@
-<%= form_with(model: availability, local: true, data: { controller: "maps", action: "google-maps-callback@window->maps#initializeMap"}) do |form| %>
+<%= form_for [@user, @availability], local: true, data: { controller: "maps", action: "google-maps-callback@window->maps#initializeMap"} do |form| %>
   <% if availability.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(availability.errors.count, "error") %> prohibited this availability from being saved:</h2>
@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= form.label :start_street_address %>
-    <%= form.text_field :start_street_address, class: 'form-control', data: { target: "maps.fieldStart", action: "keydown->maps#preventSubmit" } %>
+    <%= form.text_field :start_street_address, :required => true, class: 'form-control', data: { target: "maps.fieldStart", action: "keydown->maps#preventSubmit" } %>
   </div>
 
   <div class="field">
     <%= form.label :end_street_address %>
-    <%= form.text_field :end_street_address, class: 'form-control', data: { target: "maps.fieldEnd", action: "keydown->maps#preventSubmit" } %>
+    <%= form.text_field :end_street_address, :required => true, class: 'form-control', data: { target: "maps.fieldEnd", action: "keydown->maps#preventSubmit" } %>
   </div>
 
   <div class="field">
       <%= form.label :trip_time %><br>
-      <%= form.text_field :trip_time, data: {
+      <%= form.text_field :trip_time, :required => true, data: {
           controller: "flatpickr",
           flatpickr_date_format: "Y-m-d H:i",
           flatpickr_enable_time: true,
@@ -32,7 +32,7 @@
 
   <div class="field">
     <%= form.label :lowest_acceptable_price, 'Expected Trip Price' %>
-    <%= form.text_field :lowest_acceptable_price, label: 'Expected Price', class: "form-control" %>
+    <%= form.text_field :lowest_acceptable_price, :required => true, label: 'Expected Price', class: "form-control" %>
   </div>
 
   <div class="actions">

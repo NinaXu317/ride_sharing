@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email, :password, :is_driver])
       devise_parameter_sanitizer.permit(:account_update, keys: [:username, :email, :password, :avatar])
     end
+
   # helper_method :logged_in?, :current_user, :set_verify_cookie
   # # respond_to :html, :json, :js
   #

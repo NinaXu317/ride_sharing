@@ -11,17 +11,10 @@ class AvailabilitiesController < ApplicationController
   end
 
   def show_upcoming_trip
-    # respond_to do |format|
-    #   if @availability.update(availability_params)
-    #     format.html { redirect_to @availability, notice: 'Availability was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @availability }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @availability.errors, status: :unprocessable_entity }
-    #   end
-    # end
-    @upcoming_trip = Availability.where(matched_user_id: current_user.id, availability_status: params[:status])
-    puts @upcoming_trip
+    @upcoming_trips = Availability.upcoming.find_availability_by_user_id(current_user.id)
+    @waiting_trips = Availability.unmatched.find_availability_by_user_id(current_user.id)
+    @past_trips = Availability.completed.find_availability_by_user_id(current_user.id)
+    puts @waiting_trips
   end
 
   def show_past_trip
@@ -36,9 +29,11 @@ class AvailabilitiesController < ApplicationController
     # @availabilities = Availability.unmatched
     if params[:search]
       puts "start searching"
-      @availabilities = Availability.unmatched.search(params[:search]).page(params[:page])
+      @availabilities = Availability.unmatched.search(params[:search])
       if @availabilities.nil?
         flash.now[:alert] = "Could not find an availability"
+      else
+        @availabilities = @availabilities.page(params[:page])
       end
       # respond_with @availabilities
       respond_to do |format|
@@ -97,6 +92,7 @@ class AvailabilitiesController < ApplicationController
 
   # GET /availabilities/new
   def new
+    @user = User.find(current_user.id)
     @availability = Availability.new
   end
 
@@ -116,7 +112,7 @@ class AvailabilitiesController < ApplicationController
         user.posts << post
         @availability.posts << post
         @post_id = post.id
-        format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
+        format.html { redirect_to  user_availability_path(current_user, @availability), notice: 'Availability was successfully created.' }
         format.json { render :show, status: :created, location: @availability }
       else
         format.html { render :new }

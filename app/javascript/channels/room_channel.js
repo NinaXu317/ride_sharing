@@ -17,9 +17,9 @@ consumer.subscriptions.create("RoomChannel", {
       $('#message_holder').append('<div class="message">' + data.content + '</div>')
     }
     else{
-      $('#message_holder').append('<div class="message" style="color: blue">' + data.content + '</div>')
+      $('#message_holder').append('<div class="message" style="color: #0000ff">' + data.content + '</div>')
     }
-    
+
     console.log("!!!"+ data.sender_id)
     // Called when there's incoming data on the websocket for this channel
   }
@@ -30,20 +30,20 @@ var submit_messages;
 $(document).on('turbolinks:load', function(){
 
 
-  submit_messages()
+    submit_messages()
 })
 
 submit_messages = function(){
 
-  $('#message_content').on('keydown', function(event){
-    
-    if(event.keyCode === 13){
+    $('#message_content').on('keydown', function(event){
 
-      $('input').click()
-      event.target.value = ''
-      event.preventDefault()
-      console.log('yes we hitted enter!')
-    }
+        if(event.keyCode === 13){
 
-  })
+            $('input').click()
+            event.target.value = ''
+            event.preventDefault()
+            console.log('yes we hitted enter!')
+        }
+
+    })
 }

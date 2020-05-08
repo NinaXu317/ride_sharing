@@ -1,17 +1,28 @@
-<% @upcoming_trip.each do |availability| %>
-  <div class="card" style="width: 25rem; height: 30rem;">
-    <div class="card-body" style="width: 23rem; height: 26rem;">
-      <h3 class="card-title">Available Ride</h3>
-      <i class="fas fa-map-marker-alt"></i><strong> Start address: </strong><br>
-      <%= availability.start_street_address %><br>
-      <i class="fas fa-map-marker-alt"></i><strong> End street address: </strong><br>
-      <%= availability.end_street_address %><br>
-      <i class="far fa-clock"></i><strong> Trip Time: </strong><br>
-      <%= availability.trip_time %><br>
-      <i class="fas fa-dollar-sign"></i><strong> Price Requested: </strong><br>
-      <%= availability.lowest_acceptable_price %><br>
-      <br>
+<div id="trips_info", style="margin-left:30%;">
+  <h1>Trips</h1>
+  <h1>Upcoming Trips</h1>
+  <% @upcoming_trips.each do |availability| %>
+    <div class="card" style="width: 45rem; height: 20rem;">
+      <div class="card-body" style="width: 40rem; height: 18rem;">
+        <i class="fas fa-map-marker-alt"></i><strong> Start address: </strong>
+        <%= availability.start_street_address %><br>
+        <i class="fas fa-map-marker-alt"></i><strong> End street address: </strong>
+        <%= availability.end_street_address %><br>
+        <i class="far fa-clock"></i><strong> Trip Time: </strong>
+        <%= availability.trip_time %><br>
+        <i class="fas fa-dollar-sign"></i><strong> Price Requested: </strong>
+        <%= availability.lowest_acceptable_price %><br>
+        <% rider = User.find(availability.matched_user_id) %>
+        <i class="fas fa-user"></i><strong> Rider: </strong>
+        <%= rider.username %><br>
+        <%= link_to "View Rider Profile", user_path(availability.matched_user_id), class:"btn btn-primary"%><br>
+        <% request_id = availability.matched_request_id %>
+        <% if request_id != -10 %>
+          <i class="fas fa-dollar-sign"></i><strong> Matched request: </strong>
+          <% request = Request.find(request_id) %>
+<!--          <%#= link_to "View Rider Profile", users_requests_path(availability.matched_user_id), class:"btn btn-primary"%><br>-->
+        <% end %>
+      </div>
     </div>
-  </div>
-
-<% end %>
+  <% end %>
+</div>

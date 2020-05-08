@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
     # before_action :authorized
-    before_action :authenticate_user!
 
     def new 
         @message = Message.new
@@ -25,6 +24,6 @@ class MessagesController < ApplicationController
     private
 
     def msg_params
-        params.require(:message).permit(:content,:sender_id, :receiver_id)
+        params.require(:message).permit(:content, :sender_id, :receiver_id)
     end 
 end

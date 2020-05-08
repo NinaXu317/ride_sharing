@@ -1,0 +1,31 @@
+<div id="show_rides", style="margin-left: 5%;">
+  <div class="card" style="width: 40rem;">
+    <div class="card-body">
+      <h2 class="card-title">Your trip details</h2>
+      <% if @request_id = -10 %>
+        <div>
+          <% availability = Availability.find_by(id: @availability_id) %>
+          <h4>Start: </h4>
+          <%= availability.start_street_address %>
+        </div>
+        <br>
+        <div style="margin-top:5px;">
+          <h4>Destionation: </h4>
+          <%= availability.end_street_address %><br>
+        </div>
+        <div style="margin-top:20px;">
+          <p>If your rider is in car, please click the button to start trip:</p>
+          <%= link_to 'Confirm Address and Start Trip', pickup_path, class: "btn btn-primary" %>
+        </div>
+      <% else %>
+        <% request = Request.find_by(id: @request_id) %>
+        <p> You are heading to rider's location</p>
+        <p>Start: </p>
+        <%= request.start_street_address %>
+        <p>Destionation: </p>
+        <%= request.end_street_address %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

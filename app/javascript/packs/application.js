@@ -61,10 +61,3 @@ $(document).on('turbolinks:load', function(){
     // console.log('we are ready')
 
 })
-
-// Notification.requestPermission().then(function (result) {
-//     console.log("get permission");
-//     if (result.permission === 'denied') {
-//         alert("Permission for notification is not granted!");
-//     }
-// })
