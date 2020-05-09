@@ -2,6 +2,9 @@ class NotificationsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
 
+    def accept
+
+    end
     def notify
       availability_id = params["availability_id"].to_i
       availability = Availability.find(availability_id)

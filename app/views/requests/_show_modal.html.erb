@@ -6,12 +6,10 @@
     Press "Accept" to accept the ride,</br>
     or "Cancel" to return to previous page.</p>
   <br>
-  <% puts @availability.id %>
   <div class="sign_in_form">
     <%= form_with url: '/notify', method: :get do |f| %>
       <div id="notify_way" , style="margin-top:5px;">
-        <%= f.hidden_field :is_send_notification, value: false %>
-        <%= f.hidden_field :availability_id, :value => @availability.id %>
+        <%= f.hidden_field :request_id, :value => params[:id] %>
       </div>
       <div id="submit_button" , style="margin-top:10px">
         <%= f.submit "Accept", class: "fadeIn fourth" %>
