@@ -3,10 +3,12 @@
 one:
   start_street_address: "70 Hope Ave"
   end_street_address: "415 South Street"
-  trip_time: 2020-03-06 14:41:02
-  highest_price_to_pay: 2
+  trip_distance: 4.5
+  highest_price_to_pay: 1.5
   matched_availability_id: -1
   request_status: "started"
+
+  
 
 two:
   start_street_address: MyString

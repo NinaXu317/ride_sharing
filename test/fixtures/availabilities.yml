@@ -2,6 +2,7 @@
 
 one:
   start_street_address: MyString
+  end_street_address: MyString
   trip_time: 2020-03-06 14:38:28
   lowest_acceptable_price: 1.5
   matched_request_id: 1

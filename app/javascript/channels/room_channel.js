@@ -1,5 +1,4 @@
 import consumer from "./consumer"
-// import SessionsHelper from "../helpers/sessions_helper"
 
 consumer.subscriptions.create("RoomChannel", {
   connected() {
