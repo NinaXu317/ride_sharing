@@ -1,7 +1,7 @@
-require 'test_helper'
+# require 'test_helper'
 
-class MessagesControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
-end
+# class MessagesControllerTest < ActionDispatch::IntegrationTest
+#   # test "the truth" do
+#   #   assert true
+#   # end
+# end

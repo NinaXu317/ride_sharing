@@ -4,21 +4,29 @@ class NotificationsController < ApplicationController
 
     def accept
       puts "triggered"
+      puts params[:request_id]
+      puts current_user.id
+      Trip.create(driver_id: current_user.id,
+                  rider_id: Make.find_by(request_id: params[:request_id]).user_id,
+                  request_id: params[:request_id],
+                  status: "confirmed")
+
     end
+
     def notify
       puts "notify"
-      # availability_id = params["availability_id"].to_i
-      # availability = Availability.find(availability_id)
-      # post = Post.find_by(availability_id: availability_id)
-      # user = User.find(post.user_id)
-      # if params["is_send_notification"] == "false"
-      #   twilio_client = TwilioClient.new
-      #   message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{availability.start_street_address}, ends at #{availability.end_street_address}.\nThe trip time is #{availability.trip_time}. Text Y to accpet or N to ignore."
-      #   availability.availability_status = "waiting"
-      #   availability.save!
-      #   CurtAvail.create!(availability_id: availability_id, phone_number: user.phone_number)
-      #   twilio_client.send_text(user, message)
-      # end
+      availability_id = params["availability_id"].to_i
+      availability = Availability.find(availability_id)
+      post = Post.find_by(availability_id: availability_id)
+      user = User.find(post.user_id)
+      if params["is_send_notification"] == "false"
+        twilio_client = TwilioClient.new
+        message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{availability.start_street_address}, ends at #{availability.end_street_address}.\nThe trip time is #{availability.trip_time}. Text Y to accpet or N to ignore."
+        availability.availability_status = "waiting"
+        availability.save!
+        CurtAvail.create!(availability_id: availability_id, phone_number: user.phone_number)
+        twilio_client.send_text(user, message)
+      end
     end
 
 
