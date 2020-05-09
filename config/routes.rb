@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         get "/rider_pickup", to: "trips#rider_pickup"
         get "/trip_complete", to: "trips#trip_complete"
         get "/finish", to: "trips#finish"
+        get "/trips", to: "trips#show_upcoming_trip"
       end
     end
     resources :vehicles
@@ -28,7 +29,6 @@ Rails.application.routes.draw do
       collection do
         get '/search', to: "availabilities#search"
         post '/request_rides', to: "availabilities#match"
-        get "/trips", to: "availabilities#show_upcoming_trip"
       end
     end
     resources :notifications do

@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+  include TripsHelper
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -6,6 +7,16 @@ class TripsController < ApplicationController
   def index
     @trips = Trip.all
     respond_with(@trips)
+  end
+
+  def show_upcoming_trip
+    # show driver's upcoming trips
+    u_trips = Trip.upcoming.find_by_driver(current_user.id)
+    p_trips = Trip.completed.find_by_driver(current_user.id)
+    upcoming_trips = []
+    past_trips = []
+    @upcoming_trips = find_trip(u_trips, upcoming_trips)
+    @past_trips = find_trip(p_trips, past_trips)
   end
 
   def pickup
@@ -28,7 +39,7 @@ class TripsController < ApplicationController
 
   def show
     @driver_id = current_user.id
-    availability = Availability.upcoming.find_closest_availability(@driver_id)
+    # @trip =
     @availability_id = availability.id
     @rider_id = availability.matched_user_id
     @request_id = availability.matched_request_id
@@ -37,9 +48,6 @@ class TripsController < ApplicationController
     end
     rider = User.find(@rider_id)
     @ride = Ride.find_by(driver: current_user, rider:rider, availability_id: @availability_id)
-    if @ride.nil?
-      @ride = Ride.create!(driver: current_user, rider: rider, request_id: @request_id, availability_id: @availability_id)
-    end
     # if there is no request, driver and rider start at the same address and end at the same address
     respond_to do |format|
       format.html
