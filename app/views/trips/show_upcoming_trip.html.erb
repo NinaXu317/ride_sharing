@@ -1,0 +1,23 @@
+<div id="trips_info", style="margin-left:30%;">
+  <h1>Trips</h1>
+  <h1>Upcoming Trips</h1>
+  <% if !@upcoming_trips.empty? %>
+    <% @upcoming_trips.each do |upcoming| %>
+      <div class="card" style="width: 45rem; height: 20rem;">
+        <div class="card-body" style="width: 40rem; height: 18rem;">
+          <% if upcoming[1] == 'request'%>
+            <% request = Request.find(upcoming[0]) %>
+            <%= upcoming[1] %>
+            <%= render "trips_info", {:type => upcoming[1], :request => request } %>
+          <% else %>
+            <% availability = Availability.find(upcoming[0]) %>
+            <%= render "trips_info", {:type => upcoming[1], :availability => availability } %>
+          <% end %>
+          <%= link_to 'Start Ride', start_user_trips_path(current_user.id), class:"btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <%= render "no_trips" %>
+  <% end %>
+</div>
