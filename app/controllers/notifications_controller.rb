@@ -6,10 +6,12 @@ class NotificationsController < ApplicationController
       puts "triggered"
       puts params[:request_id]
       puts current_user.id
+
       Trip.create(driver_id: current_user.id,
                   rider_id: Make.find_by(request_id: params[:request_id]).user_id,
                   request_id: params[:request_id],
-                  status: "confirmed")
+                  status: "confirmed",
+                  trip_time: Request.find(params[:request_id]).trip_time)
 
     end
 

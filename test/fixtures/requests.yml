@@ -1,27 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  start_city: "Waltham"
   start_street_address: "70 Hope Ave"
-  start_zip: "02453"
-  end_city: "Waltham"
   end_street_address: "415 South Street"
-  end_zip: "02453"
   trip_time: 2020-03-06 14:41:02
-  distance: 1.5
   highest_price_to_pay: 2
   matched_availability_id: -1
   request_status: "started"
 
 two:
-  start_city: MyString
   start_street_address: MyString
-  start_zip: MyString
-  end_city: MyString
   end_street_address: MyString
-  end_zip: MyString
   trip_time: 2020-03-06 14:41:02
-  distance: 1.5
   highest_price_to_pay: 1.5
   matched_availability_id: 1
   request_status: MyString
