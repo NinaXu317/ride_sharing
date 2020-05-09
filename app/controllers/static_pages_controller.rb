@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+   :status => 200
   end
 
   def about

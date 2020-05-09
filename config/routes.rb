@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:new, :create]
 
-  root 'static_pages#home'
+  root 'static_pages#home' 
   # get '/about', to: "static_pages#about"
   # get '/help', to: "static_pages#help"
   # get '/fill_info', to: "static_pages#fill_information"
