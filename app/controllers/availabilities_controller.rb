@@ -47,7 +47,11 @@ class AvailabilitiesController < ApplicationController
       # end
     else 
       @availabilities = Availability.unmatched.page(params[:page])
-      respond_with @availabilities
+      # respond_with @availabilities
+      respond_to do |format|
+        format.js
+        format.html
+      end
     end
   end
 

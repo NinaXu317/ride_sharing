@@ -19,13 +19,13 @@ Rails.application.routes.draw do
     resources :makes
     resources :requests do
       collection do
-        get 'search', to: "requests#search"
+        get '/search', to: "requests#search"
       end
     end
     resources :posts
     resources :availabilities do
       collection do
-        get '/search_rides', to: "availabilities#search"
+        get '/search', to: "availabilities#search"
         post '/request_rides', to: "availabilities#match"
         get "/trips", to: "availabilities#show_upcoming_trip"
       end
@@ -33,11 +33,11 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:new, :create]
   root 'static_pages#home'
-  get '/about', to: "static_pages#about"
-  get '/help', to: "static_pages#help"
-  get '/fill_info', to: "static_pages#fill_information"
-  get '/signup', to: "users#new"
-  get "/login", to: "sessions#new", :as => :new_session
+  # get '/about', to: "static_pages#about"
+  # get '/help', to: "static_pages#help"
+  # get '/fill_info', to: "static_pages#fill_information"
+  # get '/signup', to: "users#new"
+  # get "/login", to: "sessions#new", :as => :new_session
   post "/message", to: "notifications#message"
   get "/notify", to: "notifications#notify"
   # get "/index", to: "rides#index"
