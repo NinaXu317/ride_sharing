@@ -10,12 +10,12 @@ class AvailabilitiesController < ApplicationController
     @availabilities = Availability.unmatched
   end
 
-  def show_upcoming_trip
-    @upcoming_trips = Availability.upcoming.find_availability_by_user_id(current_user.id)
-    @waiting_trips = Availability.unmatched.find_availability_by_user_id(current_user.id)
-    @past_trips = Availability.completed.find_availability_by_user_id(current_user.id)
-    puts @waiting_trips
-  end
+  # def show_upcoming_trip
+  #   @upcoming_trips = Availability.upcoming.find_availability_by_user_id(current_user.id)
+  #   @waiting_trips = Availability.unmatched.find_availability_by_user_id(current_user.id)
+  #   @past_trips = Availability.completed.find_availability_by_user_id(current_user.id)
+  #   puts @waiting_trips
+  # end
 
   def show_past_trip
 
@@ -75,9 +75,9 @@ class AvailabilitiesController < ApplicationController
 
   def match
     @availability = Availability.find(params[:id])
-    # @availability.matched_user_id = current_user.id
-    # @availability.matched_request_id = -10
-    # @availability.availability_status = "waiting"
+    @availability.matched_user_id = current_user.id
+    @availability.matched_request_id = -10
+    @availability.availability_status = "waiting"
     if @availability.save
       respond_to do |format|
         format.html
