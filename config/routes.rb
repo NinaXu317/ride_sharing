@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :requests do
       collection do
         get '/search', to: "requests#search"
+        post '/request_rides', to: "requests#match"
       end
     end
     resources :posts
@@ -30,8 +31,16 @@ Rails.application.routes.draw do
         get "/trips", to: "availabilities#show_upcoming_trip"
       end
     end
+    resources :notifications do
+      collection do
+        get '/notify', to: "notifications#notify"
+        get '/accept', to: "notifications#accept"
+      end
+    end
+
   end
   resources :messages, only: [:new, :create]
+
   root 'static_pages#home'
   # get '/about', to: "static_pages#about"
   # get '/help', to: "static_pages#help"
@@ -39,7 +48,7 @@ Rails.application.routes.draw do
   # get '/signup', to: "users#new"
   # get "/login", to: "sessions#new", :as => :new_session
   post "/message", to: "notifications#message"
-  get "/notify", to: "notifications#notify"
+  # get "/notify", to: "notifications#notify"
   # get "/index", to: "rides#index"
   get "/chat", to: "landing#chat"
   # get 'landing/index'

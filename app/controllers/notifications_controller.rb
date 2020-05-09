@@ -2,19 +2,23 @@ class NotificationsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
 
+    def accept
+      puts "triggered"
+    end
     def notify
-      availability_id = params["availability_id"].to_i
-      availability = Availability.find(availability_id)
-      post = Post.find_by(availability_id: availability_id)
-      user = User.find(post.user_id)
-      if params["is_send_notification"] == "false"
-        twilio_client = TwilioClient.new
-        message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{availability.start_street_address}, ends at #{availability.end_street_address}.\nThe trip time is #{availability.trip_time}. Text Y to accpet or N to ignore."
-        availability.availability_status = "waiting"
-        availability.save!
-        CurtAvail.create!(availability_id: availability_id, phone_number: user.phone_number)
-        twilio_client.send_text(user, message)
-      end
+      puts "notify"
+      # availability_id = params["availability_id"].to_i
+      # availability = Availability.find(availability_id)
+      # post = Post.find_by(availability_id: availability_id)
+      # user = User.find(post.user_id)
+      # if params["is_send_notification"] == "false"
+      #   twilio_client = TwilioClient.new
+      #   message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{availability.start_street_address}, ends at #{availability.end_street_address}.\nThe trip time is #{availability.trip_time}. Text Y to accpet or N to ignore."
+      #   availability.availability_status = "waiting"
+      #   availability.save!
+      #   CurtAvail.create!(availability_id: availability_id, phone_number: user.phone_number)
+      #   twilio_client.send_text(user, message)
+      # end
     end
 
 

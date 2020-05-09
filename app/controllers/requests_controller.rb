@@ -1,9 +1,10 @@
 require './app/lib/matcher'
 
 class RequestsController < ApplicationController
+  respond_to :js
   # before_action :authorized, only: [:show]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show]
 
   # GET /requests
   # GET /requests.json
@@ -38,6 +39,34 @@ class RequestsController < ApplicationController
       rider = User.find_by(id: user_id)
       render 'show', :locals => { :rider => rider } 
     end
+  end
+
+  def requestModal
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def match
+    @request = Request.find(params[:id])
+    # @availability.matched_user_id = current_user.id
+    # @availability.matched_request_id = -10
+    # @availability.availability_status = "waiting"
+    if @request.save
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    else
+      flash.now["danger"] = "Request not made"
+    end
+    # if @availability.save
+    #   # render javascript: go to result patial driver id
+    #   render 'confirm.html'
+    # else
+    #   flash.now["danger"] = "Request not made"
+    # end
   end
 
   # GET /requests/new

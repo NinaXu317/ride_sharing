@@ -9,7 +9,7 @@
   <br>
   <% puts @availability.id %>
   <div class="sign_in_form">
-    <%= form_with url: '/notify', method: :get do |f| %>
+    <%= form_with :url => notify_user_notifications_path(current_user), method: :get do |f| %>
       <div id="notify_way" , style="margin-top:5px;">
         <%= f.hidden_field :is_send_notification, value: false %>
         <%= f.hidden_field :availability_id, :value => @availability.id %>
