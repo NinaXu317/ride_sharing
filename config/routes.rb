@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :notifications do
       collection do
         get '/notify', to: "notifications#notify"
-        post '/accept', to: "notifications#accept"
+        get '/accept', to: "notifications#accept"
       end
     end
 

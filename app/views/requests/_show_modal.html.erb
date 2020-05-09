@@ -7,7 +7,7 @@
     or "Cancel" to return to previous page.</p>
   <br>
   <div class="sign_in_form">
-    <%= form_with url: '/notify', method: :get do |f| %>
+    <%= form_with :url => accept_user_notifications_path(current_user), method: :get do |f| %>
       <div id="notify_way" , style="margin-top:5px;">
         <%= f.hidden_field :request_id, :value => params[:id] %>
       </div>

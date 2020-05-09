@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
 
 
     def accept
-
+      puts "triggered"
     end
     def notify
       availability_id = params["availability_id"].to_i
