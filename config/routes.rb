@@ -9,12 +9,15 @@ Rails.application.routes.draw do
   resources :users do
     resources :trips do
       collection do
-        get "/pickup", to: "trips#pickup"
         get "/start", to: "trips#start_trip"
         get "/rider_pickup", to: "trips#rider_pickup"
-        get "/trip_complete", to: "trips#trip_complete"
         get "/finish", to: "trips#finish"
-        get "/trips", to: "trips#show_upcoming_trip"
+        get "/all_trips", to: "trips#show_upcoming_trip"
+      end
+
+      member do
+        get "/pickup", to: "trips#pickup"
+        get "/trip_complete", to: "trips#trip_complete"
       end
     end
     resources :vehicles
