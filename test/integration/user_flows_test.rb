@@ -1,22 +1,23 @@
 require 'test_helper'
 
 class UserFlowsTest < ActionDispatch::IntegrationTest
-  fixtures :all
-  include Devise::Test::IntegrationHelpers
-  
-  test "should get home" do
+  fixtures :users
+
+  def setup
+    @user = users(:one)
+  end
+
+  test "should login in and go to search page" do
     get '/'
     assert_response :success
-    get "/users/sign_in"
+    get new_user_registration_path
     assert_equal 200, status
-    sign_in users(:one)
+    @user.confirm
+    sign_in @user
     post "/users/sign_in"
-    follow_redirect!
-    assert_response :success
+    assert_redirected_to root_path
+    get search_user_requests_url(@user.id)
+    assert_equal 200, status
   end
 
-  test "should sign in" do
-  end
-
-  
 end
