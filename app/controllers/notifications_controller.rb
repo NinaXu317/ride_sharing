@@ -6,17 +6,19 @@ class NotificationsController < ApplicationController
       puts "triggered"
       puts params[:request_id]
       puts current_user.id
+
       Trip.create(driver_id: current_user.id,
                   rider_id: Make.find_by(request_id: params[:request_id]).user_id,
                   request_id: params[:request_id],
-                  status: "confirmed")
+                  status: "confirmed",
+                  trip_time: Request.find(params[:request_id]).trip_time)
 
     end
 
     def notify
       puts "notify"
-      availability_id = params["availability_id"].to_i
-      availability = Availability.find(availability_id)
+      # availability_id = params["availability_id"].to_i
+      availability = Availability.find(params[:availability_id])
       post = Post.find_by(availability_id: availability_id)
       user = User.find(post.user_id)
       if params["is_send_notification"] == "false"
@@ -48,7 +50,7 @@ class NotificationsController < ApplicationController
           availability.matched_user_id = User.find_by(phone_number: response_number).id
           availability.availability_status = "confirmed"
           availability.save
-          Ride.create!(driver_id: availability.matched_user_id, rider_id: current_user.id, availability_id: availability_id)
+          Trip.create!(driver_id: availability.matched_user_id, rider_id: current_user.id, availability_id: availability_id, trip_time: availability.trip_time)
           curtAvail.destroy
         elsif response_text == "n"
           availability.availability_status = "started"

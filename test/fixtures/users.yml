@@ -15,6 +15,9 @@ one:
   number_of_rating_received: 0
   sum_of_rating_given: 0
   sum_of_rating_received: 0
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  created_at: <%= Time.zone.now %>
+  confirmed_at: <%= Time.now %>
 
 two:
   username: MyString

@@ -1,6 +1,10 @@
 class StaticPagesController < ApplicationController
   def home
+<<<<<<< HEAD
    head :ok
+=======
+    head :ok
+>>>>>>> 5af0b2abf543a2a2f3961009cc6eae3853b443ef
   end
 
   def about
@@ -9,10 +13,4 @@ class StaticPagesController < ApplicationController
   def help
   end
 
-  def fill_information
-  end
-
-  def chat
-    
-  end
 end
