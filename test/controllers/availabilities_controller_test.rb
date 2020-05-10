@@ -1,14 +1,15 @@
-# require 'test_helper'
+require 'test_helper'
 
-# class AvailabilitiesControllerTest < ActionDispatch::IntegrationTest
-#   setup do
-#     @availability = availabilities(:one)
-#   end
+class AvailabilitiesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    # @availability = availabilities(:one)
+    # @user = User.create(:one)
+  end
 
-#   test "should get index" do
-#     get availabilities_url
-#     assert_response :success
-#   end
+  # test "should get index" do
+  #   get user_availabilities_url(@user.id)
+  #   assert_response :success
+  # end
 
 #   test "should get new" do
 #     get new_availability_url
@@ -45,4 +46,4 @@
 
 #     assert_redirected_to availabilities_url
 #   end
-# end
+end
