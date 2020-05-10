@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     confirmations: 'confirmations',
     registrations: 'registrations',
-    sessions: 'sessions'
+    # sessions: 'sessions'
   }
   resources :users do
     resources :trips do

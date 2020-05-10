@@ -1,20 +1,13 @@
 class RidesController < ApplicationController
 
     def show
-        @driver_id = current_user.id
-        availability = Availability.upcoming.find_closest_availability(@driver_id)
-        @availability_id = availability.id
-        @rider_id = availability.matched_user_id
-        @request_id = availability.matched_request_id
-        if @request_id != -10
-            ride_request = Request.find_by(id: @request_id)
-        end
-        rider = User.find(@rider_id)
-        @ride = Ride.find_by(driver: current_user, rider:rider, availability_id: @availability_id)
-        if @ride.nil?
-            @ride = Ride.create!(driver: current_user, rider: rider, request_id: @request_id, availability_id: @availability_id)
-        end
+        @ride = Ride.find_closest_ride(current_user.id)
         # if there is no request, driver and rider start at the same address and end at the same address
+        if @ride.request_id == -10
+            @availability = Availability.find(@ride.availability_id)
+        else
+            @request = Request.find(@ride.request_id)
+        end
         respond_to do |format|
             format.html
         end

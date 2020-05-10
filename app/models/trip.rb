@@ -11,5 +11,11 @@ class Trip < ApplicationRecord
     where("rider_id = ? ", rider_id)
   end
 
+  def self.find_closest_ride user_id
+    rides = Ride.find_by_driver_id(user_id)
+    rides.sort! {|a, b| a.trip_time <=> b.trip_time}
+    return rides[0]
+  end
+
 end
 

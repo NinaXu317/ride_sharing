@@ -6,12 +6,12 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:one)
   end
-
+  #
   test "should login in and go to search page" do
     get '/'
     assert_response :success
-    get new_user_registration_path
-    assert_equal 200, status
+    get '/users/sign_in'
+    assert_response :success
     @user.confirm
     sign_in @user
     post "/users/sign_in"

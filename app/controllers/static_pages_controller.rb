@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    head :ok
+    # head :ok
   end
 
   def about

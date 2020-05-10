@@ -1,8 +1,4 @@
-class SessionsController < Devise::SessionsController
-end
-
-
-# class SessionsController < ApplicationController
+class SessionsController < ApplicationController
 #
 #   def new
 #   end
@@ -29,4 +25,4 @@ end
 #     redirect_to root_path
 #   end
 #
-# end
+end
