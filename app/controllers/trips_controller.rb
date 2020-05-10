@@ -32,7 +32,7 @@ class TripsController < ApplicationController
       curr_lat = params[:curr_lat]
       curr_lon = params[:curr_lon]
       respond_to do |format|
-        format.js { render partial: 'rides/startRide', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon, :dest_lat => dest_lat, :dest_lon => dest_lon}}
+        format.js { render partial: 'startRide', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon, :dest_lat => dest_lat, :dest_lon => dest_lon}}
       end
     end
   end
