@@ -13,7 +13,7 @@
             <% availability = Availability.find(upcoming[0]) %>
             <%= render "trips_info", {:type => upcoming[1], :availability => availability } %>
           <% end %>
-          <%= link_to 'Start Ride', start_user_trips_path(current_user.id), class:"btn btn-primary" %>
+          <%= link_to 'Start Ride', user_trip_path(current_user.id, upcoming[2]), class:"btn btn-primary" %>
         </div>
       </div>
     <% end %>
