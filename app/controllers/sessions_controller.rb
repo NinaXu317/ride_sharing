@@ -1,5 +1,5 @@
-class SessionsController < Devise::SessionsController
-end
+# class SessionsController < Devise::SessionsController
+# end
 
 
 # class SessionsController < ApplicationController
