@@ -9,7 +9,7 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.all
+    @requests = Request.unmatched
   end
 
   def search
@@ -71,6 +71,7 @@ class RequestsController < ApplicationController
 
   # GET /requests/new
   def new
+    @user = User.find(current_user.id)
     @request = Request.new
   end
 

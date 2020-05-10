@@ -84,4 +84,5 @@ gem 'devise'
 gem "image_processing", "~> 1.0"
 gem 'kaminari'
 gem 'ratyrate'
+gem 'rails-controller-testing'
 # gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
