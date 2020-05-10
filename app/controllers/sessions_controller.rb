@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
-#
+# class SessionsController < Devise::SessionsController
+# end
+
+
+# class SessionsController < ApplicationController
 #   def new
 #   end
 #
