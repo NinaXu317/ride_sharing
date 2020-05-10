@@ -14,7 +14,7 @@
             navigator.geolocation.getCurrentPosition(function (position){
             $.ajax({
                 type: 'GET',
-                url: '/pickup',
+                url: '/users/' + current_user.id +'/trips/pickup',
                 data: { curr_lat: position.coords.latitude, curr_lon: position.coords.longitude },
                 success: function(){
                     alert("Successfully get your current location");

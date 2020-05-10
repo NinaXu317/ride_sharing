@@ -2,7 +2,7 @@
   <div class="card" style="width: 40rem;">
     <div class="card-body">
       <h2 class="card-title">Your trip details</h2>
-      <% if @ride.request_id == -10 %>
+      <% if @trip.request_id == -10 %>
         <div>
           <h4>Start: </h4>
           <%= @availability.start_street_address %>
@@ -14,7 +14,7 @@
         </div>
         <div style="margin-top:20px;">
           <p>If your rider is in car, please click the button to start trip:</p>
-          <%= link_to 'Confirm Address and Start Trip', pickup_path, class: "btn btn-primary" %>
+          <%= link_to 'Confirm Address and Start Trip', pickup_user_trips_path(current_user.id), class: "btn btn-primary" %>
         </div>
       <% else %>
         <p> You are heading to rider's location</p>
