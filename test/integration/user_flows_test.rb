@@ -1,15 +1,17 @@
 require 'test_helper'
 
 class UserFlowsTest < ActionDispatch::IntegrationTest
-  fixtures :users, :requests, :makes, :vehicles, :notifications
+  fixtures :users, :requests, :makes, :vehicles, :notifications,:trips
 
   def setup
     @user = users(:one)
     @user2 = users(:two)
     # @request = requests(:one)
     @notification = notifications(:one)
+    @trip = trips(:one)
+    @vehicle = vehicles(:one)
   end
-  #
+  
   test "should login in and go to search page" do
     get '/'
     assert_response :success
@@ -20,17 +22,9 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     post "/users/sign_in"
     assert_redirected_to root_path
     get search_user_requests_url(@user.id)
-    assert_template 'static_pages/home'
-    # assert_response :success
+    assert_template 'requests/_searchform'
+    assert_response :success
 
-    get new_user_registration_path
-    # assert_response 200, status
-    @user.confirm
-    sign_in @user
-    post "/users/sign_in"
-    assert_redirected_to root_path
-    get search_user_requests_url(@user.id)
-    # assert_equal 200, status
   end
 
   test "rider should login and go to make request" do
@@ -43,6 +37,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     post "/users/sign_in"
     assert_redirected_to root_path
     get new_user_request_path(@user2.id)
+    assert_response :success
     assert_template 'requests/new' 
   end
 
@@ -71,8 +66,10 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     post "/users/sign_in"
     assert_redirected_to root_path
     get edit_user_path(@user.id)
+    assert_response :success
     assert_template 'users/edit'
     get user_path(@user.id)
+    assert_response :success
     assert_template 'users/show'
      
   end
@@ -84,9 +81,10 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
     get user_path(@user2.id)
     assert_template 'users/show'
-    get trips_user_trips_path(@user.id)
+    get all_trips_user_trips_path(@user2.id)
     assert_template 'trips/show_upcoming_trip'
-    get trip_complete_user_trips_path(@user.id)
+    get trip_complete_user_trip_path(@user2.id, @trip.request_id)
+    assert_response :success
     assert_template 'trips/trip_complete'
   end
 
@@ -95,8 +93,8 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     sign_in @user
     post "/users/sign_in"
     assert_redirected_to root_path
-    get rider_pickup_user_trips_path(@user.id)
-    assert_template 'trips/rider_pickup'
+    get pickup_user_trip_path(@user.id,@trip.availability_id)
+    # assert_template 'trips/rider_pickup'
     get start_user_trips_path(@user.id)
     assert_template 'trips/start_trip'
   end
@@ -105,10 +103,35 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     @user.confirm
     sign_in @user
     get new_user_vehicle_path(@user)
-    assert_template 'vehicles/_form'
-    post user_vehicles_path(@user.id)
+    assert_select 'input',6
+    post user_vehicles_path(@user, vehicle:{license_number: @vehicle.license_number,
+                                            vehicle_make: @vehicle.vehicle_make,
+                                            vehicle_model: @vehicle.vehicle_model,
+                                            vehicle_color: @vehicle.vehicle_color,
+                                            vehicle_plate: @vehicle.vehicle_plate})
+    
     follow_redirect!
-    assert_template 'layouts/application'
+    assert_select 'a',8
+    get edit_user_vehicle_path(@user.id)
+    assert_template 'vehicles/_form'
 
   end
+  
+  test "driver should search " do
+    @user.confirm
+    sign_in @user
+    post user_trips_path(@user.id , trip:{driver_id: @trip.driver_id,
+                                      rider_id: @trip.rider_id,
+                                      availability_id: @trip.availability_id,
+                                      request_id: @trip.request_id})
+    assert_select 'a',2
+    get pickup_user_trip_path(@user.id, @trip.id)
+    assert_select 'a',2
+  end
+
+  test "driver make post and search request" do
+
+  end
+
+
 end
