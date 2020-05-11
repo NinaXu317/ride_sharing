@@ -2,7 +2,7 @@
   <div class="card" style="width: 40rem;">
     <div class="card-body">
       <h2 class="card-title">Your trip details</h2>
-      <% if @trip.request_id == -10 %>
+      <% if @trip.request_id == -1 %>
         <div>
           <h4>Start: </h4>
           <%= @availability.start_street_address %>
@@ -17,13 +17,39 @@
           <%= link_to 'Confirm Address and Start Trip', pickup_user_trip_path(current_user.id, @trip.id), class: "btn btn-primary" %>
         </div>
       <% else %>
-        <p> You are heading to rider's location</p>
-        <p>Start: </p>
+        <p> You need to pick up your rider first</p>
+        <p>Driver's Start: </p>
         <%= @request.start_street_address %>
-        <p>Destionation: </p>
+        <p>Ride Destionation: </p>
         <%= @request.end_street_address %>
+        <div class="navigation_rider">
+          <%= link_to "Get Direction to rider's location with google map", "javascript:getLocation()", class:"btn btn-info" %>
+        </div>
       <% end %>
     </div>
   </div>
 
 </div>
+
+<script>
+    var user_id = '<%= current_user.id %>';
+    var trip_id = '<%= @trip.id %>';
+
+    function getLocation(){
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position){
+                $.ajax({
+                    type: 'GET',
+                    url: '/users/' + user_id +'/trips/' + trip_id,
+                    data: { curr_lat: position.coords.latitude, curr_lon: position.coords.longitude },
+                    success: function(){
+                        alert("Successfully get your current location");
+                    },
+                    error: function(){
+                        alert("Unable to get your current location");
+                    }
+                })
+            })
+        }
+    };
+</script>
