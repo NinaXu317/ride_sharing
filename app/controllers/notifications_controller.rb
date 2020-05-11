@@ -3,13 +3,14 @@ class NotificationsController < ApplicationController
 
 
     def accept
-      puts "triggered"
+      puts "trigger driver accept ride"
       puts params[:request_id]
       puts current_user.id
 
       Trip.create(driver_id: current_user.id,
                   rider_id: Make.find_by(request_id: params[:request_id]).user_id,
                   request_id: params[:request_id],
+                  availability_id: -1,
                   status: "confirmed",
                   trip_time: Request.find(params[:request_id]).trip_time)
 
