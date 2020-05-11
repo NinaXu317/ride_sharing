@@ -50,7 +50,11 @@ class NotificationsController < ApplicationController
           availability.matched_user_id = User.find_by(phone_number: response_number).id
           availability.availability_status = "confirmed"
           availability.save
-          Trip.create!(driver_id: availability.matched_user_id, rider_id: current_user.id, availability_id: availability_id, trip_time: availability.trip_time)
+          Trip.create!(driver_id: availability.matched_user_id,
+                       rider_id: current_user.id,
+                       availability_id: availability_id,
+                       trip_time: availability.trip_time,
+                       status: "confirmed")
           curtAvail.destroy
         elsif response_text == "n"
           availability.availability_status = "started"
