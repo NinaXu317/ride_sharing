@@ -21,8 +21,8 @@ class TripsController < ApplicationController
 
   def pickup
     # find the request with the driver_id that has the closest timestamp
-    @ride = Ride.find_by(driver: current_user)
-    availability = Availability.find(@ride.availability_id)
+    @trip = Trip.find_closest_ride(current_user.id)
+    availability = Availability.find(@trip.availability_id)
     dest_lat = availability.end_lat
     dest_lon = availability.end_lon
 
@@ -32,22 +32,23 @@ class TripsController < ApplicationController
       curr_lat = params[:curr_lat]
       curr_lon = params[:curr_lon]
       respond_to do |format|
-        format.js { render partial: 'rides/startRide', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon, :dest_lat => dest_lat, :dest_lon => dest_lon}}
+        format.js { render partial: 'startRide', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon, :dest_lat => dest_lat, :dest_lon => dest_lon}}
       end
     end
   end
 
   def show
     @driver_id = current_user.id
-    # @trip =
-    @availability_id = availability.id
-    @rider_id = availability.matched_user_id
-    @request_id = availability.matched_request_id
+    @trip = Trip.find_closest_ride(@driver_id)
+    puts @trip
+    @availability_id = @trip.availability_id
+    @rider = User.find(@trip.rider_id)
+    @request_id = @trip.request_id
     if @request_id != -10
-      ride_request = Request.find_by(id: @request_id)
+      @request = Request.find_by(id: @request_id)
+    else
+      @availability = Availability.find(@availability_id)
     end
-    rider = User.find(@rider_id)
-    @ride = Ride.find_by(driver: current_user, rider:rider, availability_id: @availability_id)
     # if there is no request, driver and rider start at the same address and end at the same address
     respond_to do |format|
       format.html

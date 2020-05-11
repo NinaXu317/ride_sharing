@@ -64,7 +64,16 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.smtp_settings = {
+      address: "smtp.gmail.com",
+      port: 587,
+      domain: "gmail.com",
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: "yanxiaojingboston@gmail.com",
+      password: "65038971"
+  }
+  # config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
   config.action_cable.url = "ws://localhost:3000/cable"
 
