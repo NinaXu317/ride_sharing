@@ -86,4 +86,6 @@ gem 'kaminari'
 gem 'ratyrate'
 gem 'rails-controller-testing'
 gem 'autoprefixer-rails'
+gem 'rails_12factor', group: :production
+
 # gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
