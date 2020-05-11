@@ -7,6 +7,12 @@ class NotificationsController < ApplicationController
       puts params[:request_id]
       puts current_user.id
 
+      request = Request.find(params[:request_id])
+      request.matched_user_id = current_user.id
+      request.matched_availability_id = -1
+      request.request_status = 'confirmed'
+      request.save!
+
       Trip.create(driver_id: current_user.id,
                   rider_id: Make.find_by(request_id: params[:request_id]).user_id,
                   request_id: params[:request_id],
