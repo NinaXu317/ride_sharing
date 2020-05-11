@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_10_235150) do
+ActiveRecord::Schema.define(version: 2020_05_11_210556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,17 +71,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_235150) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer "recipient_id"
-    t.integer "actor_id"
-    t.datetime "read_at"
-    t.string "action"
-    t.integer "notifiable_id"
-    t.string "notifiable_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "availability_id"
@@ -104,6 +93,15 @@ ActiveRecord::Schema.define(version: 2020_05_10_235150) do
     t.float "start_lon"
     t.float "end_lat"
     t.float "end_lon"
+  end
+
+  create_table "rides", force: :cascade do |t|
+    t.integer "driver_id"
+    t.integer "rider_id"
+    t.integer "availability_id"
+    t.integer "request_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "trips", force: :cascade do |t|

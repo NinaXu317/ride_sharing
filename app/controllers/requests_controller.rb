@@ -5,6 +5,7 @@ class RequestsController < ApplicationController
   # before_action :authorized, only: [:show]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show]
+  include RequestsHelper
 
   # GET /requests
   # GET /requests.json
@@ -90,10 +91,10 @@ class RequestsController < ApplicationController
         user.makes << make
         @request.makes << make
         @make_id = make.id
-
+        # get the matched driver id
+        @matched_id = match
         format.html { redirect_to user_request_path(current_user, @request), notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
-        # matched_id = match
         # format.html { redirect_to @request, :status => 200, notice: 'Request was successfully created.' }
         # format.json { render :show, status: :created, location: @request }
       else
@@ -136,31 +137,5 @@ class RequestsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def request_params
       params.require(:request).permit(:start_city, :start_street_address, :start_zip, :end_city, :end_street_address, :end_zip, :trip_time, :distance, :highest_price_to_pay, :matched_availability_id, :request_status)
-    end
-
-    def match
-      unmatched_availabilities = Availability.unmatched.to_a.map(&:serializable_hash)
-      matcher = Matcher.new
-      matcher.add_item_to_match(@request.id, @request.start_lat, @request.start_lon, @request.end_lat, @request.end_lon, @request.trip_time, @request.highest_price_to_pay)
-      matcher.find_all_availabilities(unmatched_availabilities)
-      matched_id = matcher.find_best_match
-      if !matched_id.nil?
-        modify_request(matched_id)
-        modify_availability(matched_id)
-      end
-      return matched_id
-    end
-
-    def modify_request matched_id
-      @request.matched_availability_id = matched_id
-      @request.request_status = "waiting"
-      @request.save
-    end
-
-    def modify_availability matched_id
-      availability = Availability.find(matched_id)
-      availability.matched_request_id = @request.id
-      availability.availability_status = "waiting"
-      availability.save
     end
 end
