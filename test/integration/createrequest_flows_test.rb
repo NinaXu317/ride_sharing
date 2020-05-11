@@ -1,4 +1,4 @@
-# require 'test_helper'
+require 'test_helper'
 
 # class CreaterequestFlowsTest < ActionDispatch::IntegrationTest
 #   fixtures :users, :requests

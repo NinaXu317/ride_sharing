@@ -85,4 +85,5 @@ gem "image_processing", "~> 1.0"
 gem 'kaminari'
 gem 'ratyrate'
 gem 'rails-controller-testing'
+gem 'autoprefixer-rails'
 # gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
