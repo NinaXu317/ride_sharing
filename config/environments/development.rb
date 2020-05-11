@@ -71,7 +71,7 @@ Rails.application.configure do
       authentication: "plain",
       enable_starttls_auto: true,
       user_name: "yanxiaojingboston@gmail.com",
-      password: "65038971"
+      password: "1234qwer@BR"
   }
   # config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 

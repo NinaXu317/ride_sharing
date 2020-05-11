@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   include TripsHelper
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   respond_to :html
 
@@ -40,18 +41,24 @@ class TripsController < ApplicationController
   def show
     @driver_id = current_user.id
     @trip = Trip.find_closest_ride(@driver_id)
-    puts @trip
     @availability_id = @trip.availability_id
     @rider = User.find(@trip.rider_id)
     @request_id = @trip.request_id
-    if @request_id != -10
+    if @request_id != -1
       @request = Request.find_by(id: @request_id)
     else
       @availability = Availability.find(@availability_id)
     end
     # if there is no request, driver and rider start at the same address and end at the same address
-    respond_to do |format|
-      format.html
+    if request.xhr?
+      # render data on ajax request
+      dest_lat = @request.end_lat
+      dest_lon = @request.end_lon
+      curr_lat = params[:curr_lat]
+      curr_lon = params[:curr_lon]
+      respond_to do |format|
+        format.js { render partial: 'rider_pickup', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon, :dest_lat => dest_lat, :dest_lon => dest_lon}}
+      end
     end
   end
 
