@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # attr_accessor :login
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :confirmable, :recoverable, :database_authenticatable, :registerable, :rememberable, :validatable
+  devise :confirmable,  :database_authenticatable, :registerable
+         # :recoverable, :rememberable, :validatable
   defaults number_of_rating_given: 0, sum_of_rating_given: 0, number_of_rating_received: 0, sum_of_rating_received: 0
 
   validates :email, presence: true, uniqueness: true
