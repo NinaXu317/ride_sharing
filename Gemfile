@@ -88,4 +88,5 @@ gem 'rails-controller-testing'
 gem 'autoprefixer-rails'
 gem 'rails_12factor', group: :production
 
+gem "aws-sdk-s3", require: false
 # gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
