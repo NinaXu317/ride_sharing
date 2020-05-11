@@ -83,7 +83,6 @@ class RequestsController < ApplicationController
   # POST /requests.json
   def create
     @request = Request.new(request_params)
-    @user = User.find(current_user.id)
     respond_to do |format|
       if @request.save
         user = User.find(current_user.id)
