@@ -1,12 +1,12 @@
 require 'test_helper'
 
 class UserFlowsTest < ActionDispatch::IntegrationTest
-  fixtures :users, :requests, :makes, :vehicles, :notifications,:trips, :availabilities
+  fixtures :users, :requests, :makes, :vehicles, :trips, :availabilities
 
   def setup
     @user = users(:one)
     @user2 = users(:two)
-    @notification = notifications(:one)
+    # @notification = notifications(:one)
     @trip = trips(:one)
     @vehicle = vehicles(:one)
     @availability = availabilities(:one)
@@ -159,8 +159,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'form input', 11
     sign_out @user
     assert_response :success
-    
-
   end
 
 

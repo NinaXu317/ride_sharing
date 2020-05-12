@@ -10,14 +10,6 @@ class AvailabilitiesController < ApplicationController
     @availabilities = Availability.unmatched
   end
 
-  def show_past_trip
-
-  end
-
-  def show_canceled_trip
-
-  end
-
   def search
     # @availabilities = Availability.unmatched
     if params[:search]

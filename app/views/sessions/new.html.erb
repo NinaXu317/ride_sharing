@@ -35,15 +35,4 @@
   </div>
 <% end %>
 
-<script>
-    function onSignIn(googleUser){
-      // console.log("User is " + JSON.stringify(googleUser.getBasicProfile()))
-      location.redirecturi("http://localhost:3000/users")
-    }
-    function signOut(){
-      gapi.auth2.getAuthInstance().signOut().then(function(){
-        console.log("User signed out")
-      })
-    }
-</script>
 
