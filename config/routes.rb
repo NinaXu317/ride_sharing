@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  # mount ActionCable.server => '/cable'
+  mount ActionCable.server => '/websocket'
   devise_for :users, controllers: {
     confirmations: 'confirmations',
     registrations: 'registrations',
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       member do
         get "/pickup", to: "trips#pickup"
         get "/trip_complete", to: "trips#trip_complete"
+        get "/cancel", to: "trips#cancel"
       end
     end
     resources :vehicles
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
       collection do
         get '/notify', to: "notifications#notify"
         get '/accept', to: "notifications#accept"
+        get '/notify_rider', to: "notifications#notify_rider"
       end
     end
 

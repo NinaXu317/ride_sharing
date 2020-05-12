@@ -10,6 +10,28 @@ class TripsController < ApplicationController
     respond_with(@trips)
   end
 
+  def cancel
+    @trip = Trip.find(params[:trip_id])
+    @trip.status = "canceled"
+    @trip.save
+    availability_id = @trip.availability_id
+    request_id = @trip.request_id
+    if request_id != -1
+      request = Request.find(request_id)
+      request.request_status = "canceled"
+      if request.save
+        format.html
+      end
+    end
+    if availability_id != -1
+      availability = Availability.find(availability_id)
+      availability.availability_status = "canceled"
+      if availability.save
+        format.html
+      end
+    end
+  end
+
   def show_upcoming_trip
     # show driver's upcoming trips
     u_trips = Trip.upcoming.find_by_driver(current_user.id)
@@ -42,7 +64,8 @@ class TripsController < ApplicationController
     @driver_id = current_user.id
     @trip = Trip.find_closest_ride(@driver_id)
     @availability_id = @trip.availability_id
-    @rider = User.find(@trip.rider_id)
+    @rider_id = @trip.rider_id
+    @rider = User.find(@rider_id)
     @request_id = @trip.request_id
     if @request_id != -1
       @request = Request.find_by(id: @request_id)
