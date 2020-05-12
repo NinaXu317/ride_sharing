@@ -65,8 +65,17 @@ ActiveRecord::Schema.define(version: 2020_05_12_041240) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "matches", force: :cascade do |t|
+    t.integer "availability_id"
+    t.integer "request_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "content"
+    t.integer "sender_id"
+    t.integer "receiver_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -128,7 +137,6 @@ ActiveRecord::Schema.define(version: 2020_05_12_041240) do
     t.boolean "is_send_notification"
     t.string "encrypted_password", default: "", null: false
     t.bigint "phone_number"
-    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "vehicles", force: :cascade do |t|

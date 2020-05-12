@@ -158,8 +158,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'form input', 11
     sign_out @user
     assert_response :success
-    
-
   end
 
 

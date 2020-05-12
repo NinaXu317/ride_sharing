@@ -16,12 +16,16 @@
             <% if current_user.is_driver? %>
               <div id="start_button" style="margin-top:2px;">
                 <%= link_to 'Start Ride', user_trip_path(current_user.id, upcoming[2]), class:"btn btn-primary" %>
-                <% rider = Trip.find_by_id(upcoming[2]).rider_id %>
-                <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:rider), class: "btn btn-primary"%>
+                <%rider = Trip.find_by_id(upcoming[2]).rider_id %>
+                <%username = User.find_by_id(current_user.id).username %>
+                <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:rider, user_name:username), class: "btn btn-primary"%>
               </div>
             <% else %>
               <div id="start_button" style="margin-top:2px;">
                 <%= link_to 'Start Ride', user_rider_start_trip_path(current_user.id, :trip_id => upcoming[2]), class:"btn btn-primary" %>
+                <%username = User.find_by_id(current_user.id).username %>
+                <%driver = Trip.find_by_id(upcoming[2]).driver_id %>
+                <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:driver, user_name:username), class: "btn btn-primary"%>
               </div>
             <% end %>
           </div>

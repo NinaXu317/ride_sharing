@@ -5,51 +5,65 @@ class NotificationsController < ApplicationController
 
     def accept
       puts "trigger driver accept ride"
-      puts params[:request_id]
-      puts current_user.id
+      # puts params[:request_id]
+      # puts current_user.id
 
-      request = Request.find(params[:request_id])
+      request = Request.find(session[:request_id])
       request.matched_user_id = current_user.id
       request.matched_availability_id = -1
       request.request_status = 'confirmed'
       request.save!
+      #
+      # @trip = Trip.create(driver_id: current_user.id,
+      #             rider_id: Make.find_by(request_id: params[:request_id]).user_id,
+      #             request_id: params[:request_id],
+      #             availability_id: -1,
+      #             status: "confirmed",
+      #             trip_time: Request.find(params[:request_id]).trip_time)
 
-      @trip = Trip.create(driver_id: current_user.id,
-                  rider_id: Make.find_by(request_id: params[:request_id]).user_id,
-                  request_id: params[:request_id],
-                  availability_id: -1,
-                  status: "confirmed",
-                  trip_time: Request.find(params[:request_id]).trip_time)
-      # respond_to do |format|
-      #   if @trip.save
-      #     format.html { redirect_to root_path, notice: 'You accept the request successfully.' }
-      #   else
-      #     format.html { redirect_to search_user_requests_path, notice: "The request cannot be accepted. Try again."}
-      #   end
-      # end
+      @trip = Trip.new(driver_id: current_user.id,
+                          rider_id: Make.find_by(request_id: session[:request_id]).user_id,
+                          request_id: session[:request_id],
+                          availability_id: -1,
+                          status: "confirmed",
+                          trip_time: Request.find(session[:request_id]).trip_time)
+      session[:request_id] = nil
 
+      respond_to do |format|
+        if @trip.save
+          format.html { redirect_to search_user_requests_path, notice: 'You accept the request successfully.' }
+
+        else
+          format.html { redirect_to search_user_requests_path, notice: "The request cannot be accepted. Try again."}
+        end
+      end
     end
 
     def notify
       puts "notify driver"
-      # availability_id = params["availability_id"].to_i
-      availability = Availability.find(params[:availability_id])
+      availability = Availability.find(session[:availability_id])
       post = Post.find_by(availability_id: availability.id)
       user = User.find(post.user_id)
-      # if params["is_send_notification"] == "false"
-        twilio_client = TwilioClient.new
-        message = nil
-        if availability.matched_request_id < 0
-          message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{availability.start_street_address}, ends at #{availability.end_street_address}.\nThe trip time is #{availability.trip_time}. Text Y to accpet or N to ignore."
+      twilio_client = TwilioClient.new
+      message = nil
+      if availability.matched_request_id < 0
+        message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{availability.start_street_address}, ends at #{availability.end_street_address}.\nThe trip time is #{availability.trip_time}. Text Y to accpet or N to ignore."
+      else
+        request = Request.find(availability.matched_request_id)
+        message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{request.start_street_address}, ends at #{request.end_street_address}.\nThe trip time is #{request.trip_time}. Text Y to accpet or N to ignore."
+      end
+      availability.availability_status = "waiting"
+      availability.save!
+      CurtAvail.create!(availability_id: availability.id, phone_number: user.phone_number)
+      twilio_client.send_text(user, message)
+      session[:availability_id] = nil
+      respond_to do |format|
+        if @trip.save
+          format.html { redirect_to search_user_requests_path, notice: 'You accept the request successfully.' }
         else
-          request = Request.find(availability.matched_request_id)
-          message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{request.start_street_address}, ends at #{request.end_street_address}.\nThe trip time is #{request.trip_time}. Text Y to accpet or N to ignore."
+          format.html { redirect_to search_user_requests_path, notice: "The request cannot be accepted. Try again."}
         end
-        availability.availability_status = "waiting"
-        availability.save!
-        CurtAvail.create!(availability_id: availability.id, phone_number: user.phone_number)
-        twilio_client.send_text(user, message)
-      # end
+      end
     end
 
     def notify_trip_cancel

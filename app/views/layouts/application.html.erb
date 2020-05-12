@@ -31,7 +31,7 @@
   <body>
     <%= render 'layouts/navigation.html.erb' %>
     <main>
-      <%= render 'layouts/notice.html.erb' %>
+      <%#= render 'layouts/notice.html.erb' %>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
   </body>

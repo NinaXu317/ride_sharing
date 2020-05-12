@@ -10,12 +10,14 @@ class MessagesController < ApplicationController
         
         puts("!!!!"+msg_params[:receiver_id])
         puts("!!!!"+msg_params[:sender_id])
+        # puts("!!!!"+msg_params[:user_name])
         @message = Message.create(msg_params)
         if @message.save
             ActionCable.server.broadcast 'room_channel',
                                         content: @message.content, 
                                         sender_id: @message.sender_id , 
                                         receiver_id: @message.receiver_id
+                                        # user_name: @message.user_name
         end
     end
 

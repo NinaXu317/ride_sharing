@@ -38,4 +38,6 @@
     </div>
   <% end %>
   <%= link_to 'Trip Started', user_rider_during_trip_path(current_user, :trip_id=> @trip.id), class: "btn btn-primary"%>
+  <%username = User.find_by_id(current_user.id).username %>
+  <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:@driver.id, user_name:username), class: "btn btn-primary"%>
 </div>
