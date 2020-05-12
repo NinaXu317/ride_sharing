@@ -24,6 +24,8 @@
         <p>Ride Destionation: </p>
         <%= @request.end_street_address %>
         <div class="navigation_rider">
+          <%username = User.find_by_id(current_user.id).username %>
+          <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:@trip.rider_id, user_name:username), class: "btn btn-info"%>
           <%= link_to "Notify Rider for picking up", notify_rider_user_notifications_path(current_user.id, :rider_id => @trip.rider_id, :message_type => "pickup_start"), class:"btn btn-info", :remote => true %>
           <%= link_to "Get Direction to rider's location with google map", "javascript:getLocation()", class:"btn btn-info" %>
         </div>
