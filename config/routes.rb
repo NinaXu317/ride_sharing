@@ -47,13 +47,16 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:new, :create]
 
-  root 'static_pages#home' 
+  root 'static_pages#home'
+  post "/message", to: "notifications#message"
+
+
   # get '/about', to: "static_pages#about"
   # get '/help', to: "static_pages#help"
   # get '/fill_info', to: "static_pages#fill_information"
   # get '/signup', to: "users#new"
   # get "/login", to: "sessions#new", :as => :new_session
-  post "/message", to: "notifications#message"
+  # post "/message", to: "notifications#message"
   # get "/notify", to: "notifications#notify"
   # get "/index", to: "rides#index"
   get "/chat", to: "landing#chat"

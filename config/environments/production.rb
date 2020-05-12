@@ -5,6 +5,8 @@ Rails.application.configure do
   # Store files on Amazon S3.
   config.active_storage.service = :amazon
 
+  config.hosts << "ride-sharing-demo.herokuapp.com"
+
 
   config.action_mailer.delivery_method = :smtp
 

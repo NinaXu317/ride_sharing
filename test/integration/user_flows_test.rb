@@ -1,15 +1,15 @@
 require 'test_helper'
 
 class UserFlowsTest < ActionDispatch::IntegrationTest
-  fixtures :users, :requests, :makes, :vehicles, :notifications,:trips
+  fixtures :users, :requests, :makes, :vehicles, :notifications,:trips, :availabilities
 
   def setup
     @user = users(:one)
     @user2 = users(:two)
-    # @request = requests(:one)
     @notification = notifications(:one)
     @trip = trips(:one)
     @vehicle = vehicles(:one)
+    @availability = availabilities(:one)
   end
   
   test "should login in and go to search page" do
@@ -117,7 +117,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 
   end
   
-  test "driver should search " do
+  test "driver should pickup a rider " do
     @user.confirm
     sign_in @user
     post user_trips_path(@user.id , trip:{driver_id: @trip.driver_id,
@@ -126,10 +126,40 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
                                       request_id: @trip.request_id})
     assert_select 'a',2
     get pickup_user_trip_path(@user.id, @trip.id)
-    assert_select 'a',2
+    follow_redirect!
+    assert_response :success
   end
 
   test "driver make post and search request" do
+    @user.confirm
+    sign_in @user
+    get new_user_availability_path(@user.id)
+    assert_response :success
+    assert_select 'form input', 5
+    post user_availabilities_path(@user.id, availability: 
+                                 {start_street_address: @availability.start_street_address,
+                                  end_street_address: @availability.end_street_address,
+                                  trip_time: @availability.trip_time,
+                                  lowest_acceptable_price: @availability.lowest_acceptable_price
+                                  })
+    follow_redirect!
+    assert_response :success
+    assert_template 'availabilities/show'
+  end
+
+  test "driver edit phone number and log out" do
+    @user.confirm
+    sign_in @user
+    post users_path
+    assert_redirected_to root_path
+    follow_redirect!
+    assert_response :success
+    get edit_user_path(@user.id)
+    assert_response :success
+    assert_select 'form input', 11
+    sign_out @user
+    assert_response :success
+    
 
   end
 

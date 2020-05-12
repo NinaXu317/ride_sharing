@@ -32,7 +32,7 @@ class NotificationsController < ApplicationController
       if params["is_send_notification"] == "false"
         twilio_client = TwilioClient.new
         message = nil
-        if availability.matched_request_id == -1
+        if availability.matched_request_id < 0
           message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{availability.start_street_address}, ends at #{availability.end_street_address}.\nThe trip time is #{availability.trip_time}. Text Y to accpet or N to ignore."
         else
           request = Request.find(availability.matched_request_id)
@@ -73,7 +73,7 @@ class NotificationsController < ApplicationController
           availability.availability_status = "confirmed"
           availability.save
           post = Post.find_by(availability_id: availability_id)
-          if availability.matched_request_id == 1
+          if availability.matched_request_id < 0
             Trip.create!(driver_id: post.user_id,
                          rider_id: availability.matched_user_id,
                          availability_id: availability.id,
@@ -92,7 +92,7 @@ class NotificationsController < ApplicationController
           end
           curtAvail.destroy
         elsif response_text == "n"
-          if availability.matched_request_id != -1
+          if availability.matched_request_id > 0
             request = Request.find(availability.matched_request_id)
             request.matched_user_id = -1
             request.matched_availability_id = -1
