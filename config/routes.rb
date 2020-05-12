@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       collection do
         get '/notify', to: "notifications#notify"
         get '/accept', to: "notifications#accept"
+        get '/notify_rider', to: "notifications#notify_rider"
       end
     end
 

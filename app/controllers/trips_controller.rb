@@ -64,7 +64,8 @@ class TripsController < ApplicationController
     @driver_id = current_user.id
     @trip = Trip.find_closest_ride(@driver_id)
     @availability_id = @trip.availability_id
-    @rider = User.find(@trip.rider_id)
+    @rider_id = @trip.rider_id
+    @rider = User.find(@rider_id)
     @request_id = @trip.request_id
     if @request_id != -1
       @request = Request.find_by(id: @request_id)

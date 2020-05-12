@@ -10,9 +10,11 @@
     <%= local_assigns[:request].highest_price_to_pay %><br>
     <% make = Make.find_by(request_id: local_assigns[:request].id) %>
     <% rider = User.find_by(make.user_id) %>
-    <i class="fas fa-user"></i><strong> Rider: </strong>
-    <%= rider.username %>
-    <%= link_to "View Rider Profile", user_path(rider.id), class:"btn btn-primary"%><br>
+    <div id="button_rider" style = "margin_bottom:5px;">
+      <i class="fas fa-user"></i><strong> Rider: </strong>
+      <%= rider.username %>
+      <%= link_to "View Rider Profile", user_path(rider.id), class:"btn btn-primary btn-sm"%><br>
+    </div>
     <div id="cancel_button" style="margin-top:2px;">
       <% if can_cancel_trip(local_assigns[:request].trip_time) %>
         <%= button_to "Cancel Trip", cancel_user_trip_path(current_user, :trip_id => local_assigns[:request].id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-info btn-lg" } %>
@@ -32,6 +34,7 @@
     <% rider = User.find(availability.matched_user_id) %>
     <i class="fas fa-user"></i><strong> Rider: </strong>
     <%= rider.username %>
+
     <%= link_to "View Rider Profile", user_path(rider.id), class:"btn btn-primary"%><br>
     <% if availability.matched_request_id != -1 %>
       <i class="far fa-clipboard"></i><strong> Matched request: </strong>

@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
     skip_before_action :verify_authenticity_token
+    include NotificationsHelper
 
 
     def accept
@@ -26,7 +27,7 @@ class NotificationsController < ApplicationController
       puts "notify driver"
       # availability_id = params["availability_id"].to_i
       availability = Availability.find(params[:availability_id])
-      post = Post.find_by(availability_id: availability_id)
+      post = Post.find_by(availability_id: availability.id)
       user = User.find(post.user_id)
       if params["is_send_notification"] == "false"
         twilio_client = TwilioClient.new
@@ -39,12 +40,20 @@ class NotificationsController < ApplicationController
         end
         availability.availability_status = "waiting"
         availability.save!
-        CurtAvail.create!(availability_id: availability_id, phone_number: user.phone_number)
+        CurtAvail.create!(availability_id: availability.id, phone_number: user.phone_number)
         twilio_client.send_text(user, message)
       end
     end
 
-
+    def notify_rider
+      puts "notify rider for picking up"
+      tc = TwilioClient.new
+      rider_id = params[:rider_id]
+      rider = User.find(rider_id)
+      type = params[:message_type]
+      txt = find_messages(type)
+      tc.send_text(rider, txt)
+    end
 
     def message
       response = Twilio::TwiML::MessagingResponse.new
