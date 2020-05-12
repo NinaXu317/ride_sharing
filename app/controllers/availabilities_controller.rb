@@ -81,8 +81,14 @@ class AvailabilitiesController < ApplicationController
 
   # GET /availabilities/new
   def new
-    @user = User.find(current_user.id)
-    @availability = Availability.new
+    if !Vehicle.find_by(user_id: current_user.id).nil? && !current_user.phone_number.nil?
+      @user = User.find(current_user.id)
+      @availability = Availability.new
+    else
+      flash[:error] = "You have to submit your vehicle information and phone number to continue."
+      redirect_to root_path
+    end
+
   end
 
   # GET /availabilities/1/edit

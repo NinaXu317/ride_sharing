@@ -72,8 +72,13 @@ class RequestsController < ApplicationController
 
   # GET /requests/new
   def new
-    @user = User.find(current_user.id)
-    @request = Request.new
+    if !current_user.phone_number.nil?
+      @user = User.find(current_user.id)
+      @request = Request.new
+    else
+      flash[:error] = "You have to submit your phone number to continue."
+      redirect_to root_path
+    end
   end
 
   # GET /requests/1/edit
