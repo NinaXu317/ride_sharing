@@ -1,5 +1,5 @@
 <% content_for :content do %>
-  <div class="home">
+  <div id="hideWindow" class="home">
     <div class="wrapper fadeInDown">
       <div id="formContent">
         <!-- Icon -->
@@ -16,29 +16,29 @@
               <%= render "devise/shared/error_messages", resource: resource %>
 
               <div id="email", style="margin-left:10px; margin-right: 10px;">
-                <%= f.label "Username" %><br/>
-                <%= f.text_field :username, placeholder: "Username", class: "fadeIn second" %>
+<!--                <%#= f.label "Username" %><br/>-->
+                <br/><%= f.text_field :username, placeholder: "Username", class: "fadeIn second" %>
               </div>
 
               <div class="email", style="margin-left:10px; margin-right: 10px;">
-                <%= f.label "Email" %><br/>
-                <%= f.text_field :email, placeholder: "Email", class: "fadeIn second" %>
+<!--                <%#= f.label "Email" %><br/>-->
+                <br/><%= f.text_field :email, placeholder: "Email", class: "fadeIn second" %>
               </div>
 
               <div id="password", style="margin-left:10px; margin-right: 10px;">
-                <%= f.label "Password" %>
-                <% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> characters minimum)</em>
-                <% end %><br/>
-                <%= f.password_field :password, placeholder: "Password", class: "fadeIn third" %>
+<!--                <%#= f.label "Password" %><br/>-->
+                <%# if @minimum_password_length %>
+<!--                  <em>(<%#= @minimum_password_length %> characters minimum)</em>-->
+<!--                <%# end %><br/>-->
+                <br/><%= f.password_field :password, placeholder: "Password (6 Chars Min)", class: "fadeIn third" %>
               </div>
 
               <div id="password_confirmation", style="margin-left:10px; margin-right: 10px;">
-                <%= f.label "Password Confirmation" %><br/>
-                <%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: "fadeIn third" %>
+<!--                <%#= f.label "Password Confirmation" %><br/>-->
+                <br/><%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: "fadeIn third" %>
               </div>
 
-              <div class="field", style="margin-top: 5px;">
+              <br/><div class="field", style="margin-top: 5px;">
                 <%= f.radio_button :is_driver, true %>
                 <%= f.label :is_driver, 'Driver', value: true %>
                 <%= f.radio_button :is_driver, false, checked: true %>
@@ -51,8 +51,23 @@
             <% end %>
           </div>
         </div>
+                <div id="formFooter">
+                  <a class="underlineHover" href="<%= root_path %>">Cancel</a>
+                </div>
       </div>
     </div>
   </div>
 <% end %>
+
+<!--<script>-->
+
+<!--        document.getElementById('formFooter').onclick = function(e){-->
+<!--            document.getElementById('formContent').style.display = 'none';-->
+<!--            window.location.href = '<%#= root_path %>'-->
+<!--            // if(e.target.id !== 'formContent'){-->
+<!--            //     document.getElementById('formContent').style.display = 'none';-->
+<!--            // }-->
+<!--        };-->
+
+<!--</script>-->
 <%#= render "devise/shared/links" %>

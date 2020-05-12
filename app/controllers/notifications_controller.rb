@@ -14,12 +14,19 @@ class NotificationsController < ApplicationController
       request.request_status = 'confirmed'
       request.save!
 
-      Trip.create(driver_id: current_user.id,
+      @trip = Trip.create(driver_id: current_user.id,
                   rider_id: Make.find_by(request_id: params[:request_id]).user_id,
                   request_id: params[:request_id],
                   availability_id: -1,
                   status: "confirmed",
                   trip_time: Request.find(params[:request_id]).trip_time)
+      # respond_to do |format|
+      #   if @trip.save
+      #     format.html { redirect_to root_path, notice: 'You accept the request successfully.' }
+      #   else
+      #     format.html { redirect_to search_user_requests_path, notice: "The request cannot be accepted. Try again."}
+      #   end
+      # end
 
     end
 
@@ -29,7 +36,7 @@ class NotificationsController < ApplicationController
       availability = Availability.find(params[:availability_id])
       post = Post.find_by(availability_id: availability.id)
       user = User.find(post.user_id)
-      if params["is_send_notification"] == "false"
+      # if params["is_send_notification"] == "false"
         twilio_client = TwilioClient.new
         message = nil
         if availability.matched_request_id < 0
@@ -42,7 +49,7 @@ class NotificationsController < ApplicationController
         availability.save!
         CurtAvail.create!(availability_id: availability.id, phone_number: user.phone_number)
         twilio_client.send_text(user, message)
-      end
+      # end
     end
 
     def notify_rider

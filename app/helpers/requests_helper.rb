@@ -1,10 +1,11 @@
 require './app/lib/matcher'
 
 module RequestsHelper
-  def match_availability
+  def match_availability request
+    puts "I'm matching"
     unmatched_availabilities = Availability.unmatched.to_a.map(&:serializable_hash)
     matcher = Matcher.new
-    matcher.add_item_to_match(@request.id, @request.start_lat, @request.start_lon, @request.end_lat, @request.end_lon, @request.trip_time, @request.highest_price_to_pay)
+    matcher.add_item_to_match(request.id, request.start_lat, request.start_lon, request.end_lat, request.end_lon, request.trip_time, request.highest_price_to_pay)
     matcher.find_all_availabilities(unmatched_availabilities)
     matched_id = matcher.find_best_match
     if !matched_id.nil?
@@ -12,6 +13,8 @@ module RequestsHelper
       modify_request(matched_id)
       modify_availability(availability)
     end
+    puts "matched_id"
+    puts matched_id
     return matched_id
   end
 
