@@ -13,6 +13,14 @@ class TwilioClient
             body: message,
             )
     end
+
+    def call_user(user)
+        @client.calls.create(
+            to: user.phone_number,
+            from: phone_number,
+            url: 'http://demo.twilio.com/docs/voice.xml' # Fetch instructions from this URL when the call connects
+            )
+    end
     #
     # def send_text(user, message, availability_id)
     #     service = @client.messaging.services.create(friendly_name: availability_id)

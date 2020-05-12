@@ -39,13 +39,22 @@ class TripsController < ApplicationController
     # @rider_id = rider
     # @rider = User.find(@rider_id)
     # @request_id = @trip.request_id
+
     # show driver's upcoming trips
-    u_trips = Trip.upcoming.find_by_driver(current_user.id)
-    p_trips = Trip.completed.find_by_driver(current_user.id)
     upcoming_trips = []
     past_trips = []
-    @upcoming_trips = find_trip(u_trips, upcoming_trips)
-    @past_trips = find_trip(p_trips, past_trips)
+    if current_user.is_driver
+      u_trips = Trip.upcoming.find_by_driver(current_user.id)
+      p_trips = Trip.completed.find_by_driver(current_user.id)
+      @upcoming_trips = find_trip(u_trips, upcoming_trips)
+      @past_trips = find_trip(p_trips, past_trips)
+    # show rider's upcoming trips
+    else
+      u_trips = Trip.upcoming.find_by_rider(current_user.id)
+      p_trips = Trip.completed.find_by_rider(current_user.id)
+      @upcoming_trips = find_trip(u_trips, upcoming_trips)
+      @past_trips = find_trip(p_trips, past_trips)
+    end
   end
 
   def pickup

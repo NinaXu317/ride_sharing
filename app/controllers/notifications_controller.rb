@@ -53,13 +53,27 @@ class NotificationsController < ApplicationController
     end
 
     def notify_rider
-      puts "notify rider for picking up"
       tc = TwilioClient.new
       rider_id = params[:rider_id]
       rider = User.find(rider_id)
       type = params[:message_type]
       txt = find_messages(type)
       tc.send_text(rider, txt)
+    end
+
+    def notify_driver
+      tc = TwilioClient.new
+      driver_id = params[:driver_id]
+      driver = User.find(driver_id)
+      type = params[:message_type]
+      txt = find_messages_rider(type)
+      tc.send_text(driver, txt)
+    end
+
+    def call_driver
+      driver = User.find(params[:driver_id])
+      tc = TwilioClient.new
+      tc.call_user(driver)
     end
 
     def message

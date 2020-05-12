@@ -14,4 +14,10 @@ module NotificationsHelper
       return "Your trip has completed"
     end
   end
+
+  def find_messages_rider type
+    if type == "at_start"
+      return "I have arrived at your start location"
+    end
+  end
 end
