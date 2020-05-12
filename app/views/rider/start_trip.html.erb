@@ -1,0 +1,41 @@
+<div id="rider_start_trip" style="margin-top:5%;margin-left:5%">
+  <% if @trip.request_id == -1 %>
+    <div class="card" style="width: 40rem;">
+      <div class="card-body">
+        <h3 class="card-title">Trip Details</h3>
+        <h4>Please meet your driver at the start location</h4>
+        <% if @driver.username %>
+          <p>Driver: <%= @driver.username %></p>
+        <% end %>
+        <% if @driver.phone_number %>
+          <p>Driver's Phone Number: <%= @driver.phone_number %></p>
+          <%= link_to 'Call Driver', call_driver_user_notifications_path(current_user, :driver_id => @driver.id), class: "btn btn-primary", remote: true%>
+        <% end %>
+        <p>Start Address: <%= @availability.start_street_address %></p>
+        <p>End Address: <%= @availability.end_street_address %></p>
+        <p>Trip Distance: <%= @availability.trip_distance.round(2) %>km</p>
+        <p>Trip Time: <%= @trip.trip_time %></p>
+        <%= link_to 'Notify Driver for Arrival', notify_driver_user_notifications_path(current_user, :driver_id => @driver.id, :message_type => "at_start"), class: "btn btn-primary", remote: true %>
+      </div>
+    </div>
+  <% else %>
+    <div class="card" style="width: 40rem;">
+      <div class="card-body">
+        <h3 class="card-title">Trip Details</h3>
+        <h4>Waiting for your driver to pick you up</h4>
+        <% if @driver.username %>
+          <p>Driver: <%= @driver.username %></p>
+        <% end %>
+        <% if @driver.phone_number %>
+          <p>Driver's Phone Number: <%= @driver.phone_number %></p>
+          <%= link_to 'Call Driver', call_driver_user_notifications_path(current_user, :driver_id => @driver.id), class: "btn btn-primary", remote: true%>
+        <% end %>
+        <p>Start Address: <%= @request.start_street_address %></p>
+        <p>End Address: <%= @request.end_street_address %></p>
+        <p>Trip Distance: <%= @request.trip_distance.round(2) %>km</p>
+        <p>Trip Time: <%= @trip.trip_time %></p>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to 'Trip Started', user_rider_during_trip_path(current_user), class: "btn btn-primary"%>
+</div>
