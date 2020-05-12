@@ -1,2 +1,9 @@
-<%= render 'form', user: @user %>
+<div id="edit_user"; style="margin-left:35%; margin-right:35%;margin-top: 10px">
+  <h1 class="text-center">Edit User Profile</h1>
+  <%= render 'form', user: @user %>
 
+  <!--<%#= link_to 'Show', user_vehicle_path(@user, @vehicle), class:"btn btn-primary" %> |-->
+  <div style="text-align:center; padding-top:150px;">
+    <%= link_to 'Back To Profile', user_path(@user), class:"btn btn-primary" %>
+  </div>
+</div>

@@ -5,6 +5,7 @@
   <div>
     <h1 class="welcome", style="font-size: 5rem;">Welcome to Ride Sharing</h1>
     <h3 class="welcome", style="font-size: 2.5rem;">A new way to change your trip</h3>
+
   </div>
   <div id="home-buttons">
     <% if !current_user %>
@@ -14,7 +15,7 @@
       </ul>
     <% else %>
       <% if current_user.is_driver%>
-        <ul class="sign_up">
+        <ul class="sign_up ">
           <%= link_to "Search for a request", search_user_requests_path(current_user), class: "btn btn-lg  btn-info sign_up_button"%>
           <%= link_to "Post an availability", new_user_availability_path(current_user), class: "btn btn-lg  btn-info sign_up_button"%>
         </ul>
