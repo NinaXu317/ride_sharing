@@ -14,7 +14,7 @@ class NotificationsController < ApplicationController
       request.request_status = 'confirmed'
       request.save!
 
-      @trip = Trip.new(driver_id: current_user.id,
+      @trip = Trip.create(driver_id: current_user.id,
                   rider_id: Make.find_by(request_id: params[:request_id]).user_id,
                   request_id: params[:request_id],
                   availability_id: -1,
