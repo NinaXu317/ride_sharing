@@ -43,9 +43,11 @@ Rails.application.routes.draw do
         get '/notify_rider', to: "notifications#notify_rider"
       end
     end
-
+    
   end
   resources :messages, only: [:new, :create]
+  get "/landingindex", to: "landing#index"
+  # resources :messages, only: [:new, :create]
 
   root 'static_pages#home'
   post "/message", to: "notifications#message"
@@ -59,7 +61,6 @@ Rails.application.routes.draw do
   # post "/message", to: "notifications#message"
   # get "/notify", to: "notifications#notify"
   # get "/index", to: "rides#index"
-  get "/chat", to: "landing#chat"
   # get 'landing/index'
-  get "/landingindex", to: "landing#index"
+  
 end

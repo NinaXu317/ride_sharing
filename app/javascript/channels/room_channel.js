@@ -13,7 +13,9 @@ consumer.subscriptions.create("RoomChannel", {
   received(data) {
     console.log(data.sender_id)
     console.log($('form label').attr("data-current-user-id"))
-    if(data.sender_id == $('form label').attr("data-current-user-id")){
+    // var sender = data.sender_id
+    // var receiver = $( "#message_receiver_id" ).val()
+    if (data.sender_id == $('form label').attr("data-current-user-id")){
       $('#message_holder').append('<div class="message">' + data.content + '</div>')
     }
     else{
