@@ -1,3 +1,4 @@
+<div id="wholeWindow">
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal">x</button>
 </div>
@@ -20,7 +21,13 @@
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 </div>
+</div>
 
+<script>
+  $('#submit_button').on('click', function(){
+      $('#modal-window').modal('hide')
+  })
+</script>
 <!--<script>-->
 <!--    $('#submit_button').click(function() {-->
 <!--        $('#modal-window').modal('hide');-->

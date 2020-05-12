@@ -13,12 +13,19 @@ class NotificationsController < ApplicationController
       request.request_status = 'confirmed'
       request.save!
 
-      Trip.create(driver_id: current_user.id,
+      @trip = Trip.new(driver_id: current_user.id,
                   rider_id: Make.find_by(request_id: params[:request_id]).user_id,
                   request_id: params[:request_id],
                   availability_id: -1,
                   status: "confirmed",
                   trip_time: Request.find(params[:request_id]).trip_time)
+      respond_to do |format|
+        if @trip.save
+          format.html { redirect_to root_path, notice: 'You accept the request successfully.' }
+        else
+          format.html { redirect_to search_user_requests_path, notice: "The request cannot be accepted. Try again."}
+        end
+      end
 
     end
 

@@ -14,13 +14,13 @@
           <div class="content">
             <%= form_for(resource, as: resource_name, url: new_user_session_path) do |f| %>
               <div id="email" , style="margin-left:10px; margin-right: 10px;">
-                <%= f.label "Email" %><br/>
-                <%= f.text_field :email, placeholder: "Email", class: "fadeIn second" %>
+<!--                <%#= f.label "Email" %><br/>-->
+                <br/><%= f.text_field :email, placeholder: "Email", class: "fadeIn second" %>
               </div>
 
               <div id="password" , style="margin-top: 10px;">
-                <%= f.label "Password" %><br/>
-                <%= f.password_field :password, placeholder: "Password", class: "fadeIn third" %>
+<!--                <%#= f.label "Password" %><br/>-->
+                <br/><%= f.password_field :password, placeholder: "Password", class: "fadeIn third" %>
               </div>
 
               <%# if devise_mapping.rememberable? %>
@@ -37,9 +37,9 @@
           </div>
 
         </div>
-<!--        <div id="formFooter">-->
-<!--          <a class="underlineHover" href="#">Forgot Password?</a>-->
-<!--        </div>-->
+        <div id="formFooter">
+          <a class="underlineHover" href="<%= root_path %>">Cancel</a>
+        </div>
       </div>
     </div>
   </div>
