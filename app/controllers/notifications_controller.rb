@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
     skip_before_action :verify_authenticity_token
+    include NotificationsHelper
 
 
     def accept
@@ -44,7 +45,15 @@ class NotificationsController < ApplicationController
       end
     end
 
-
+    def notify_rider
+      puts "notify rider for picking up"
+      tc = TwilioClient.new
+      rider_id = params[:rider_id]
+      rider = User.find(rider_id)
+      type = params[:message_type]
+      txt = find_messages(type)
+      tc.send_text(rider, txt)
+    end
 
     def message
       response = Twilio::TwiML::MessagingResponse.new

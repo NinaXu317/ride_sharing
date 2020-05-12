@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class NotificationTest < ActiveSupport::TestCase
+class RiderControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
