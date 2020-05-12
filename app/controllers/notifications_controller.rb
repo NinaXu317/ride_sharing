@@ -66,14 +66,41 @@ class NotificationsController < ApplicationController
       end
     end
 
+    def notify_trip_cancel
+      tc = TwilioClient.new
+      trip_id = params[:trip_id]
+      trip = Trip.find(trip_id)
+      rider = User.find(trip.rider_id)
+      driver = User.find(trip.driver_id)
+      if trip.status != "canceled"
+        send_cancellation_message(tc, rider, driver, trip)
+        trip.status = "canceled"
+        trip.save
+      end
+    end
+
     def notify_rider
-      puts "notify rider for picking up"
       tc = TwilioClient.new
       rider_id = params[:rider_id]
       rider = User.find(rider_id)
       type = params[:message_type]
       txt = find_messages(type)
       tc.send_text(rider, txt)
+    end
+
+    def notify_driver
+      tc = TwilioClient.new
+      driver_id = params[:driver_id]
+      driver = User.find(driver_id)
+      type = params[:message_type]
+      txt = find_messages_rider(type)
+      tc.send_text(driver, txt)
+    end
+
+    def call_driver
+      driver = User.find(params[:driver_id])
+      tc = TwilioClient.new
+      tc.call_user(driver)
     end
 
     def message

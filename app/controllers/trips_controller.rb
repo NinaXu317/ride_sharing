@@ -12,34 +12,45 @@ class TripsController < ApplicationController
 
   def cancel
     @trip = Trip.find(params[:trip_id])
-    @trip.status = "canceled"
     @trip.save
     availability_id = @trip.availability_id
     request_id = @trip.request_id
     if request_id != -1
       request = Request.find(request_id)
       request.request_status = "canceled"
-      if request.save
-        format.html
-      end
+      request.save
     end
     if availability_id != -1
       availability = Availability.find(availability_id)
       availability.availability_status = "canceled"
-      if availability.save
-        format.html
-      end
+      availability.save
     end
+    redirect_to notify_cancel_user_notifications_path(current_user.id, :trip_id => @trip.id) and return
   end
 
   def show_upcoming_trip
+    # @driver_id = current_user.id
+    # @trip = Trip.find_closest_ride(@driver_id)
+    # @availability_id = @trip.availability_id
+    # @rider_id = rider
+    # @rider = User.find(@rider_id)
+    # @request_id = @trip.request_id
+
     # show driver's upcoming trips
-    u_trips = Trip.upcoming.find_by_driver(current_user.id)
-    p_trips = Trip.completed.find_by_driver(current_user.id)
     upcoming_trips = []
     past_trips = []
-    @upcoming_trips = find_trip(u_trips, upcoming_trips)
-    @past_trips = find_trip(p_trips, past_trips)
+    if current_user.is_driver
+      u_trips = Trip.upcoming.find_by_driver(current_user.id)
+      p_trips = Trip.completed.find_by_driver(current_user.id)
+      @upcoming_trips = find_trip(u_trips, upcoming_trips)
+      @past_trips = find_trip(p_trips, past_trips)
+    # show rider's upcoming trips
+    else
+      u_trips = Trip.upcoming.find_by_rider(current_user.id)
+      p_trips = Trip.completed.find_by_rider(current_user.id)
+      @upcoming_trips = find_trip(u_trips, upcoming_trips)
+      @past_trips = find_trip(p_trips, past_trips)
+    end
   end
 
   def pickup

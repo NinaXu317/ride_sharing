@@ -6,7 +6,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:one)
     @user2 = users(:two)
-    # @notification = notifications(:one)
     @trip = trips(:one)
     @vehicle = vehicles(:one)
     @availability = availabilities(:one)
@@ -31,7 +30,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     get '/'
     assert_template 'static_pages/home'
     get new_user_registration_path
-    # assert_response 200, status
+    assert_response 200, status
     @user2.confirm
     sign_in @user2
     post "/users/sign_in"
@@ -60,7 +59,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     get '/'
     assert_template 'static_pages/home'
     get new_user_registration_path
-    # assert_response 200, status
+    assert_response 200, status
     @user.confirm
     sign_in @user
     post "/users/sign_in"

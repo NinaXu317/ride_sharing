@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     confirmations: 'confirmations',
     registrations: 'registrations',
-    # sessions: 'sessions'
   }
   resources :users do
+
+    get "/rider_start_trip", to: "rider#start_trip"
+    get "/rider_during_trip", to: "rider#during_trip"
+    get "/rider_end_trip", to: "rider#end_trip"
+
     resources :trips do
       collection do
         get "/start", to: "trips#start_trip"
@@ -18,7 +22,7 @@ Rails.application.routes.draw do
       member do
         get "/pickup", to: "trips#pickup"
         get "/trip_complete", to: "trips#trip_complete"
-        get "/cancel", to: "trips#cancel"
+        post "/cancel", to: "trips#cancel"
       end
     end
     resources :vehicles
@@ -43,11 +47,14 @@ Rails.application.routes.draw do
         get '/accept', to: "notifications#accept"
         # post '/accept', to: "notifications#accept"
         get '/notify_rider', to: "notifications#notify_rider"
+        get '/call_driver', to: "notifications#call_driver"
+        get '/notify_cancel', to: "notifications#notify_trip_cancel"
       end
     end
-
+    
   end
   resources :messages, only: [:new, :create]
+  get "/landingindex", to: "landing#index"
 
   root 'static_pages#home'
   post "/message", to: "notifications#message"
@@ -61,7 +68,5 @@ Rails.application.routes.draw do
   # post "/message", to: "notifications#message"
   # get "/notify", to: "notifications#notify"
   # get "/index", to: "rides#index"
-  get "/chat", to: "landing#chat"
-  # get 'landing/index'
-  get "/landingindex", to: "landing#index"
+  
 end

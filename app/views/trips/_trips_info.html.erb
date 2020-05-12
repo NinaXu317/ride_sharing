@@ -1,4 +1,5 @@
 <div id ="trip_info_partial">
+  <% trip = Trip.find(local_assigns[:trip_id]) %>
   <% if local_assigns[:type] == 'request'%>
     <i class="fas fa-map-marker-alt"></i><strong> Start address: </strong>
     <%= local_assigns[:request].start_street_address %><br>
@@ -16,9 +17,8 @@
       <%= link_to "View Rider Profile", user_path(rider.id), class:"btn btn-primary btn-sm"%><br>
     </div>
     <div id="cancel_button" style="margin-top:2px;">
-      <% if can_cancel_trip(local_assigns[:request].trip_time) %>
-        <%= button_to "Cancel Trip", cancel_user_trip_path(current_user, :trip_id => local_assigns[:request].id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-info btn-lg" } %>
-        <%= render 'cancel_modal' %>
+      <% if can_cancel_trip(trip.trip_time) %>
+        <%= button_to "Cancel Trip", cancel_user_trip_path(current_user, trip.id, :trip_id => trip.id), remote: true, class: "btn btn-info btn-lg" %>
       <% end %>
     </div>
   <% else %>
@@ -41,9 +41,8 @@
       <% request = Request.find(availability.matched_request_id) %>
       <%= link_to "View Request Matched", user_request_path(current_user, availability.matched_request_id), class:"btn btn-primary"%><br>
       <div id="cancel_button" style="margin-top:2px;">
-        <% if can_cancel_trip(request.trip_time) %>
-          <%= button_to "Cancel Trip", cancel_user_trip_path(current_user, :trip_id => request.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-info btn-lg" } %>
-          <%= render 'cancel_modal' %>
+        <% if can_cancel_trip(trip.trip_time) %>
+          <%= button_to "Cancel Trip", cancel_user_trip_path(current_user, trip.id, :trip_id => trip.id), remote: true, class: "btn btn-info btn-lg" %>
         <% end %>
       </div>
     <% end %>
