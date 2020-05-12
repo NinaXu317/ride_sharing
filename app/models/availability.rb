@@ -5,7 +5,6 @@ class Availability < ApplicationRecord
     has_one :user, :through => :posts
     has_one :request
     has_many :posts, dependent: :destroy
-    has_many :rides, foreign_key: :availability_id
     default_scope { includes(:posts) }
     scope :unmatched, -> { where(matched_user_id: -1) }
     scope :started, -> { where(availability_status: "started")}

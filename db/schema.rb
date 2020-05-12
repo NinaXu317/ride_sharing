@@ -122,12 +122,12 @@ ActiveRecord::Schema.define(version: 2020_05_12_041240) do
     t.integer "sum_of_rating_received"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
     t.boolean "is_send_notification"
     t.string "encrypted_password", default: "", null: false
     t.bigint "phone_number"
+    t.string "confirmation_token"
+    t.string "confirmed_at"
+    t.string "confirmation_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
