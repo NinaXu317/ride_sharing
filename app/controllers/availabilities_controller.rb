@@ -2,7 +2,7 @@ class AvailabilitiesController < ApplicationController
   respond_to :js
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
   # before_action :authorized, only: [:show]
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!
 
   # GET /availabilities
   # GET /availabilities.json

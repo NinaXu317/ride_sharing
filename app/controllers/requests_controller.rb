@@ -4,7 +4,7 @@ class RequestsController < ApplicationController
   respond_to :js
   # before_action :authorized, only: [:show]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!
   include RequestsHelper
 
   # GET /requests

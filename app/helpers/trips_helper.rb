@@ -13,6 +13,9 @@ module TripsHelper
   end
 
   def can_cancel_trip param_time
+    if param_time.nil?
+      return false
+    end
     if Time.now > param_time
       return false
     else

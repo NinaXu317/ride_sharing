@@ -108,7 +108,6 @@ class NotificationsController < ApplicationController
       response.message do |message|
         message.body("Hello World!")
       end
-      puts params["Body"]
       response_text = params["Body"].downcase!
       response_number = params["From"][2..-1].to_i
       curtAvail = CurtAvail.find_by(phone_number: response_number)

@@ -1,4 +1,5 @@
 class RiderController < ApplicationController
+  before_action :authenticate_user!
 
   def start_trip
     trip_id = params[:trip_id]
