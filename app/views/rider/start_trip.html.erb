@@ -37,5 +37,5 @@
       </div>
     </div>
   <% end %>
-  <%= link_to 'Trip Started', user_rider_during_trip_path(current_user), class: "btn btn-primary"%>
+  <%= link_to 'Trip Started', user_rider_during_trip_path(current_user, :trip_id=> @trip.id), class: "btn btn-primary"%>
 </div>

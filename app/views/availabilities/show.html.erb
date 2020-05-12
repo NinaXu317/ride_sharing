@@ -22,6 +22,10 @@
         <strong>Lowest acceptable price:</strong>
         <%= @availability.lowest_acceptable_price %>
       </p>
+      <p>
+        <strong>Trip Distance:</strong>
+        <%= @availability.trip_distance.round(2) %> km
+      </p>
       <% if current_user.id != local_assigns[:driver].id %>
         <%= render partial: 'showDriver', :locals => { :driver => local_assigns[:driver] } %>
           <%= link_to 'Back', search_user_requests_path(current_user), class: "btn btn-primary" %>

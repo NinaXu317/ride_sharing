@@ -1,4 +1,5 @@
 class RiderController < ApplicationController
+  include RiderHelper
 
   def start_trip
     trip_id = params[:trip_id]
@@ -15,9 +16,20 @@ class RiderController < ApplicationController
   end
 
   def during_trip
-
+    @trip = params[:trip_id]
   end
 
   def end_trip
+    @trip = Trip.find(params[:trip_id])
+    if params[:rating]
+      driver = User.find(@trip.driver_id)
+      rider = User.find(@trip.rider_id)
+      if params[:rating]
+        rating = params[:rating]
+        rate_user(driver, rider, @trip, rating[:star].to_i)
+        render 'finish'
+      end
+    end
+
   end
 end

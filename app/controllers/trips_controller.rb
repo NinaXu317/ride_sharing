@@ -12,7 +12,6 @@ class TripsController < ApplicationController
 
   def cancel
     @trip = Trip.find(params[:trip_id])
-    @trip.save
     availability_id = @trip.availability_id
     request_id = @trip.request_id
     if request_id != -1
@@ -29,13 +28,6 @@ class TripsController < ApplicationController
   end
 
   def show_upcoming_trip
-    # @driver_id = current_user.id
-    # @trip = Trip.find_closest_ride(@driver_id)
-    # @availability_id = @trip.availability_id
-    # @rider_id = rider
-    # @rider = User.find(@rider_id)
-    # @request_id = @trip.request_id
-
     # show driver's upcoming trips
     upcoming_trips = []
     past_trips = []
@@ -44,18 +36,22 @@ class TripsController < ApplicationController
       p_trips = Trip.completed.find_by_driver(current_user.id)
       @upcoming_trips = find_trip(u_trips, upcoming_trips)
       @past_trips = find_trip(p_trips, past_trips)
+      @submitted_availabilities = Availability.unmatched.find_availability_by_user_id(current_user.id)
+      @waiting_availabilities = Availability.waiting.find_availability_by_user_id(current_user.id)
     # show rider's upcoming trips
     else
       u_trips = Trip.upcoming.find_by_rider(current_user.id)
       p_trips = Trip.completed.find_by_rider(current_user.id)
       @upcoming_trips = find_trip(u_trips, upcoming_trips)
       @past_trips = find_trip(p_trips, past_trips)
+      @submitted_requests = Request.unmatched.find_request_by_user_id(current_user.id)
+      @waiting_requests = Request.waiting.find_request_by_user_id(current_user.id)
     end
   end
 
   def pickup
     # find the request with the driver_id that has the closest timestamp
-    @trip = Trip.find_closest_ride(current_user.id)
+    @trip = Trip.find(params[:id])
     availability = Availability.find(@trip.availability_id)
     dest_lat = availability.end_lat
     dest_lon = availability.end_lon
@@ -68,6 +64,17 @@ class TripsController < ApplicationController
       respond_to do |format|
         format.js { render partial: 'startRide', :locals => { :curr_lat => curr_lat, :curr_lon => curr_lon, :dest_lat => dest_lat, :dest_lon => dest_lon}}
       end
+    end
+  end
+
+  def trip_complete
+    @trip = Trip.find(params[:id])
+    driver = User.find(@trip.driver_id)
+    rider = User.find(@trip.rider_id)
+    if params[:rating]
+      rating = params[:rating]
+      rate_user(driver, rider, @trip, rating[:star].to_i)
+      render 'finish'
     end
   end
 
@@ -123,6 +130,10 @@ class TripsController < ApplicationController
   private
     def set_trip
       @trip = Trip.find(params[:id])
+    end
+
+    def rating_params
+      params.require(:rating).permit(:star)
     end
 
     def trip_params

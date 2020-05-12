@@ -15,12 +15,13 @@ Rails.application.routes.draw do
       collection do
         get "/start", to: "trips#start_trip"
         get "/rider_pickup", to: "trips#rider_pickup"
-        get "/finish", to: "trips#finish"
         get "/all_trips", to: "trips#show_upcoming_trip"
       end
 
       member do
         get "/pickup", to: "trips#pickup"
+        get "/trip_complete", to: "trips#trip_complete"
+        get "/finish", to: "trips#finish"
         get "/trip_complete", to: "trips#trip_complete"
         post "/cancel", to: "trips#cancel"
       end
@@ -57,14 +58,4 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   post "/message", to: "notifications#message"
 
-
-  # get '/about', to: "static_pages#about"
-  # get '/help', to: "static_pages#help"
-  # get '/fill_info', to: "static_pages#fill_information"
-  # get '/signup', to: "users#new"
-  # get "/login", to: "sessions#new", :as => :new_session
-  # post "/message", to: "notifications#message"
-  # get "/notify", to: "notifications#notify"
-  # get "/index", to: "rides#index"
-  
 end

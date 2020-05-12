@@ -31,6 +31,23 @@
       <%= render "no_trips", {:trip_type => "upcoming"}%>
     <% end %>
   </div>
+  <div id="submitted", style="margin-top: 5%">
+    <h1>Submitted Trips</h1>
+    <% if current_user.is_driver %>
+      <%= render "submitted_availability.html.erb" %>
+    <% else %>
+      <%= render "submitted_request.html.erb" %>
+    <% end %>
+  </div>
+
+  <div id="waiting", style="margin-top: 5%">
+    <h1>Waiting Trips</h1>
+    <% if current_user.is_driver %>
+      <%= render "waiting_availability.html.erb" %>
+    <% else %>
+      <%= render "waiting_request.html.erb" %>
+    <% end %>
+  </div>
 
   <div id="past", style="margin-top: 5%">
     <h1>Past Trips</h1>
@@ -41,10 +58,10 @@
             <% if past[1] == 'request'%>
               <% request = Request.find(past[0]) %>
               <%= past[1] %>
-              <%= render "trips_info", {:type => past[1], :request => request } %>
+              <%= render "trips_info", {:type => past[1], :request => request, :trip_id => past[2] } %>
             <% else %>
               <% availability = Availability.find(past[0]) %>
-              <%= render "trips_info", {:type => past[1], :availability => availability } %>
+              <%= render "trips_info", {:type => past[1], :availability => availability, :trip_id => past[2] } %>
             <% end %>
           </div>
         </div>

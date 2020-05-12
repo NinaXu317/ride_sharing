@@ -1,0 +1,7 @@
+ <% if @waiting_availabilities %>
+  <% @waiting_availabilities.each do |w| %>
+    <%= render 'availability_info', :a => w %>
+  <% end %>
+<% else %>
+  <%= render 'no_trips', :trip_type => "Waiting Availabilities" %>
+<% end %>

@@ -22,4 +22,15 @@ module TripsHelper
       return false
     end
   end
+
+  def rate_user driver, rider, trip, rating
+    driver.number_of_rating_given += 1
+    rider.number_of_rating_received += 1
+    rider.sum_of_rating_received += rating
+    driver.sum_of_rating_given += rating
+    driver.save
+    rider.save
+    trip.status = "completed"
+    trip.save
+  end
 end

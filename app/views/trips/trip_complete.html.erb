@@ -1,6 +1,42 @@
-<div id= "trip_complete", style="margin-left:20%; margin-top:10%">
+<div id= "trip_complete", style="margin-left:30%; margin-top:2%">
     <h2> You have completed the trip, please rate your rider </h2>
-<!--    <div class="field">-->
-        <%#= rating_for @ride, enable_half: true %>
-<!--    </div>-->
+    <div id ="rating_form" style="margin-top:40px; margin-left:15%;">
+      <%= form_for :rating, html: { class: "form-group" }, method: :get do |f| %>
+        <div class="center">
+          <label class="row">
+            <%= f.radio_button :star, 5 %>
+            <% 5.times do  %>
+              <i class="fas fa-star fa-2x"></i>
+            <% end %>
+          </label>
+          <label class="row">
+            <%= f.radio_button :star, 4 %>
+            <% 4.times do  %>
+              <i class="fas fa-star fa-2x"></i>
+            <% end %>
+          </label>
+          <label class="row">
+            <%= f.radio_button :star, 3 %>
+            <% 3.times do  %>
+              <i class="fas fa-star fa-2x"></i>
+            <% end %>
+          </label>
+          <label class="row">
+            <%= f.radio_button :star, 2 %>
+            <% 2.times do  %>
+              <i class="fas fa-star fa-2x"></i>
+            <% end %>
+          </label>
+          <label class="row">
+            <%= f.radio_button :star, 1 %>
+            <% 1.times do  %>
+              <i class="fas fa-star fa-2x"></i>
+            <% end %>
+          </label>
+          <div id="submit_button" style="margin-top:40px;">
+            <%= f.submit value:"Submit Rating", class: "btn btn-primary btn-lg" %>
+          </div>
+        </div>
+        </div>
+    <% end %>
 </div>

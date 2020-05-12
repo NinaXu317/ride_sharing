@@ -1,4 +1,4 @@
 <h1>Your are on the trip to your destination</h1>
 
 <h1>When trip has ended, please press the button</h1>
-<%= link_to 'Trip Ended', user_rider_end_trip_path(current_user), class: "btn btn-primary"%>
+<%= link_to 'Trip Ended', user_rider_end_trip_path(current_user, :trip_id=> @trip.id), class: "btn btn-primary"%>

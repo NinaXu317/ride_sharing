@@ -1,0 +1,7 @@
+<% if @submitted_requests %>
+  <% @submitted_requests.each do |r| %>
+    <%= render 'request_info', :r => r %>
+  <% end %>
+<% else %>
+  <%= render 'no_trips', :trip_type => "Submitted Requests" %>
+<% end %>

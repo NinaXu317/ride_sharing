@@ -1,0 +1,7 @@
+<% if @waiting_requests %>
+  <% @waiting_requests.each do |w| %>
+    <%= render 'request_info', :r => w %>
+  <% end %>
+<% else %>
+  <%= render 'no_trips', :trip_type => "Waiting Requests" %>
+<% end %>
