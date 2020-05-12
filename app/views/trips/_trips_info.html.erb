@@ -1,7 +1,7 @@
-<div id="trip_info_partial">
+<div id ="trip_info_partial">
   <% if !local_assigns[:trip_id].nil? %>
     <% trip = Trip.find(local_assigns[:trip_id]) %>
-    <% if local_assigns[:type] == 'request' %>
+    <% if local_assigns[:type] == 'request'%>
       <i class="fas fa-map-marker-alt"></i><strong> Start address: </strong>
       <%= local_assigns[:request].start_street_address %><br>
       <i class="fas fa-map-marker-alt"></i><strong> End street address: </strong>
@@ -10,12 +10,14 @@
       <%= local_assigns[:request].trip_time %><br>
       <i class="fas fa-dollar-sign"></i><strong> Price Requested: </strong>
       <%= local_assigns[:request].highest_price_to_pay %><br>
+      <i class="fas fa-car"></i><strong> Trip Distance: </strong>
+      <%= local_assigns[:request].trip_distance %>km<br>
       <% make = Make.find_by(request_id: local_assigns[:request].id) %>
       <% rider = User.find(make.user_id) %>
-      <div id="button_rider" style="margin_bottom:5px;">
+      <div id="button_rider" style = "margin_bottom:5px;">
         <i class="fas fa-user"></i><strong> Rider: </strong>
         <%= rider.username %>
-        <%= link_to "View Rider Profile", user_path(rider.id), class: "btn btn-primary btn-sm" %><br>
+        <%= link_to "View Rider Profile", user_path(rider.id), class:"btn btn-primary btn-sm"%><br>
       </div>
       <div id="cancel_button" style="margin-top:2px;">
         <% if !trip.nil? %>
@@ -33,6 +35,8 @@
       <%= local_assigns[:availability].trip_time %><br>
       <i class="fas fa-dollar-sign"></i><strong> Price Requested: </strong>
       <%= local_assigns[:availability].lowest_acceptable_price %><br>
+      <i class="fas fa-car"></i><strong> Trip Distance: </strong>
+      <%= local_assigns[:availability].trip_distance.round(2) %>km<br>
       <% availability = local_assigns[:availability] %>
       <% rider = User.find(availability.matched_user_id) %>
       <i class="fas fa-user"></i><strong> Rider: </strong>

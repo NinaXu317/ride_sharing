@@ -7,6 +7,7 @@ class Request < ApplicationRecord
     default_scope { includes(:makes) }
     scope :unmatched, ->{ where(matched_user_id: -1) }
     scope :started, -> { where(request_status: "started")}
+    scope :waiting, -> { where(request_status: "waiting")}
     scope :upcoming, -> { where(request_status: "confirmed")}
     scope :completed, -> { where(request_status: "completed")}
     scope :canceled, -> { where(request_status: "conceled")}

@@ -1,0 +1,7 @@
+<% if @submitted_availabilities %>
+  <% @submitted_availabilities.each do |a| %>
+    <%= render 'availability_info', :a => a%>
+  <% end %>
+<% else %>
+  <%= render 'no_trips', :trip_type => "Submitted Availabilities" %>
+<% end %>

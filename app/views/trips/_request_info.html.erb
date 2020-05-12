@@ -1,0 +1,24 @@
+<div class="card" style="margin-top:20px; width: 45rem; height: 25rem;">
+  <div class="card-body" style="width: 40rem; height: 18rem;">
+    <p>
+      <i class="fas fa-map-marker-alt"></i><strong> Start address: </strong>
+      <%= local_assigns[:r].start_street_address %>
+    </p>
+    <p>
+      <i class="fas fa-map-marker-alt"></i><strong> End street address: </strong>
+      <%= local_assigns[:r].end_street_address %>
+    </p>
+    <p>
+      <i class="far fa-clock"></i><strong> Trip Time: </strong>
+      <%= local_assigns[:r].trip_time %>
+    </p>
+    <p>
+      <i class="fas fa-dollar-sign"></i><strong> Price Requested: </strong>
+      <%= local_assigns[:r].highest_price_to_pay %>
+    </p>
+    <p>
+      <i class="fas fa-car"></i><strong> Trip Distance: </strong>
+      <%= local_assigns[:r].trip_distance.round(2) %> km
+    </p>
+  </div>
+</div>

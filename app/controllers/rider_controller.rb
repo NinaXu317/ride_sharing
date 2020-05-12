@@ -1,5 +1,9 @@
 class RiderController < ApplicationController
+<<<<<<< HEAD
   before_action :authenticate_user!
+=======
+  include RiderHelper
+>>>>>>> 989b9a35c71141d8d650adfe2fb1293b0c7b6139
 
   def start_trip
     trip_id = params[:trip_id]
@@ -16,9 +20,20 @@ class RiderController < ApplicationController
   end
 
   def during_trip
-
+    @trip = params[:trip_id]
   end
 
   def end_trip
+    @trip = Trip.find(params[:trip_id])
+    if params[:rating]
+      driver = User.find(@trip.driver_id)
+      rider = User.find(@trip.rider_id)
+      if params[:rating]
+        rating = params[:rating]
+        rate_user(driver, rider, @trip, rating[:star].to_i)
+        render 'finish'
+      end
+    end
+
   end
 end
