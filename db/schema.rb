@@ -65,17 +65,8 @@ ActiveRecord::Schema.define(version: 2020_05_12_041240) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "matches", force: :cascade do |t|
-    t.integer "availability_id"
-    t.integer "request_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "messages", force: :cascade do |t|
     t.text "content"
-    t.integer "sender_id"
-    t.integer "receiver_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -131,21 +122,13 @@ ActiveRecord::Schema.define(version: 2020_05_12_041240) do
     t.integer "sum_of_rating_received"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
     t.string "confirmation_token"
-<<<<<<< HEAD
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.boolean "is_send_notification"
-    t.boolean "deactivated"
     t.string "encrypted_password", default: "", null: false
     t.bigint "phone_number"
-=======
-    t.string "confirmed_at"
-    t.string "confirmation_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
->>>>>>> eb6be90e1f5a06eed98bb0262990238ceae68a1c
   end
 
   create_table "vehicles", force: :cascade do |t|
