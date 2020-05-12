@@ -32,7 +32,7 @@
     <i class="fas fa-user"></i><strong> Rider: </strong>
     <%= rider.username %><br>
     <%= link_to "View Rider Profile", user_path(rider.id), class:"btn btn-primary"%><br>
-    <% if availability.matched_request_id != -1 %>
+    <% if availability.matched_request_id > 0 %>
       <i class="far fa-clipboard"></i><strong> Matched request: </strong>
       <% request = Request.find(availability.matched_request_id) %>
       <%= link_to "View Request Matched", user_request_path(current_user, availability.matched_request_id), class:"btn btn-primary"%><br>
