@@ -12,24 +12,20 @@ class TripsController < ApplicationController
 
   def cancel
     @trip = Trip.find(params[:trip_id])
-    @trip.status = "canceled"
     @trip.save
     availability_id = @trip.availability_id
     request_id = @trip.request_id
     if request_id != -1
       request = Request.find(request_id)
       request.request_status = "canceled"
-      if request.save
-        format.html
-      end
+      request.save
     end
     if availability_id != -1
       availability = Availability.find(availability_id)
       availability.availability_status = "canceled"
-      if availability.save
-        format.html
-      end
+      availability.save
     end
+    redirect_to notify_cancel_user_notifications_path(current_user.id, :trip_id => @trip.id) and return
   end
 
   def show_upcoming_trip

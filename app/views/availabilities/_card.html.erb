@@ -15,12 +15,14 @@
                 <%= button_to "View Details", user_availability_path(current_user, availability.id), method: :get, class: "btn btn-info btn-lg"%>
             </div>
             <div class = "col-md-5">
-                <%= button_to "Request Ride", request_rides_user_availabilities_path(current_user, :id => availability.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-info btn-lg" } %>
-                <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content"></div>
-                  </div>
-                </div>
+              <% session[:availability_id] = availability.id %>
+              <%= button_to "Request Ride", notify_user_notifications_path(current_user),  method: :get,  class: "btn btn-info btn-lg"  %>
+              <%#= button_to "Request Ride", request_rides_user_availabilities_path(current_user, :id => availability.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-info btn-lg" } %>
+<!--                <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+<!--                  <div class="modal-dialog" role="document">-->
+<!--                    <div class="modal-content"></div>-->
+<!--                  </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>

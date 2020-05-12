@@ -8,10 +8,10 @@
             <% if upcoming[1] == 'request'%>
               <% request = Request.find(upcoming[0]) %>
               <%= upcoming[1] %>
-              <%= render "trips_info", {:type => upcoming[1], :request => request } %>
+              <%= render "trips_info", {:type => upcoming[1], :request => request, :trip_id => upcoming[2] } %>
             <% else %>
               <% availability = Availability.find(upcoming[0]) %>
-              <%= render "trips_info", {:type => upcoming[1], :availability => availability } %>
+              <%= render "trips_info", {:type => upcoming[1], :availability => availability, :trip_id => upcoming[2] } %>
             <% end %>
             <% if current_user.is_driver? %>
               <div id="start_button" style="margin-top:2px;">
@@ -24,8 +24,8 @@
               <div id="start_button" style="margin-top:2px;">
                 <%= link_to 'Start Ride', user_rider_start_trip_path(current_user.id, :trip_id => upcoming[2]), class:"btn btn-primary" %>
                 <%username = User.find_by_id(current_user.id).username %>
-                <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:@rider, user_name:username), class: "btn btn-primary"%>
-                
+                <%driver = Trip.find_by_id(upcoming[2]).driver_id %>
+                <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:driver, user_name:username), class: "btn btn-primary"%>
               </div>
             <% end %>
           </div>

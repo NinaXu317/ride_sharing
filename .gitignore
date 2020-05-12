@@ -29,3 +29,6 @@ yarn-debug.log*
 
 # Ignore file created by RubyMine
 .idea
+
+#ignore schema
+/db

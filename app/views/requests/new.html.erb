@@ -1,6 +1,8 @@
-<div class="new_request">
-    <h1>Submit a New Request</h1>
-    <div class="form">
+<div>
+    <div>
         <%= render 'form', request: @request %>
     </div>
+  <div id="back_button", style="text-align:center; margin-top:10px;">
+    <%= link_to 'Back To Home Page', root_path, class: "btn btn-primary" %>
+  </div>
 </div>

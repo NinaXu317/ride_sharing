@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       member do
         get "/pickup", to: "trips#pickup"
         get "/trip_complete", to: "trips#trip_complete"
-        get "/cancel", to: "trips#cancel"
+        post "/cancel", to: "trips#cancel"
       end
     end
     resources :vehicles
@@ -43,9 +43,12 @@ Rails.application.routes.draw do
     resources :notifications do
       collection do
         get '/notify', to: "notifications#notify"
+        # post '/notify', to: "notifications#notify"
         get '/accept', to: "notifications#accept"
+        # post '/accept', to: "notifications#accept"
         get '/notify_rider', to: "notifications#notify_rider"
         get '/call_driver', to: "notifications#call_driver"
+        get '/notify_cancel', to: "notifications#notify_trip_cancel"
       end
     end
     
