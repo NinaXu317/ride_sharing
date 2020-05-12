@@ -33,6 +33,12 @@ class TripsController < ApplicationController
   end
 
   def show_upcoming_trip
+    # @driver_id = current_user.id
+    # @trip = Trip.find_closest_ride(@driver_id)
+    # @availability_id = @trip.availability_id
+    # @rider_id = rider
+    # @rider = User.find(@rider_id)
+    # @request_id = @trip.request_id
     # show driver's upcoming trips
     u_trips = Trip.upcoming.find_by_driver(current_user.id)
     p_trips = Trip.completed.find_by_driver(current_user.id)
