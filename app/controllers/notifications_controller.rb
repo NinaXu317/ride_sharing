@@ -29,7 +29,7 @@ class NotificationsController < ApplicationController
       availability = Availability.find(params[:availability_id])
       post = Post.find_by(availability_id: availability.id)
       user = User.find(post.user_id)
-      if params["is_send_notification"] == "false"
+      # if params["is_send_notification"] == "false"
         twilio_client = TwilioClient.new
         message = nil
         if availability.matched_request_id < 0
@@ -42,7 +42,7 @@ class NotificationsController < ApplicationController
         availability.save!
         CurtAvail.create!(availability_id: availability.id, phone_number: user.phone_number)
         twilio_client.send_text(user, message)
-      end
+      # end
     end
 
     def notify_rider
