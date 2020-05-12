@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_220115) do
+ActiveRecord::Schema.define(version: 2020_05_12_025805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,15 +95,6 @@ ActiveRecord::Schema.define(version: 2020_05_11_220115) do
     t.float "end_lon"
   end
 
-  create_table "rides", force: :cascade do |t|
-    t.integer "driver_id"
-    t.integer "rider_id"
-    t.integer "availability_id"
-    t.integer "request_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "trips", force: :cascade do |t|
     t.integer "driver_id"
     t.integer "rider_id"
@@ -131,12 +122,16 @@ ActiveRecord::Schema.define(version: 2020_05_11_220115) do
     t.integer "sum_of_rating_received"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_send_notification"
-    t.string "encrypted_password", default: "", null: false
-    t.bigint "phone_number"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.boolean "is_send_notification"
+    t.boolean "deactivated"
+    t.string "encrypted_password", default: "", null: false
+    t.bigint "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

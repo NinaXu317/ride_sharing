@@ -92,7 +92,7 @@ class RequestsController < ApplicationController
         @request.makes << make
         @make_id = make.id
         # get the matched availability_id
-        @matched_id = match_availability
+        @matched_id = match_availability(@request)
         format.html { redirect_to user_request_path(current_user, @request), notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
         # format.html { redirect_to @request, :status => 200, notice: 'Request was successfully created.' }

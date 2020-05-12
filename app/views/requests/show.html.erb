@@ -22,14 +22,30 @@
         <strong>Highest Price to Pay:</strong>
         <%= @request.highest_price_to_pay %>
       </p>
-      <%#= render partial: 'showRider', :locals => { :rider => local_assigns[:rider] } %>
-      <%#= link_to 'Back', search_user_requests_path(current_user), class: "btn btn-primary" %>
+
+        <p>
+          <strong>Trip Distance: </strong>
+          <%= @request.trip_distance.round(2)%>km
+        </p>
+        <% user_id = Make.find_by(request_id: @request.id).user_id %>
+      <% if current_user.id == user_id %>
+        <% if @request.matched_user_id != -1 %>
+          <p>
+            <strong>You have been matched with a driver: </strong>
+            <% driver = User.find(@request.matched_user_id) %>
+            <%= link_to "View Driver Profile", user_path(driver), class: "btn btn-primary"%><br>
+            <%= link_to "View Availability",  user_availability_path(@request.matched_user_id), class: "btn btn-primary"%><br>
+            <%= link_to "Click to request ride", notify_user_notifications_path(current_user.id, :availability_id => @request.matched_availability_id), class: "btn btn-primary", remote: true%>
+          </p>
+        <% end %>
+
+        <% end %>
+
 
         <% if current_user.id != local_assigns[:rider].id %>
           <%= render partial: 'showRider', :locals => { :rider => local_assigns[:rider] } %>
         <% end %>
         <%= link_to 'Back', new_user_request_path, class: "btn btn-primary" %>
-        <%#= link_to 'Back', search_rides_path, class: "btn btn-primary" %>
     </div>
   </div>
 </div>
