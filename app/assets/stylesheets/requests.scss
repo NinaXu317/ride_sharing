@@ -5,13 +5,14 @@
 .new_request {
     width: 500px;
     height: 600px;
-    margin-left: 20%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
     font-size: 16px;
     h1 {
         text-align: center;
         margin-top: 20px;
-        margin-left: 20%;
+        //margin-left: 20%;
     }
     .actions {
         margin-left: 43%;

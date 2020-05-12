@@ -1,9 +1,8 @@
-<div class="new_availability">
-    <h1>Submit a New Availability</h1>
-    <div class="form">
-        <%= render 'form', availability: @availability %>
-        <div id="back_button", style="text-align:right; margin-top:10px;">
-          <%= link_to 'Back', root_path, class: "btn btn-primary" %>
-        </div>
-    </div>
+<div>
+  <div>
+      <%= render 'form', availability: @availability %>
+  </div>
+  <div id="back_button", style="text-align:center; margin-top:10px;">
+    <%= link_to 'Back To Home Page', root_path, class: "btn btn-primary" %>
+  </div>
 </div>
