@@ -26,10 +26,10 @@ class NotificationsController < ApplicationController
 
       respond_to do |format|
         if @trip.save
-          format.html { redirect_to search_user_requests_path, notice: 'You accept the request successfully.' }
+          format.html { redirect_to root_path, notice: 'You accept the request successfully. You can view the trip in My Trip tab.' }
 
         else
-          format.html { redirect_to search_user_requests_path, notice: "The request cannot be accepted. Try again."}
+          format.html { redirect_to root_path, notice: "The request cannot be accepted. Try again."}
         end
       end
     end
@@ -52,7 +52,7 @@ class NotificationsController < ApplicationController
       twilio_client.send_text(user, message)
       session[:availability_id] = nil
       respond_to do |format|
-          format.html { redirect_to search_user_requests_path, notice: 'You accept the request successfully.' }
+          format.html { redirect_to root_path, notice: "You accept the request successfully. Please wait for the driver's confirmation." }
       end
     end
 
