@@ -58,11 +58,7 @@ class NotificationsController < ApplicationController
       twilio_client.send_text(user, message)
       session[:availability_id] = nil
       respond_to do |format|
-        if @trip.save
           format.html { redirect_to search_user_requests_path, notice: 'You accept the request successfully.' }
-        else
-          format.html { redirect_to search_user_requests_path, notice: "The request cannot be accepted. Try again."}
-        end
       end
     end
 
