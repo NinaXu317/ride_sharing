@@ -30,7 +30,7 @@ module TripsHelper
     if param_time.nil?
       return false
     end
-    if Time.now + 15.minutes < param_time
+    if Time.now + 15.minutes >= param_time
       return true
     end
     return false
