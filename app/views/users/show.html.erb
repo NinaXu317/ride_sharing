@@ -25,9 +25,9 @@
               <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
             </li>
             <%# if current_user.id == @user.id %>
-<!--              <li class="nav-item">-->
-<!--                <a class="nav-link" id="trip-tab" data-toggle="tab" href="#trip" role="tab" aria-controls="trip" aria-selected="false">Trip</a>-->
-<!--              </li>-->
+            <!--              <li class="nav-item">-->
+            <!--                <a class="nav-link" id="trip-tab" data-toggle="tab" href="#trip" role="tab" aria-controls="trip" aria-selected="false">Trip</a>-->
+            <!--              </li>-->
             <%# end %>
             <% if @user.is_driver %>
               <li class="nav-item">
@@ -45,11 +45,14 @@
         </div>
       </div>
       <div class="col-md-2">
-        <%= link_to 'Edit Profile', edit_user_path(@user), class: 'profile-edit-btn' %>
-        <% if @user.is_driver %>
-          <% @vehicle = Vehicle.find_by(user_id: @user.id) %>
-          <% if !@vehicle.nil? && current_user.id == @user.id %>
-            <%= link_to 'Edit Vehicle', edit_user_vehicle_path(current_user.id, @vehicle.id), class: 'profile-edit-btn' %>
+
+        <% if current_user.id == @user.id %>
+          <%= link_to 'Edit Profile', edit_user_path(@user), class: 'profile-edit-btn' %>
+          <% if @user.is_driver %>
+            <% @vehicle = Vehicle.find_by(user_id: @user.id) %>
+            <% if !@vehicle.nil? && current_user.id == @user.id %>
+              <%= link_to 'Edit Vehicle', edit_user_vehicle_path(current_user.id, @vehicle.id), class: 'profile-edit-btn' %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
@@ -63,9 +66,9 @@
             <%= render 'userinfo' %>
           </div>
           <%# if current_user.id == @user.id %>
-<!--            <div class="tab-pane fade" id="trip" role="tabpanel" aria-labelledby="trip-tab">-->
-              <%#= render 'tripinfo' %>
-<!--            </div>-->
+          <!--            <div class="tab-pane fade" id="trip" role="tabpanel" aria-labelledby="trip-tab">-->
+          <%#= render 'tripinfo' %>
+          <!--            </div>-->
           <%# end %>
           <% if @user.is_driver %>
             <div class="tab-pane fade" id="vehicle" role="tabpanel" aria-labelledby="vehicle-tab">
