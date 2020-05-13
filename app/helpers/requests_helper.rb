@@ -9,23 +9,23 @@ module RequestsHelper
     matched_id = matcher.find_best_match
     if !matched_id.nil?
       availability = Availability.find(matched_id)
-      modify_request(matched_id)
-      modify_availability(availability)
+      modify_request(matched_id, request)
+      modify_availability(availability, request)
     end
     return matched_id
   end
 
-  def modify_request matched_id
+  def modify_request matched_id, request
     post = Post.find_by(availability_id: matched_id)
-    @request.matched_user_id = post.user_id
-    @request.matched_availability_id = matched_id
-    @request.request_status = "waiting"
-    @request.save
+    request.matched_user_id = post.user_id
+    request.matched_availability_id = matched_id
+    request.request_status = "waiting"
+    request.save
   end
 
-  def modify_availability availability
+  def modify_availability availability, request
     availability.matched_user_id = current_user.id
-    availability.matched_request_id = @request.id
+    availability.matched_request_id = request.id
     availability.availability_status = "waiting"
     availability.save
   end
