@@ -17,11 +17,14 @@
       <div id="button_rider" style="margin_bottom:5px;">
         <% if current_user.is_driver %>
           <i class="fas fa-user"></i><strong> Rider: </strong>
+          <%= rider.username %>
+          <%= link_to "View Profile", user_path(rider.id), class: "btn btn-primary btn-sm" %><br>
         <% else %>
           <i class="fas fa-user"></i><strong> Driver: </strong>
+          <% driver = User.find(trip.driver_id) %>
+          <%= driver.username %>
+          <%= link_to "View Profile", user_path(driver.id), class: "btn btn-primary btn-sm" %><br>
         <% end %>
-        <%= rider.username %>
-        <%= link_to "View Profile", user_path(rider.id), class: "btn btn-primary btn-sm" %><br>
       </div>
       <div id="cancel_button" style="text-align: right;position:absolute; top: 5px; right: 5px">
         <% if !trip.nil? %>
@@ -45,12 +48,14 @@
       <% rider = User.find(availability.matched_user_id) %>
       <% if current_user.is_driver %>
         <i class="fas fa-user"></i><strong> Rider: </strong>
+        <%= rider.username %>
+        <%= link_to "View Profile", user_path(rider.id), class: "btn btn-primary" %><br>
       <% else %>
         <i class="fas fa-user"></i><strong> Driver: </strong>
+        <% driver = User.find(trip.driver_id) %>
+        <%= driver.username %>
+        <%= link_to "View Profile", user_path(driver.id), class: "btn btn-primary" %><br>
       <% end %>
-      <%= rider.username %>
-
-      <%= link_to "View Profile", user_path(rider.id), class: "btn btn-primary" %><br>
       <% if availability.matched_request_id > 0 %>
         <i class="far fa-clipboard"></i><strong> Matched request: </strong>
         <% request = Request.find(availability.matched_request_id) %>

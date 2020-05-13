@@ -26,6 +26,16 @@ module TripsHelper
     end
   end
 
+  def can_start_trip param_time
+    if param_time.nil?
+      return false
+    end
+    if Time.now + 15.minutes < param_time
+      return true
+    end
+    return false
+  end
+
   def rate_user driver, rider, trip, rating
     if trip.request_id != -1
       request = Request.find(trip.request_id)
@@ -33,7 +43,7 @@ module TripsHelper
     end
     if trip.availability_id != -1
       availability = Availability.find(trip.availability_id)
-      availability.request_status = "completed"
+      availability.availability_status = "completed"
     end
     driver.number_of_rating_given += 1
     rider.number_of_rating_received += 1

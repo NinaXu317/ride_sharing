@@ -1,33 +1,63 @@
-<div id="show_rides", style="margin-left: 5%;">
-  <div class="card" style="width: 40rem;">
-    <div class="card-body">
-      <h2 class="card-title">Your trip details</h2>
-      <% if @trip.request_id == -1 %>
+<div id="show_rides", style="margin-left: 30%;margin-top: 5%">
+  <% if @trip.request_id == -1 %>
+    <div class="card" style="width: 40rem;">
+      <div class="card-body">
+        <h2 class="card-title">Your trip details</h2>
         <div>
-          <h4>Start: </h4>
+          <h4>Start Address: </h4>
           <%= @availability.start_street_address %>
         </div>
-        <br>
-        <div style="margin-top:5px;">
-          <h4>Destionation: </h4>
+        <div style="margin-top:10px;">
+          <h4>End Address: </h4>
           <%= @availability.end_street_address %><br>
         </div>
-        <div style="margin-top:20px;">
-          <p>If your rider is in car, please click the button to start trip:</p>
-          <%= link_to 'Confirm Address and Start Trip', pickup_user_trip_path(current_user.id, @trip.id), class: "btn btn-primary" %>
-          <%#= link_to "Notify Rider for picking up", notify_rider_user_notifications_path(current_user.id, :rider_id => @trip.rider_id, :message_type => "pickup_start"), class:"btn btn-info", :remote => true %>
+        <div style="margin-top:10px;">
+          <h4>Trip Time: </h4>
+          <%= @availability.trip_time %><br>
         </div>
-      <% else %>
-        <p> You need to pick up your rider first</p>
-        <p>Driver's Start: </p>
-        <%= @request.start_street_address %>
-        <p>Ride Destionation: </p>
-        <%= @request.end_street_address %>
-        <div class="navigation_rider">
+        <div style="margin-top:10px;">
+          <h4>Trip Distance: </h4>
+          <%= @availability.trip_distance.round(2) %>km<br>
+        </div>
+        <div style="margin-top:20px;">
+          <p>Your rider is meeting you at the start address</p>
+          <p>If your rider is in car, please click the button to start trip:</p>
           <%username = User.find_by_id(current_user.id).username %>
           <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:@trip.rider_id, user_name:username), class: "btn btn-info"%>
-          <%= link_to "Notify Rider for picking up", notify_rider_user_notifications_path(current_user.id, :rider_id => @trip.rider_id, :message_type => "pickup_start"), class:"btn btn-info", :remote => true %>
-          <%= link_to "Get Direction to rider's location with google map", "javascript:getLocation()", class:"btn btn-info" %>
+          <%= link_to 'Confirm Address and Start Trip', pickup_user_trip_path(current_user.id, @trip.id), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+      <% else %>
+    <div class="card" style="width: 50rem;height: 45rem;">
+      <div class="card-body">
+        <h2 class="card-title">Your trip details</h2>
+        <p> You need to pick up your rider first</p>
+        <div style="margin-top:10px;">
+          <p>Driver's Start: </p>
+          <%= @request.start_street_address %>
+        </div>
+        <div style="margin-top:10px;">
+          <p>Ride Destionation: </p>
+          <%= @request.end_street_address %>
+        </div>
+        <div style="margin-top:10px;">
+          <h4>Trip Time: </h4>
+          <%= @request.trip_time %><br>
+        </div>
+        <div style="margin-top:10px;">
+          <h4>Trip Distance: </h4>
+          <%= @request.trip_distance.round(2) %>km<br>
+        </div>
+        <div class="navigation_rider" style="margin-top:10px;">
+          <div class="buttons">
+            <%username = User.find_by_id(current_user.id).username %>
+            <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:@trip.rider_id, user_name:username), class: "btn btn-info"%>
+            <%= link_to "Notify Rider for picking up", notify_rider_user_notifications_path(current_user.id, :rider_id => @trip.rider_id, :message_type => "pickup_start"), class:"btn btn-primary", :remote => true %>
+          </div>
+          <div class="direction" style="margin-top:10px;">
+            <%= link_to "Get Direction to rider's location with google map", "javascript:getLocation()", class:"btn btn-info" %>
+          </div>
         </div>
       <% end %>
     </div>

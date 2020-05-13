@@ -21,35 +21,51 @@ class Request < ApplicationRecord
     def self.search (param)
         @start_addr = param[:start_street_address]
         @end_addr = param[:end_street_address]
+        @start_coord = Geocoder.coordinates(@start_addr)
+        @end_coord = Geocoder.coordinates(@end_addr)
         results = Request.all
-        if !@start_addr.empty?
-            results = results.start_address_matches
-        end
+        final_res = []
         if !param[:trip_time].empty?
             results = results.time_matches(param[:trip_time])
         end
         if !param[:highest_price_to_pay].empty?
             results = results.price_matches(param[:highest_price_to_pay])
         end
-        # results = start_address_matches.time_matches(param[:trip_time]).price_matches(param[:highest_price_to_pay])
-        # results = results.end_address_matches
-        return nil unless results.length > 0
-        return results
+        if !@start_addr.empty?
+            res = start_address_matches(results)
+        end
+        if !@end_addr.empty?
+            final_res = results.start_address_matches(res)
+        end
+        return nil unless final_res.length > 0
+        return Request.where(id: final_res.map(&:id))
     end
 
-    def self.start_address_matches
-        near(@start_addr, 1, latitude: :start_lat, longitude: :start_lon)
+    def self.start_address_matches res
+        filtered = []
+        res.each do |r|
+            if Geocoder::Calculations.distance_between(@start_coord, [r.start_lat, r.start_lon]) < 1
+                filtered << r
+            end
+        end
+        return filtered
     end
 
-    def self.end_address_matches
-        near(@end_addr, 1, latitude: :end_lat, longitude: :end_lon)
+    def self.end_address_matches res
+        filtered = []
+        res.each do |r|
+            if Geocoder::Calculations.distance_between(@end_coord, [r.end_lat, r.end_lon]) < 1
+                filtered << r
+            end
+        end
+        return filtered
     end
 
     def self.time_matches(param_time)
         date_time = param_time.to_s.to_datetime
         puts param_time
-        before = date_time - (0.5 / 24.0)
-        after = date_time + (0.5 / 24.0)
+        before = date_time - (0.25 / 24.0)
+        after = date_time + (0.25 / 24.0)
         where("trip_time BETWEEN ? AND ? ", before, after)
     end
 

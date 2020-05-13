@@ -56,7 +56,6 @@ class TripsController < ApplicationController
     dest_lat = availability.end_lat
     dest_lon = availability.end_lon
 
-    puts "successfully created"
     if request.xhr?
       # render data on ajax request
       curr_lat = params[:curr_lat]

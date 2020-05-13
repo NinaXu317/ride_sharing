@@ -11,25 +11,17 @@ class AvailabilitiesController < ApplicationController
   end
 
   def search
-    # @availabilities = Availability.unmatched
     if params[:search]
-      puts "start searching"
       @availabilities = Availability.unmatched.search(params[:search])
       if @availabilities.nil?
         flash.now[:alert] = "Could not find an availability"
       else
         @availabilities = @availabilities.page(params[:page])
       end
-      # respond_with @availabilities
       respond_to do |format|
         format.js
         format.html
       end
-      #   f.js { render layout: false, content_type: 'text/javascript' }
-      # end
-      #   format.html { render: 'result.html' }
-      #   format.js { render :result, :layout => false }
-      # end
     else 
       @availabilities = Availability.unmatched.page(params[:page])
       # respond_with @availabilities
@@ -71,12 +63,6 @@ class AvailabilitiesController < ApplicationController
     else
       flash.now["danger"] = "Request not made"
     end
-    # if @availability.save
-    #   # render javascript: go to result patial driver id
-    #   render 'confirm.html'
-    # else
-    #   flash.now["danger"] = "Request not made"
-    # end
   end
 
   # GET /availabilities/new

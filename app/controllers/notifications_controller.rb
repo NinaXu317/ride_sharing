@@ -4,16 +4,11 @@ class NotificationsController < ApplicationController
 
 
     def accept
-      puts "trigger driver accept ride"
-      # puts params[:request_id]
-      # puts current_user.id
-
       request = Request.find(session[:request_id])
       request.matched_user_id = current_user.id
       request.matched_availability_id = -1
       request.request_status = 'confirmed'
       request.save!
-      #
       # @trip = Trip.create(driver_id: current_user.id,
       #             rider_id: Make.find_by(request_id: params[:request_id]).user_id,
       #             request_id: params[:request_id],
@@ -40,7 +35,6 @@ class NotificationsController < ApplicationController
     end
 
     def notify
-      puts "notify driver"
       availability = Availability.find(session[:availability_id])
       post = Post.find_by(availability_id: availability.id)
       user = User.find(post.user_id)
@@ -111,8 +105,6 @@ class NotificationsController < ApplicationController
         availability_id = curtAvail.availability_id
         availability = Availability.find(availability_id)
         if response_text == "y"
-          # availability.matched_user_id = User.find_by(phone_number: response_number).id
-          # availability.matched_user_id = User.find_by(phone_number: response_number).id
           availability.availability_status = "confirmed"
           availability.save
           post = Post.find_by(availability_id: availability_id)

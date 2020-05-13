@@ -1,6 +1,7 @@
-<div id="rider_pickup", style="margin-left:10%; margin-top:5%">
-  <div id="rider_pickup_buttons", style="margin-top:5%">
-    <%= link_to 'Direction', "http://maps.google.com/maps?saddr=#{curr_lat},#{curr_lon}&daddr=#{dest_lat},#{dest_lon}", :target => '_blank', class: "btn btn-info" %>
+<div id="rider_pickup">
+  <div id="rider_pickup_buttons", style="margin-top:5px">
+    <%= link_to 'Get Direction to Rider', "http://maps.google.com/maps?saddr=#{curr_lat},#{curr_lon}&daddr=#{dest_lat},#{dest_lon}", :target => '_blank', class: "btn btn-info" %>
+    <br>
     <p>If your rider has been picked up, click the following button to start your trip</p>
     <%= link_to "Notify Rider for arrival", notify_rider_user_notifications_path(current_user.id, :rider_id => @trip.rider_id, :message_type => "pickup_arrival"), class:"btn btn-info", :remote => true %>
     <%= link_to 'Rider picked up', pickup_user_trip_path(current_user.id, @trip.id), class: "btn btn-primary"%>

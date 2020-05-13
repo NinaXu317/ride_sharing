@@ -7,7 +7,7 @@ module RiderHelper
     end
     if trip.availability_id != -1
       availability = Availability.find(trip.availability_id)
-      availability.request_status = "completed"
+      availability.availability_status = "completed"
     end
     driver.number_of_rating_received += 1
     driver.sum_of_rating_received += rating
@@ -16,6 +16,7 @@ module RiderHelper
     driver.save
     rider.save
     trip.status = "completed"
+    trip.save
   end
 
 end

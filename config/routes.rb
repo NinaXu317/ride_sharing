@@ -44,10 +44,9 @@ Rails.application.routes.draw do
     resources :notifications do
       collection do
         get '/notify', to: "notifications#notify"
-        # post '/notify', to: "notifications#notify"
         get '/accept', to: "notifications#accept"
-        # post '/accept', to: "notifications#accept"
         get '/notify_rider', to: "notifications#notify_rider"
+        get '/notify_driver', to: "notifications#notify_driver"
         get '/call_driver', to: "notifications#call_driver"
         get '/notify_cancel', to: "notifications#notify_trip_cancel"
       end
@@ -56,8 +55,6 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:new, :create]
   get "/landingindex", to: "landing#index"
-
-  root 'static_pages#home'
   post "/message", to: "notifications#message"
-
+  root 'static_pages#home'
 end
