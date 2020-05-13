@@ -48,9 +48,9 @@ class Availability < ApplicationRecord
         @end_coord = Geocoder.coordinates(@end_addr)
         results = Availability.all
         final_res = []
-        if !param[:trip_time].empty?
-            results = results.time_matches(param[:trip_time])
-        end
+        # if !param[:trip_time].empty?
+        #     results = results.time_matches(param[:trip_time])
+        # end
         if !param[:lowest_acceptable_price].empty?
             results = results.price_matches(param[:lowest_acceptable_price])
         end

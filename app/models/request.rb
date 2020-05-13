@@ -26,9 +26,9 @@ class Request < ApplicationRecord
         @end_coord = Geocoder.coordinates(@end_addr)
         results = Request.all
         final_res = []
-        if !param[:trip_time].empty?
-            results = results.time_matches(param[:trip_time])
-        end
+        # if !param[:trip_time].empty?
+        #     results = results.time_matches(param[:trip_time])
+        # end
         if !param[:highest_price_to_pay].empty?
             results = results.price_matches(param[:highest_price_to_pay])
         end
