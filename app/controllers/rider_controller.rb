@@ -1,9 +1,6 @@
 class RiderController < ApplicationController
-<<<<<<< HEAD
   before_action :authenticate_user!
-=======
   include RiderHelper
->>>>>>> 989b9a35c71141d8d650adfe2fb1293b0c7b6139
 
   def start_trip
     trip_id = params[:trip_id]
