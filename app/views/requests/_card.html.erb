@@ -16,7 +16,7 @@
             </div>
             <div class = "col-md-5">
               <% session[:request_id] = request.id %>
-                <%= button_to "Accept Ride", accept_user_notifications_path(current_user), method: :get,  class: "btn btn-info btn-lg"  %>
+                <%= button_to "Accept Ride", accept_user_notifications_path(current_user), params: { request_id: request.id}, method: :get,  class: "btn btn-info btn-lg"  %>
             </div>
         </div>
     </div>

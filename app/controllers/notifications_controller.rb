@@ -9,20 +9,19 @@ class NotificationsController < ApplicationController
       request.matched_availability_id = -1
       request.request_status = 'confirmed'
       request.save!
-      # @trip = Trip.create(driver_id: current_user.id,
-      #             rider_id: Make.find_by(request_id: params[:request_id]).user_id,
-      #             request_id: params[:request_id],
-      #             availability_id: -1,
-      #             status: "confirmed",
-      #             trip_time: Request.find(params[:request_id]).trip_time)
-
-      @trip = Trip.new(driver_id: current_user.id,
-                          rider_id: Make.find_by(request_id: session[:request_id]).user_id,
-                          request_id: session[:request_id],
-                          availability_id: -1,
-                          status: "confirmed",
-                          trip_time: Request.find(session[:request_id]).trip_time)
-      session[:request_id] = nil
+      @trip = Trip.create(driver_id: current_user.id,
+                  rider_id: Make.find_by(request_id: params[:request_id]).user_id,
+                  request_id: params[:request_id],
+                  availability_id: -1,
+                  status: "confirmed",
+      # puts params[:request_id]
+      # @trip = Trip.new(driver_id: current_user.id,
+      #                     rider_id: Make.find_by(request_id: session[:request_id]).user_id,
+      #                     request_id: session[:request_id],
+      #                     availability_id: -1,
+      #                     status: "confirmed",
+      #                     trip_time: Request.find(session[:request_id]).trip_time)
+      # session[:request_id] = nil
 
       respond_to do |format|
         if @trip.save
