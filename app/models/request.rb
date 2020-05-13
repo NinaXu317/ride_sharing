@@ -5,7 +5,7 @@ class Request < ApplicationRecord
     has_one :availability
     has_many :rides, foreign_key: :request_id
     default_scope { includes(:makes) }
-    scope :unmatched, ->{ where(matched_user_id: -1) }
+    scope :unmatched, ->{ where(request_status: "started") }
     scope :started, -> { where(request_status: "started")}
     scope :waiting, -> { where(request_status: "waiting")}
     scope :upcoming, -> { where(request_status: "confirmed")}

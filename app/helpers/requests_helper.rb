@@ -2,7 +2,6 @@ require './app/lib/matcher'
 
 module RequestsHelper
   def match_availability request
-    puts "I'm matching"
     unmatched_availabilities = Availability.unmatched.to_a.map(&:serializable_hash)
     matcher = Matcher.new
     matcher.add_item_to_match(request.id, request.start_lat, request.start_lon, request.end_lat, request.end_lon, request.trip_time, request.highest_price_to_pay)
@@ -13,8 +12,6 @@ module RequestsHelper
       modify_request(matched_id)
       modify_availability(availability)
     end
-    puts "matched_id"
-    puts matched_id
     return matched_id
   end
 

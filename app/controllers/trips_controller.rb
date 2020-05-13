@@ -27,6 +27,22 @@ class TripsController < ApplicationController
     redirect_to notify_cancel_user_notifications_path(current_user.id, :trip_id => @trip.id) and return
   end
 
+  def cancel_request
+    puts "canceling"
+    id = params[:id]
+    puts params[:type]
+    if params[:type] = "request"
+      r = Request.find(id)
+      puts r.id
+      r.request_status = "canceled"
+      r.save
+    else
+      a = Availability.find(id)
+      a.availability_status = "canceled"
+      a.save
+    end
+  end
+
   def show_upcoming_trip
     # show driver's upcoming trips
     upcoming_trips = []
@@ -36,7 +52,7 @@ class TripsController < ApplicationController
       p_trips = Trip.completed.find_by_driver(current_user.id)
       @upcoming_trips = find_trip(u_trips, upcoming_trips)
       @past_trips = find_trip(p_trips, past_trips)
-      @submitted_availabilities = Availability.unmatched.find_availability_by_user_id(current_user.id)
+      @submitted_availabilities = Availability.started.find_availability_by_user_id(current_user.id)
       @waiting_availabilities = Availability.waiting.find_availability_by_user_id(current_user.id)
     # show rider's upcoming trips
     else
@@ -44,7 +60,7 @@ class TripsController < ApplicationController
       p_trips = Trip.completed.find_by_rider(current_user.id)
       @upcoming_trips = find_trip(u_trips, upcoming_trips)
       @past_trips = find_trip(p_trips, past_trips)
-      @submitted_requests = Request.unmatched.find_request_by_user_id(current_user.id)
+      @submitted_requests = Request.started.find_request_by_user_id(current_user.id)
       @waiting_requests = Request.waiting.find_request_by_user_id(current_user.id)
     end
   end

@@ -6,7 +6,7 @@ class Availability < ApplicationRecord
     has_one :request
     has_many :posts, dependent: :destroy
     default_scope { includes(:posts) }
-    scope :unmatched, -> { where(matched_user_id: -1) }
+    scope :unmatched, -> { where(availability_status: "started") }
     scope :started, -> { where(availability_status: "started")}
     scope :waiting, -> { where(availability_status: "waiting")}
     scope :upcoming, -> { where(availability_status: "confirmed")}

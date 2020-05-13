@@ -1,5 +1,10 @@
 <div class="card" style="margin-top:20px; width: 45rem; height: 25rem;">
   <div class="card-body" style="width: 40rem; height: 18rem;">
+    <div id="cancel" style="margin-left: 75%;">
+      <% if can_cancel_trip(local_assigns[:a].trip_time) %>
+        <%= link_to "Cancel Trip",  cancel_request_user_trip_path(current_user, :id => local_assigns[:a].id, :type => "availability" )%>
+      <% end %>
+    </div>
     <p>
       <i class="fas fa-map-marker-alt"></i><strong> Start address: </strong>
       <%= local_assigns[:a].start_street_address %>

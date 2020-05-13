@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         get "/finish", to: "trips#finish"
         get "/trip_complete", to: "trips#trip_complete"
         post "/cancel", to: "trips#cancel"
+        get "/cancel_request", to: "trips#cancel_request"
       end
     end
     resources :vehicles
