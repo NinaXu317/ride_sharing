@@ -76,7 +76,7 @@ class RequestsController < ApplicationController
       @user = User.find(current_user.id)
       @request = Request.new
     else
-      flash[:error] = "You have to submit your phone number to continue."
+      flash[:error] = "You have to submit your phone number in Profile tab to continue."
       redirect_to root_path
     end
   end

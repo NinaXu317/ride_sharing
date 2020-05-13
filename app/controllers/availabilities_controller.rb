@@ -85,7 +85,7 @@ class AvailabilitiesController < ApplicationController
       @user = User.find(current_user.id)
       @availability = Availability.new
     else
-      flash[:error] = "You have to submit your vehicle information and phone number to continue."
+      flash[:error] = "You have to submit your vehicle information and phone number in Profile tab to continue."
       redirect_to root_path
     end
 
