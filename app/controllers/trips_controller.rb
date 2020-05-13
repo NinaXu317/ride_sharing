@@ -69,9 +69,15 @@ class TripsController < ApplicationController
   def pickup
     # find the request with the driver_id that has the closest timestamp
     @trip = Trip.find(params[:id])
-    availability = Availability.find(@trip.availability_id)
-    dest_lat = availability.end_lat
-    dest_lon = availability.end_lon
+    if @trip.availability_id != -1
+      availability = Availability.find(@trip.availability_id)
+      dest_lat = availability.end_lat
+      dest_lon = availability.end_lon
+    else
+      request_t = Request.find(@trip.request_id)
+      dest_lat = request_t.end_lat
+      dest_lon = request_t.end_lon
+    end
 
     if request.xhr?
       # render data on ajax request
@@ -95,8 +101,9 @@ class TripsController < ApplicationController
   end
 
   def show
+    @trip = params[:id]
     @driver_id = current_user.id
-    @trip = Trip.find_closest_ride(@driver_id)
+    # @trip = Trip.id
     @availability_id = @trip.availability_id
     @rider_id = @trip.rider_id
     @rider = User.find(@rider_id)

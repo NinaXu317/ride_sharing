@@ -13,7 +13,7 @@ class NotificationsController < ApplicationController
                   rider_id: Make.find_by(request_id: params[:request_id]).user_id,
                   request_id: params[:request_id],
                   availability_id: -1,
-                  status: "confirmed",
+                  status: "confirmed", trip_time: Request.find(params[:request_id]).trip_time)
       # puts params[:request_id]
       # @trip = Trip.new(driver_id: current_user.id,
       #                     rider_id: Make.find_by(request_id: session[:request_id]).user_id,
@@ -34,7 +34,8 @@ class NotificationsController < ApplicationController
     end
 
     def notify
-      availability = Availability.find(session[:availability_id])
+      # availability = Availability.find(session[:availability_id])
+      availability = Availability.find(params[:availability_id])
       post = Post.find_by(availability_id: availability.id)
       user = User.find(post.user_id)
       twilio_client = TwilioClient.new
