@@ -101,7 +101,7 @@ class TripsController < ApplicationController
   end
 
   def show
-    @trip = params[:id]
+    @trip = Trip.find(params[:id].to_i)
     @driver_id = current_user.id
     # @trip = Trip.id
     @availability_id = @trip.availability_id
