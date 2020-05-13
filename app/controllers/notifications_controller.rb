@@ -47,11 +47,12 @@ class NotificationsController < ApplicationController
         message = "Ride Sharing: An availability for #{user.username} has been matched.\nThe trip starts at #{request.start_street_address}, ends at #{request.end_street_address}.\nThe trip time is #{request.trip_time}. Text Y to accpet or N to ignore."
       end
       availability.availability_status = "waiting"
+      availability.matched_user_id = user.id
       availability.save!
       CurtAvail.create!(availability_id: availability.id, phone_number: user.phone_number)
       twilio_client.send_text(user, message)
       respond_to do |format|
-          format.html { redirect_to root_path, notice: "You accept the request successfully. Please wait for the driver's confirmation." }
+          format.html { redirect_to root_path, notice: "You have request the ride successfully. Please wait for the driver's confirmation." }
       end
     end
 
