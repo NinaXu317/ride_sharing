@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
 
 
     def accept
-      request = Request.find(session[:request_id])
+      request = Request.find(params[:request_id])
       request.matched_user_id = current_user.id
       request.matched_availability_id = -1
       request.request_status = 'confirmed'
@@ -50,7 +50,6 @@ class NotificationsController < ApplicationController
       availability.save!
       CurtAvail.create!(availability_id: availability.id, phone_number: user.phone_number)
       twilio_client.send_text(user, message)
-      session[:availability_id] = nil
       respond_to do |format|
           format.html { redirect_to root_path, notice: "You accept the request successfully. Please wait for the driver's confirmation." }
       end
