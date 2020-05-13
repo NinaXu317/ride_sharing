@@ -2,14 +2,15 @@ require 'time'
 
 class Availability < ApplicationRecord
     defaults trip_distance: 0.0, matched_request_id: -1, availability_status: "started", matched_user_id: -1
+    default_scope { order("created_at DESC") }
     has_one :user, :through => :posts
     has_one :request
     has_many :posts, dependent: :destroy
     default_scope { includes(:posts) }
-    scope :unmatched, -> { where(availability_status: "started") }
-    scope :started, -> { where(availability_status: "started")}
-    scope :waiting, -> { where(availability_status: "waiting")}
-    scope :upcoming, -> { where(availability_status: "confirmed")}
+    scope :unmatched, -> { where(availability_status: "started").where("trip_time >= ?", Time.now)}
+    scope :started, -> { where(availability_status: "started").where("trip_time >= ?", Time.now)}
+    scope :waiting, -> { where(availability_status: "waiting").where("trip_time >= ?", Time.now)}
+    scope :upcoming, -> { where(availability_status: "confirmed").where("trip_time >= ?", Time.now)}
     scope :completed, -> { where(availability_status: "completed")}
     scope :canceled, -> { where(availability_status: "conceled")}
     geocoded_by :start_street_address, :latitude => :start_lat, :longitude => :start_lon

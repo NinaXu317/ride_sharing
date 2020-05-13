@@ -1,7 +1,7 @@
 class Trip < ApplicationRecord
   defaults request_id: -1
   default_scope { order("trip_time DESC") }
-  scope :upcoming, -> { where(status: "confirmed")}
+  scope :upcoming, -> { where(status: "confirmed").where("trip_time >= ?", Time.now)}
   scope :completed, -> { where(status: "completed")}
 
   def self.find_closest_ride user_id

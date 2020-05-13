@@ -27,6 +27,8 @@ module RidesharingApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.assets.initialize_on_precompile = false
+    config.time_zone = 'Eastern Time (US & Canada)'
+    config.active_record.default_timezone = :local
 
     # for font
     config.assets.paths << Rails.root.join("app", "assets", "fonts")

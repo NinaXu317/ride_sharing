@@ -19,7 +19,7 @@ module TripsHelper
     if Time.now > param_time
       return false
     else
-      if ((param_time - Time.now) / 1.hour).to_f > 24.0
+      if ((param_time - Time.now) / 1.hour).to_f >= 24.0
           return true
       end
       return false

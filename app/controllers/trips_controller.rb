@@ -31,12 +31,13 @@ class TripsController < ApplicationController
     puts "canceling"
     id = params[:id]
     puts params[:type]
-    if params[:type] = "request"
+    if params[:type] == "request"
       r = Request.find(id)
       puts r.id
       r.request_status = "canceled"
       r.save
-    else
+    end
+    if params[:type] == "availability"
       a = Availability.find(id)
       a.availability_status = "canceled"
       a.save

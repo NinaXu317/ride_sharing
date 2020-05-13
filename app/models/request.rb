@@ -1,14 +1,15 @@
 class Request < ApplicationRecord
     defaults trip_distance: 0.0, matched_availability_id: -1, request_status: "started", matched_user_id: -1
+    default_scope { order("created_at DESC") }
     has_one :user, :through => :makes
     has_many :makes, dependent: :destroy
     has_one :availability
     has_many :rides, foreign_key: :request_id
     default_scope { includes(:makes) }
-    scope :unmatched, ->{ where(request_status: "started") }
-    scope :started, -> { where(request_status: "started")}
-    scope :waiting, -> { where(request_status: "waiting")}
-    scope :upcoming, -> { where(request_status: "confirmed")}
+    scope :unmatched, ->{ where(request_status: "started").where("trip_time >= ?", Time.now) }
+    scope :started, -> { where(request_status: "started").where("trip_time >= ?", Time.now)}
+    scope :waiting, -> { where(request_status: "waiting").where("trip_time >= ?", Time.now)}
+    scope :upcoming, -> { where(request_status: "confirmed").where("trip_time >= ?", Time.now)}
     scope :completed, -> { where(request_status: "completed")}
     scope :canceled, -> { where(request_status: "conceled")}
     geocoded_by :start_street_address, :latitude => :start_lat, :longitude => :start_lon
