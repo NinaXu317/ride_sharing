@@ -1,17 +1,17 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" class = "container text-center" style="padding-top:5px"><%= notice %></p>
 
-<div class="card text-left", style="margin-left:10%; margin-right:10%;">
+<div class="card text-left", style="margin-left:30%; margin-right:30%;">
   <div class="card-header">
     Ride Details
   </div>
   <div class="card-body">
       <div style="width:800px; margin-left:5px;">
       <p>
-        <strong>Start Address:</strong>
+        <strong>Start Address:</strong><br/>
         <%= @availability.start_street_address %>
       </p>
       <p>
-        <strong>End Address:</strong>
+        <strong>End Address:</strong><br/>
         <%= @availability.end_street_address %>
       </p>
       <p>
@@ -30,10 +30,14 @@
         <%= render partial: 'showDriver', :locals => { :driver => local_assigns[:driver] } %>
           <%= link_to 'Back', search_user_requests_path(current_user), class: "btn btn-primary" %>
       <% else %>
-          <%= link_to 'Back', new_user_availability_path, class: "btn btn-primary" %>
+          <%= link_to 'Submit Another Availability', new_user_availability_path, class: "btn btn-info btn-lg" %>
         <% end %>
     </div>
   </div>
+</div>
+
+<div style="text-align:center; padding-top:150px;">
+  <%= link_to 'Back To Home Page', root_path, class:"btn btn-primary" %>
 </div>
 
 

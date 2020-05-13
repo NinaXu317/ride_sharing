@@ -1,4 +1,5 @@
 class RiderController < ApplicationController
+  before_action :authenticate_user!
   include RiderHelper
 
   def start_trip

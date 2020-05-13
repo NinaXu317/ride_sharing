@@ -1,10 +1,9 @@
-<div id="new_vehicle", style="margin-top:20px; margin-left:20%; margin-right: 20%">
+<div style="margin-left:35%; margin-right: 35%; margin-top:10px;">
     <h1 style="text-align:center;">Add Vehicle Information</h1>
-    <div id="vehicle_form", style="margin-top: 10px;">
-        <%= render 'form', vehicle: @vehicle %>
-        <div id="back_button", style="text-align:right">
-            <%= link_to 'Back', user_path(current_user.id), class: "btn btn-primary" %>
-        </div>
-    </div>
+  <%= render 'form', vehicle: @vehicle %>
+
+  <div style="text-align:center; padding-top:150px;">
+    <%= link_to 'Back To Profile', user_path(@user), class:"btn btn-primary" %>
+  </div>
 </div>
 

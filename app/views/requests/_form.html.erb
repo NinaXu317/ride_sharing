@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :start_street_address %>
-    <%= form.text_field :start_street_address, class: "form-control", data: { target: "maps.fieldStart", action: "keydown->maps#preventSubmit" } %>
+    <%= form.text_field :start_street_address, class: "form-control", data: { target: "maps.fieldStart", action: "keydown->maps#preventSubmit" }, required: true %>
   </div>
 
   <div class="field">
     <%= form.label :end_street_address %>
-    <%= form.text_field :end_street_address, class: "form-control", data: { target: "maps.fieldEnd", action: "keydown->maps#preventSubmit" }  %>
+    <%= form.text_field :end_street_address, class: "form-control", data: { target: "maps.fieldEnd", action: "keydown->maps#preventSubmit" }, required: true  %>
   </div>
 
   <div class="field">
@@ -27,12 +27,12 @@
                 controller: "flatpickr",
                 flatpickr_date_format: "Y-m-d H:i",
                 flatpickr_enable_time: true,
-                flatpickr_min_date: Time.zone.now }, class: "form-control" %>
+                flatpickr_min_date: Time.zone.now }, class: "form-control", required: true %>
   </div>
 
   <div class="field">
     <%= form.label :highest_price_to_pay, 'Expected Trip Price'%>
-    <%= form.text_field :highest_price_to_pay, label: 'Expected Price', class: "form-control" %>
+    <%= form.text_field :highest_price_to_pay, label: 'Expected Price', class: "form-control", required: true %>
   </div>
 
   <div class="actions">

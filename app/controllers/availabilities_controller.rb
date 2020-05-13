@@ -2,7 +2,7 @@ class AvailabilitiesController < ApplicationController
   respond_to :js
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
   # before_action :authorized, only: [:show]
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!
 
   # GET /availabilities
   # GET /availabilities.json
@@ -85,7 +85,7 @@ class AvailabilitiesController < ApplicationController
       @user = User.find(current_user.id)
       @availability = Availability.new
     else
-      flash[:error] = "You have to submit your vehicle information and phone number to continue."
+      flash[:error] = "You have to submit your vehicle information and phone number in Profile tab to continue."
       redirect_to root_path
     end
 

@@ -1,17 +1,17 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" class = "container text-center" style="padding-top:5px"><%= notice %></p>
 
-<div class="card text-left", style="margin-left:10%; margin-right:10%;">
+<div class="card text-left", style="margin-left:30%; margin-right:30%;">
   <div class="card-header">
     Ride Details
   </div>
   <div class="card-body">
       <div style="width:800px; margin-left:5px;">
       <p>
-        <strong>Start Address:</strong>
+        <strong>Start Address:</strong><br/>
         <%= @request.start_street_address %>
       </p>
       <p>
-        <strong>End Address:</strong>
+        <strong>End Address:</strong><br/>
         <%= @request.end_street_address %>
       </p>
       <p>
@@ -25,7 +25,7 @@
 
         <p>
           <strong>Trip Distance: </strong>
-          <%= @request.trip_distance.round(2)%>km
+          <%= @request.trip_distance.round(2) %>km
         </p>
         <% user_id = Make.find_by(request_id: @request.id).user_id %>
       <% if current_user.id == user_id %>
@@ -45,9 +45,13 @@
         <% if current_user.id != local_assigns[:rider].id %>
           <%= render partial: 'showRider', :locals => { :rider => local_assigns[:rider] } %>
         <% end %>
-        <%= link_to 'Back', new_user_request_path, class: "btn btn-primary" %>
     </div>
   </div>
+
+</div>
+
+<div style="text-align:center; padding-top:150px;">
+  <%= link_to 'Back To Home Page', root_path, class:"btn btn-primary" %>
 </div>
 
 

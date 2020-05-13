@@ -1,6 +1,5 @@
-<div class="row">
-  <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-    <h3 class="text-center">Editing Profile</h3>
+<!--<div class="row">-->
+<!--  <div class="col-lg-4 col-md-6 ml-auto mr-auto">-->
     <%= form_with(model: user, local: true) do |form| %>
       <% if user.errors.any? %>
         <div id="error_explanation">
@@ -14,56 +13,74 @@
         </div>
       <% end %>
 
-      <div class="form-group">
-        <div class="row">
-          <div class="col-sm-4">
-            <%= image_tag @user.avatar_attachment_path, height: 100, width: 100, class: "rounded-circle" %>
+
+<!--      <div class="form-group">-->
+<!--        <div class="row">-->
+<!--          <div class="col-sm-4">-->
+            <%#= image_tag @user.avatar_attachment_path, height: 100, width: 100, class: "rounded-circle" %>
             <%# if @user.avatar.attached? %>
             <%#= image_tag @user.avatar.variant(resize: "100x100!") %>
             <%# else %>
             <%#= image_tag @user.avatar_attachment_path, height: 100, width: 100, class: "rounded-circle" %>
             <%# end %>
-          </div>
-          <div class="col-sm-8">
-            <%= form.file_field :avatar, class: "d-flex justify-content-center align-items-center" %>
-          </div>
-        </div>
-      </div>
+<!--          </div>-->
+<!--          <div class="col-sm-8">-->
+            <%#= form.file_field :avatar, class: "d-flex justify-content-center align-items-center" %>
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <div class="form-group">
+
+          <div class="field">
+            <div class="col-sm-4">
+              <%= image_tag @user.avatar_attachment_path, height: 100, width: 100, class: "rounded-circle" %>
+              <%# if @user.avatar.attached? %>
+              <%#= image_tag @user.avatar.variant(resize: "100x100!") %>
+              <%# else %>
+              <%#= image_tag @user.avatar_attachment_path, height: 100, width: 100, class: "rounded-circle" %>
+              <%# end %>
+            </div>
+            <div class="col-sm-8" style="margin-top: auto; margin-bottom: auto">
+              <%= form.file_field :avatar %>
+            </div>
+          </div>
+
+      <div class="field" style="padding-top: 15px">
         <%= form.text_field :lastname, class: 'form-control', placeholder: "Last Name", :value => params[:lastname] || @user.lastname %>
       </div>
-      <div class="form-group">
+      <div class="field">
         <%= form.text_field :firstname, class: 'form-control', placeholder: "First Name", :value => params[:firstname] || @user.firstname %>
       </div>
-      <div class="form-group">
+      <div class="field">
         <%= form.text_field :username, class: 'form-control', placeholder: "User Name", :value => params[:username] || @user.username %>
       </div>
-      <div class="form-group">
+      <div class="field">
         <%= form.number_field :age, class: 'form-control', placeholder: "Age", :value => params[:age] || @user.age %>
       </div>
 
-      <div class="form-group">
-        <%= form.text_field :gender, class: 'form-control', placeholder: "Gender", :value => params[:gender] || @user.gender %>
+      <div class="field">
+        <%= form.number_field :phone_number, class: 'form-control', placeholder: "Phone Number (Digits Only)", :value => params[:phone_number] || @user.phone_number %>
       </div>
 
-      <div class="form-group">
-        <%= form.text_field :phone_number, class: 'form-control', placeholder: "Phone Number", :value => params[:phone_number] || @user.phone_number %>
-      </div>
-
-      <div class="form-group">
+      <div class="field">
         <%= form.text_field :major, class: 'form-control', placeholder: "Major", :value => params[:major] || @user.major %>
       </div>
 
-      <div class="form-group">
+      <div class="field">
         <%= form.text_field :year, class: 'form-control', placeholder: "Year", :value => params[:year] || @user.year %>
       </div>
 
-      <div class="actions">
-        <%= form.submit %>
+      <div class="actions" style="margin-top:20px; text-align:center">
+        <%= form.submit "Update User", class: "btn btn-info btn-lg" %>
       </div>
     <% end %>
 
 
-  </div>
-</div>
+<!--  </div>-->
+<!--</div>-->
+
+
+
+
+
+

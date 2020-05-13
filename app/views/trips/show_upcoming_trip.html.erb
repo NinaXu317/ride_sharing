@@ -3,11 +3,11 @@
     <h1>Upcoming Trips</h1>
     <% if !@upcoming_trips.empty? %>
       <% @upcoming_trips.each do |upcoming| %>
-        <div class="card" style="margin-top:20px; width: 45rem; height: 25rem;">
+        <div class="card" style="margin-top:20px; width: 50rem; height: 30rem;">
           <div class="card-body" style="width: 40rem; height: 18rem;">
             <% if upcoming[1] == 'request'%>
               <% request = Request.find(upcoming[0]) %>
-              <%= upcoming[1] %>
+              <%#= upcoming[1] %>
               <%= render "trips_info", {:type => upcoming[1], :request => request, :trip_id => upcoming[2] } %>
             <% else %>
               <% availability = Availability.find(upcoming[0]) %>
@@ -15,17 +15,19 @@
             <% end %>
             <% if current_user.is_driver? %>
               <div id="start_button" style="margin-top:2px;">
-                <%= link_to 'Start Ride', user_trip_path(current_user.id, upcoming[2]), class:"btn btn-primary" %>
                 <%rider = Trip.find_by_id(upcoming[2]).rider_id %>
                 <%username = User.find_by_id(current_user.id).username %>
-                <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:rider, user_name:username), class: "btn btn-primary"%>
+                <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:rider, user_name:username), class: "btn btn-primary"%><br/>
+              </div>
+              <div>
+                <%= link_to 'Start Ride', user_trip_path(current_user.id, upcoming[2]), class:"btn btn-primary", style: "margin-top: 10px; margin-left: 30%; margin-right: 30%" %>
               </div>
             <% else %>
               <div id="start_button" style="margin-top:2px;">
                 <%= link_to 'Start Ride', user_rider_start_trip_path(current_user.id, :trip_id => upcoming[2]), class:"btn btn-primary" %>
                 <%username = User.find_by_id(current_user.id).username %>
                 <%driver = Trip.find_by_id(upcoming[2]).driver_id %>
-                <%= link_to "Chat With Your Rider", landingindex_path(sender_id:current_user.id, receiver_id:driver, user_name:username), class: "btn btn-primary"%>
+                <%= link_to "Chat With Your Driver", landingindex_path(sender_id:current_user.id, receiver_id:driver, user_name:username), class: "btn btn-primary"%>
               </div>
             <% end %>
           </div>

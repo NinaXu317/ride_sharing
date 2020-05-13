@@ -58,11 +58,7 @@ class NotificationsController < ApplicationController
       twilio_client.send_text(user, message)
       session[:availability_id] = nil
       respond_to do |format|
-        if @trip.save
           format.html { redirect_to search_user_requests_path, notice: 'You accept the request successfully.' }
-        else
-          format.html { redirect_to search_user_requests_path, notice: "The request cannot be accepted. Try again."}
-        end
       end
     end
 
@@ -108,7 +104,6 @@ class NotificationsController < ApplicationController
       response.message do |message|
         message.body("Hello World!")
       end
-      puts params["Body"]
       response_text = params["Body"].downcase!
       response_number = params["From"][2..-1].to_i
       curtAvail = CurtAvail.find_by(phone_number: response_number)
