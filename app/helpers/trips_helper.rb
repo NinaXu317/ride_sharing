@@ -33,7 +33,7 @@ module TripsHelper
     end
     if trip.availability_id != -1
       availability = Availability.find(trip.availability_id)
-      availability.request_status = "completed"
+      availability.availbility_status = "completed"
     end
     driver.number_of_rating_given += 1
     rider.number_of_rating_received += 1
